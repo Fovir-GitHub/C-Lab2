@@ -45,7 +45,21 @@ int compareCategoryName(LinkListNode * first, LinkListNode * last);
 
 typedef LinkListNode * LinkList; /* define the LinkList */
 
+/**
+ * @brief initialize a link list
+ * @param list the link list will be initialized
+ */
 void initializeLinkList(LinkList * list);
+
+/**
+ *@brief add new category to the link list
+ *
+ * @param list the target link list
+ * @param cate the category will be added
+ * @return if added successfully, it returns SUCCESS_ADD.
+ * if can't allocate memory, it returns FAILED_ALLOCATE_MEMORY
+ * if there has existed a same category, it returns DUPLICATED_NODE
+ */
 int addCategorytoLinkList(LinkList * list, Category cate);
 
 #endif // !_CATEGORY_H_
