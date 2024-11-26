@@ -11,6 +11,7 @@ enum LINK_LIST_STATUS_CODES {
 	SUCCESS_REMOVE,                /* remove node successfully */
 	FAILED_ALLOCATE_MEMORY,        /* can't allocate memory for new node */
 	FAILED_REMOVE_EMPTY_LINK_LIST, /* remove node in a empty link list */
+	NODE_DOES_NOT_EXIST,           /* try to remove a non-exist node */
 	DUPLICATED_NODE                /* the node item (category) exists */
 };
 
