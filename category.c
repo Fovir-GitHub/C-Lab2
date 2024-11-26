@@ -94,8 +94,12 @@ int addCategorytoLinkList(LinkList * list, Category cate)
 					add_node->next = current;
 					current->previous = add_node;
 				}
+
+				break;
 			}
 			current = current->next;
 		}
 	}
+
+	return SUCCESS_ADD; /* return success status code */
 }
