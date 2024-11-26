@@ -102,3 +102,50 @@ int addCategorytoLinkList(LinkList * list, Category cate)
 
 	return SUCCESS_ADD; /* return success status code */
 }
+
+int removeCategoryfromLinkList(LinkList * list, const char * category_name)
+{
+	LinkListNode * current = *list;
+
+	if (!current) /* the link list is empty */
+		return FAILED_REMOVE_EMPTY_LINK_LIST;
+
+	while (current)
+	{
+		int compare_result = compareCategoryName(
+		    current->category_item.category_name, category_name);
+
+		/**
+		 * the alphabetical order is greater than the name
+		 * the name doesn't exist
+		 * return status code directly
+		 */
+		if (compare_result == 1)
+			return NODE_DOES_NOT_EXIST;
+
+		if (compare_result == 0) /* match the name */
+		{
+			if (current == *list) /* remove the root node */
+			{
+				*list = current->next;
+				(*list)->previous = NULL;
+			}
+			else
+			{
+				// update the previous node's next node
+				current->previous->next = current->next;
+
+				// update the next node's previous node
+				if (current->next) /* avoid the last node */
+					current->next->previous = current->previous;
+			}
+
+			free(current); /* free memory */
+
+			return SUCCESS_REMOVE; /* return status code */
+		}
+		current = current->next;
+	}
+
+	return NODE_DOES_NOT_EXIST; /* the node doesn't exist */
+}
