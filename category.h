@@ -38,7 +38,7 @@ typedef struct LinkListNode
  * @param first the first link list node
  * @param last  the other one link list node
  * @return int  if first < last, return -1
- *  if last < first, return 1
+ *  if first > last, return 1
  *  otherwise, return 0
  */
 int compareCategoryName(LinkListNode * first, LinkListNode * last);
