@@ -79,7 +79,20 @@ int addCategorytoLinkList(LinkList * list, Category cate)
 				}
 				else
 				{
+					/**
+					 * backup_previous <---> current
+					 * backup_previous <---> new_node <---> current
+					 *
+					 */
 					LinkListNode * backup_previous_node = current->previous;
+
+					// link the new node and the previous node
+					backup_previous_node->next = add_node;
+					add_node->previous = backup_previous_node;
+
+					// link the new node and current node
+					add_node->next = current;
+					current->previous = add_node;
 				}
 			}
 			current = current->next;
