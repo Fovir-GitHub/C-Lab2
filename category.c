@@ -29,8 +29,7 @@ void initializeLinkList(LinkList * list)
 
 int addCategorytoLinkList(LinkList * list, Category cate)
 {
-	LinkListNode * add_node =
-	    (LinkListNode *)malloc(sizeof(LinkListNode)); /* need free */
+	LinkListNode * add_node = (LinkListNode *)malloc(sizeof(LinkListNode));
 	if (!add_node) /* can't allocate memory */
 	{
 		// print error message

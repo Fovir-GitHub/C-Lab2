@@ -62,4 +62,6 @@ void initializeLinkList(LinkList * list);
  */
 int addCategorytoLinkList(LinkList * list, Category cate);
 
+void freeCategoryLinkList(LinkList * list);
+
 #endif // !_CATEGORY_H_
