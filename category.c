@@ -103,7 +103,15 @@ int addCategorytoLinkList(LinkList * list, Category cate)
 int removeCategoryfromLinkList(LinkList * list, char * category_name)
 {
 	LinkListNode * current = *list;
-	LinkListNode * temp_node;
+	LinkListNode * temp_node =
+	    (LinkListNode *)malloc(sizeof(LinkListNode)); /* for compare */
+
+	if (!temp_node) /* can't allocate memory */
+	{
+		fprintf(stderr, "Can't allocate memory for temp_node\n");
+		return FAILED_ALLOCATE_MEMORY;
+	}
+
 	temp_node->category_item.category_name = category_name;
 
 	if (!current) /* the link list is empty */
@@ -119,7 +127,10 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name)
 		 * return status code directly
 		 */
 		if (compare_result == 1)
+		{
+			free(temp_node); /* free temp node */
 			return NODE_DOES_NOT_EXIST;
+		}
 
 		if (compare_result == 0) /* match the name */
 		{
@@ -138,8 +149,8 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name)
 					current->next->previous = current->previous;
 			}
 
-			free(current); /* free memory */
-
+			free(current);         /* free memory */
+			free(temp_node);       /* free temp node*/
 			return SUCCESS_REMOVE; /* return status code */
 		}
 		current = current->next;
