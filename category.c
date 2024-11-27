@@ -22,8 +22,6 @@ void initializeLinkList(LinkList * list)
 {
 	*list = NULL; /* set the link list root to NULL */
 
-	// assign NULL to the previous and next node of the root node
-	(*list)->previous = (*list)->next = NULL;
 	return;
 }
 
