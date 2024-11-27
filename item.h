@@ -24,9 +24,9 @@ DateInformation getToday();
  */
 typedef struct
 {
-	char * category;       /* the category of the item */
-	char * name;           /* item's name */
-	unsigned double price; /* item's price, format *.## */
+	char * category; /* the category of the item */
+	char * name;     /* item's name */
+	double price;    /* item's price, format *.## */
 	DateInformation
 	    produce_date; /* the produce date of the item, default set to today */
 	DateInformation
