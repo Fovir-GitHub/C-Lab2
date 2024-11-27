@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char * getString(char ** str, int max_length)
+void getString(char ** str, int max_length)
 {
 	char * temp_string = (char *)malloc(max_length * sizeof(char));
 	if (!temp_string) /* failed to allocate memory */
@@ -23,7 +23,7 @@ char * getString(char ** str, int max_length)
 	else                                     /* not find */
 		eatLine(); /* remove the remain characters until line breaker */
 
-	*str = (char *)malloc(strlen(temp_string) * sizeof(char));
+	*str = (char *)malloc((strlen(temp_string) + 1) * sizeof(char));
 	if (!(*str)) /* failed to allocate memory */
 	{
 		// print error message
@@ -34,7 +34,7 @@ char * getString(char ** str, int max_length)
 	strcpy(*str, temp_string); /* copy string */
 	free(temp_string);         /* free temp string's memory */
 
-	return *str;
+	return;
 }
 
 void eatLine()
