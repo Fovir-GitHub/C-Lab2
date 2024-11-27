@@ -39,6 +39,6 @@ char * getString(char ** str, int max_length)
 
 void eatLine()
 {
-	while (getchar() != '\n')
+	while (getchar() != '\n') /* read until line breaker */
 		continue;
 }
