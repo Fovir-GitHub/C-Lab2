@@ -65,7 +65,7 @@ void initializeLinkList(LinkList * list);
  */
 int addCategorytoLinkList(LinkList * list, Category cate);
 
-int removeCategoryfromLinkList(LinkList * list, const char * category_name);
+int removeCategoryfromLinkList(LinkList * list, char * category_name);
 
 void freeCategoryLinkList(LinkList * list);
 

@@ -50,8 +50,7 @@ int addCategorytoLinkList(LinkList * list, Category cate)
 		while (current)                 /* the current node is not NULL */
 		{
 			// get the compare result between categories
-			int compare_result =
-			    compareCategoryName(add_node, current->category_item);
+			int compare_result = compareCategoryName(add_node, current);
 
 			if (compare_result == 0)    /* the two categories are the same */
 				return DUPLICATED_NODE; /* return the status code */
@@ -103,17 +102,18 @@ int addCategorytoLinkList(LinkList * list, Category cate)
 	return SUCCESS_ADD; /* return success status code */
 }
 
-int removeCategoryfromLinkList(LinkList * list, const char * category_name)
+int removeCategoryfromLinkList(LinkList * list, char * category_name)
 {
 	LinkListNode * current = *list;
+	LinkListNode * temp_node;
+	temp_node->category_item.category_name = category_name;
 
 	if (!current) /* the link list is empty */
 		return FAILED_REMOVE_EMPTY_LINK_LIST;
 
 	while (current)
 	{
-		int compare_result = compareCategoryName(
-		    current->category_item.category_name, category_name);
+		int compare_result = compareCategoryName(current, temp_node);
 
 		/**
 		 * the alphabetical order is greater than the name
