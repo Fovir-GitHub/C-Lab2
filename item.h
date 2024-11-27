@@ -7,9 +7,9 @@
  */
 typedef struct
 {
-	int year;  /* year, format #### */
-	int month; /* month, format ## */
-	int day;   /* day, format ## */
+    int year;  /* year, format #### */
+    int month; /* month, format ## */
+    int day;   /* day, format ## */
 } DateInformation;
 
 /**
@@ -24,13 +24,13 @@ DateInformation getToday();
  */
 typedef struct
 {
-	char * category; /* the category of the item */
-	char * name;     /* item's name */
-	double price;    /* item's price, format *.## */
-	DateInformation
-	    produce_date; /* the produce date of the item, default set to today */
-	DateInformation
-	    due_date; /* the due date of the item, default set to empty */
+    char * category; /* the category of the item */
+    char * name;     /* item's name */
+    double price;    /* item's price, format *.## */
+    DateInformation
+        produce_date; /* the produce date of the item, default set to today */
+    DateInformation
+        due_date; /* the due date of the item, default set to empty */
 } Item;
 
 /**
@@ -39,9 +39,9 @@ and the right node is alphabetically greater than this.
  */
 typedef struct AVLTreeNode
 {
-	struct AVLTreeNode * left;  /* pointer to the left child node */
-	struct AVLTreeNode * right; /* pointer to the right child node */
-	Item item;                  /* item detail */
+    struct AVLTreeNode * left;  /* pointer to the left child node */
+    struct AVLTreeNode * right; /* pointer to the right child node */
+    Item item;                  /* item detail */
 } AVLTreeNode;
 
 typedef AVLTreeNode * AVLTree;

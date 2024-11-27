@@ -7,12 +7,12 @@
  *@brief The status code of link list's operation.
  */
 enum LINK_LIST_STATUS_CODES {
-	SUCCESS_ADD,                   /* add new node successfully */
-	SUCCESS_REMOVE,                /* remove node successfully */
-	FAILED_ALLOCATE_MEMORY,        /* can't allocate memory for new node */
-	FAILED_REMOVE_EMPTY_LINK_LIST, /* remove node in a empty link list */
-	NODE_DOES_NOT_EXIST,           /* try to remove a non-exist node */
-	DUPLICATED_NODE                /* the node item (category) exists */
+    SUCCESS_ADD,                   /* add new node successfully */
+    SUCCESS_REMOVE,                /* remove node successfully */
+    FAILED_ALLOCATE_MEMORY,        /* can't allocate memory for new node */
+    FAILED_REMOVE_EMPTY_LINK_LIST, /* remove node in a empty link list */
+    NODE_DOES_NOT_EXIST,           /* try to remove a non-exist node */
+    DUPLICATED_NODE                /* the node item (category) exists */
 };
 
 /**
@@ -20,8 +20,8 @@ enum LINK_LIST_STATUS_CODES {
  */
 typedef struct
 {
-	char * category_name;
-	AVLTree item_tree; /* item's tree */
+    char * category_name;
+    AVLTree item_tree; /* item's tree */
 } Category;
 
 /**
@@ -30,9 +30,9 @@ storing in alphabetical order.
  */
 typedef struct LinkListNode
 {
-	Category category_item;         /* the category */
-	struct LinkListNode * previous; /* pointer to the previous node */
-	struct LinkListNode * next;     /* pointer to the next node */
+    Category category_item;         /* the category */
+    struct LinkListNode * previous; /* pointer to the previous node */
+    struct LinkListNode * next;     /* pointer to the next node */
 } LinkListNode;
 
 /**
