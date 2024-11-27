@@ -5,7 +5,19 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ *@brief Show the node's information.
+ *
+ * @param node the target node
+ */
 static void showCategoryLinkListHelper(LinkListNode * node);
+
+/**
+ *@brief Free the node.
+ *
+ * @param node the target node
+ */
+static void freeCategoryLinkListHelper(LinkListNode * node);
 
 int compareCategoryName(LinkListNode * first, LinkListNode * last)
 {
@@ -194,5 +206,19 @@ void showCategoryLinkList(LinkList * list)
 void showCategoryLinkListHelper(LinkListNode * node)
 {
 	puts(node->category_item.category_name);
+	return;
+}
+
+void freeCategoryLinkListHelper(LinkListNode * node)
+{
+	free(node->category_item.category_name); /* free category's name */
+	// To Do: free the AVLTree
+	free(node); /* free node */
+	return;
+}
+
+void freeCategoryLinkList(LinkList * list)
+{
+	traverseCategoryLinkList(list, freeCategoryLinkListHelper);
 	return;
 }
