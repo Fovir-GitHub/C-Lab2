@@ -1,5 +1,6 @@
 #include "category.h"
 #include "constants.h"
+#include "my_utility.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,6 +12,15 @@ int compareCategoryName(LinkListNode * first, LinkListNode * last)
 	// get the alphabetically compare result
 	int compare_result = strcmp(first->category_item.category_name,
 	                            last->category_item.category_name);
+
+	// get the length of the two strings
+	int first_length = strlen(first->category_item.category_name),
+	    last_length = strlen(last->category_item.category_name);
+
+	if (first_length < last_length)
+		return -1;
+	else if (first_length > last_length)
+		return 1;
 
 	if (compare_result < 0)
 		return -1;
@@ -29,7 +39,7 @@ void initializeLinkList(LinkList * list)
 
 int addCategorytoLinkList(LinkList * list, Category cate)
 {
-	LinkListNode * add_node = (LinkListNode *)malloc(sizeof(LinkListNode));
+	LinkListNode * add_node = (LinkListNode *) malloc(sizeof(LinkListNode));
 	if (!add_node) /* can't allocate memory */
 	{
 		// print error message
@@ -47,56 +57,61 @@ int addCategorytoLinkList(LinkList * list, Category cate)
 	else
 	{
 		LinkListNode * current = *list; /* traverse the link list */
-		while (current)                 /* the current node is not NULL */
+
+		// compare with the root node of the link list
+		int compare_result = compareCategoryName(current, add_node);
+		if (compare_result == 0)    /* same categories */
+			return DUPLICATED_NODE; /* return status code */
+		else if (compare_result == 1)
+		{
+			/**
+			 * the root node is alphabetically greater than the new node
+			 * insert the node before the root node
+			 * and replace the root node with the new node
+			 */
+
+			add_node->next = current;     /* new node links to root node */
+			current->previous = add_node; /* root link to the new node */
+			*list = add_node;             /* replace the root node */
+
+			return SUCCESS_ADD; /* return status code */
+		}
+
+		while (current->next) /* the current->next node is not NULL */
 		{
 			// get the compare result between categories
-			int compare_result = compareCategoryName(add_node, current);
+			compare_result = compareCategoryName(current->next, add_node);
 
 			if (compare_result == 0)    /* the two categories are the same */
 				return DUPLICATED_NODE; /* return the status code */
 
 			/**
-			 * the name of the new category is alphabetically less than the
-			 * current category, then insert the new node before current node
+			 * the name of the new category is alphabetically greater than
+			 * the next category, then insert the new node after current
+			 * node
 			 */
-			if (compare_result < 0)
+			if (compare_result == 1)
 			{
-				/**
-				 * if the current node is the root node
-				 * then insert the new node before the root node
-				 * and change the root node to the new node
-				 */
-				if (current == *list)
-				{
-					// insert the new node before the root node
-					add_node->next = *list;
-					(*list)->previous = add_node;
+				LinkListNode * backup_next_node = current->next;
 
-					// change the root node to the new node
-					*list = add_node;
-				}
-				else
-				{
-					/**
-					 * backup_previous <---> current
-					 * backup_previous <---> new_node <---> current
-					 *
-					 */
-					LinkListNode * backup_previous_node = current->previous;
+				// link current node and the new node
+				current->next = add_node;
+				add_node->previous = current;
 
-					// link the new node and the previous node
-					backup_previous_node->next = add_node;
-					add_node->previous = backup_previous_node;
+				// link the new node and the backup next node
+				add_node->next = backup_next_node;
+				backup_next_node->previous = add_node;
 
-					// link the new node and current node
-					add_node->next = current;
-					current->previous = add_node;
-				}
-
-				break;
+				return SUCCESS_ADD;
 			}
 			current = current->next;
 		}
+		/**
+		 * the node is alphabetically greatest node
+		 * append it to the end of the link list
+		 */
+		current->next = add_node;     /* link the last node to the new node */
+		add_node->previous = current; /* link the new node to the last node */
 	}
 
 	return SUCCESS_ADD; /* return success status code */
@@ -106,7 +121,7 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name)
 {
 	LinkListNode * current = *list;
 	LinkListNode * temp_node =
-	    (LinkListNode *)malloc(sizeof(LinkListNode)); /* for compare */
+	    (LinkListNode *) malloc(sizeof(LinkListNode)); /* for compare */
 
 	if (!temp_node) /* can't allocate memory */
 	{
