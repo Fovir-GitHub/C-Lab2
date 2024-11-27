@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+static void showCategoryLinkListHelper(LinkListNode * node);
+
 int compareCategoryName(LinkListNode * first, LinkListNode * last)
 {
 	// get the alphabetically compare result
@@ -165,5 +167,17 @@ void traverseCategoryLinkList(LinkList * list,
 	for (LinkListNode * current = *list; current; current = current->next)
 		function_pointer(current);
 
+	return;
+}
+
+void showCategoryLinkList(LinkList * list)
+{
+	traverseCategoryLinkList(list, showCategoryLinkListHelper);
+	return;
+}
+
+void showCategoryLinkListHelper(LinkListNode * node)
+{
+	puts(node->category_item.category_name);
 	return;
 }

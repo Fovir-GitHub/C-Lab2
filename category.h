@@ -78,8 +78,16 @@ int addCategorytoLinkList(LinkList * list, Category cate);
  */
 int removeCategoryfromLinkList(LinkList * list, char * category_name);
 
+/**
+ *@brief traverse the link list and apply operations
+ *
+ * @param list the target link list
+ * @param function_pointer the function pointer
+ */
 void traverseCategoryLinkList(LinkList * list,
                               void (*function_pointer)(LinkListNode *));
+
+void showCategoryLinkList(LinkList * list);
 
 void freeCategoryLinkList(LinkList * list);
 
