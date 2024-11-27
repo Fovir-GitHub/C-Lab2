@@ -4,7 +4,7 @@
 #include "item.h"
 
 /**
- *@brief the status code of link list's operation
+ *@brief The status code of link list's operation.
  */
 enum LINK_LIST_STATUS_CODES {
 	SUCCESS_ADD,                   /* add new node successfully */
@@ -16,7 +16,7 @@ enum LINK_LIST_STATUS_CODES {
 };
 
 /**
- *@brief store the information of categories
+ *@brief Store the information of categories.
  */
 typedef struct
 {
@@ -25,8 +25,8 @@ typedef struct
 } Category;
 
 /**
- *@brief use double way link list to store categories,
-storing in alphabetical order
+ *@brief Use double way link list to store categories,
+storing in alphabetical order.
  */
 typedef struct LinkListNode
 {
@@ -36,7 +36,7 @@ typedef struct LinkListNode
 } LinkListNode;
 
 /**
- *@brief use to sort the link list in alphabetical order
+ *@brief Used to sort the link list in alphabetical order.
  *
  * @param first the first link list node
  * @param last  the other one link list node
@@ -49,13 +49,13 @@ int compareCategoryName(LinkListNode * first, LinkListNode * last);
 typedef LinkListNode * LinkList; /* define the LinkList */
 
 /**
- * @brief initialize a link list
+ * @brief Initialize a link list.
  * @param list the link list will be initialized
  */
 void initializeLinkList(LinkList * list);
 
 /**
- *@brief add new category to the link list
+ *@brief Add new category to the link list.
  *
  * @param list the target link list
  * @param cate the category will be added
@@ -66,7 +66,7 @@ void initializeLinkList(LinkList * list);
 int addCategorytoLinkList(LinkList * list, Category cate);
 
 /**
- *@brief remove a categoy from the link list
+ *@brief Remove a categoy from the link list.
  *
  * @param list the target link list
  * @param category_name the category's name that want to remove
@@ -79,7 +79,7 @@ int addCategorytoLinkList(LinkList * list, Category cate);
 int removeCategoryfromLinkList(LinkList * list, char * category_name);
 
 /**
- *@brief traverse the link list and apply operations
+ *@brief Traverse the link list and apply operations.
  *
  * @param list the target link list
  * @param function_pointer the function pointer
