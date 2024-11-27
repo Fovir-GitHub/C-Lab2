@@ -55,7 +55,8 @@ int addCategorytoLinkList(LinkList * list, Category cate)
     if (!add_node) /* can't allocate memory */
     {
         // print error message
-        fprintf(stderr, "Can't allocate memory for new category\n");
+        fprintf(stderr, "Can't allocate memory for new category in %s()\n",
+                __func__);
         return FAILED_ALLOCATE_MEMORY; /* return status code */
     }
 
@@ -137,7 +138,8 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name)
 
     if (!temp_node) /* can't allocate memory */
     {
-        fprintf(stderr, "Can't allocate memory for temp_node\n");
+        fprintf(stderr, "Can't allocate memory for temp_node in %s()\n",
+                __func__);
         return FAILED_ALLOCATE_MEMORY;
     }
 
