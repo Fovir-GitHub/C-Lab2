@@ -158,3 +158,12 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name)
 
 	return NODE_DOES_NOT_EXIST; /* the node doesn't exist */
 }
+
+void traverseCategoryLinkList(LinkList * list,
+                              void (*function_pointer)(LinkListNode *))
+{
+	for (LinkListNode * current = *list; current; current = current->next)
+		function_pointer(current);
+
+	return;
+}

@@ -78,6 +78,9 @@ int addCategorytoLinkList(LinkList * list, Category cate);
  */
 int removeCategoryfromLinkList(LinkList * list, char * category_name);
 
+void traverseCategoryLinkList(LinkList * list,
+                              void (*function_pointer)(LinkListNode *));
+
 void freeCategoryLinkList(LinkList * list);
 
 #endif // !_CATEGORY_H_
