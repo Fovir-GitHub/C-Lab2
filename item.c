@@ -203,6 +203,8 @@ void showAVLTree(AVLTree * tree)
 
 void freeAVLTree(AVLTree * tree)
 {
+    traverseAVLTree(tree, freeAVLTreeHelper);
+    return;
 }
 
 AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)

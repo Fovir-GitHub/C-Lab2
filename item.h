@@ -128,4 +128,11 @@ void traverseAVLTree(AVLTree * tree, void (*pointer_function)(AVLTreeNode *));
  */
 void showAVLTree(AVLTree * tree);
 
+/**
+ *@brief Free the memory of the AVL tree.
+ *
+ * @param tree the AVL tree to free memory space
+ */
+void freeAVLTree(AVLTree * tree);
+
 #endif // !_ITEM_H_
