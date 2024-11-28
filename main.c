@@ -1,4 +1,5 @@
 #include "category.h"
+#include "file_operations.h"
 #include "item.h"
 #include "my_utility.h"
 #include <stdbool.h>
@@ -7,31 +8,12 @@
 
 int main(void)
 {
-    const int N = 3;
-    const int LENGTH = 1024;
+    LinkList category_link_list;
 
-    AVLTree items_tree;
-    char * remove_item_name;
-    initializeAVLTree(&items_tree);
+    initializeLinkList(&category_link_list);
+    readCategoryDatafromFile(&category_link_list);
 
-    for (int i = 0; i < N; i++)
-    {
-        Item temp_item;
-        getString(&temp_item.name, LENGTH);
+    showCategoryLinkList(&category_link_list);
 
-        insertAVLTreeNode(&items_tree, temp_item);
-    }
-
-    puts("Remove:");
-    for (int i = 0; i < N; i++)
-    {
-        getString(&remove_item_name, LENGTH);
-        removeItemfromAVLTree(&items_tree, remove_item_name);
-        showAVLTree(&items_tree);
-        putchar('\n');
-    }
-
-    freeAVLTree(&items_tree);
-    puts("free success");
     return 0;
 }
