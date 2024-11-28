@@ -95,4 +95,12 @@ AVLTreeNode * rightRotate(AVLTreeNode * node);
  */
 AVLTreeNode * leftRotate(AVLTreeNode * node);
 
+/**
+ *@brief Rotate the node to keep the tree balanced.
+ *
+ * @param node the node want to rotate
+ * @return AVLTreeNode* The node after rotate.
+ */
+AVLTreeNode * rotateNode(AVLTreeNode * node);
+
 #endif // !_ITEM_H_

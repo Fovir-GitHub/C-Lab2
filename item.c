@@ -92,3 +92,53 @@ AVLTreeNode * leftRotate(AVLTreeNode * node)
     // the child node become the original node, return child node
     return child;
 }
+
+AVLTreeNode * rotateNode(AVLTreeNode * node)
+{
+    /**
+     * Get the node's balance factor.
+     * If the balance factor > 1, the left is not balanced.
+     * Then get the left node's balance factor.
+     * If the left node's balance factor >= 0,
+     * the original node need to right rotate.
+     * If the left node's balance factor < 0,
+     * the left node need to left rotate at first,
+     * and then right rotate the original node.
+     *
+     * If the balance factor < -1, the right is not balanced.
+     * Then get the right node's balance factor.
+     * If the right node's balance factor <=0,
+     * the original node only need to left rotate.
+     * If the right node's balance factor > 0,
+     * the right node need to right rotate at first,
+     * and then left rotate the original node.
+     */
+
+    // get the original node's balance factor
+    int node_balance_factor = getBalanceFactor(node);
+
+    if (node_balance_factor > 1) /* the left node is not balanced */
+    {
+        if (getBalanceFactor(node->left) >= 0) /* no right grand child node */
+            return rightRotate(node);
+        else /* have right grand child node */
+        {
+            node->left = leftRotate(node->left);
+            return rightRotate(node);
+        }
+    }
+
+    if (node_balance_factor < -1) /* the right node is not balanced */
+    {
+        if (getBalanceFactor(node->right) <= 0) /* no left grand child node */
+            return leftRotate(node);
+        else /* have right grand child node */
+        {
+            node->right = rightRotate(node->right);
+            return leftRotate(node);
+        }
+    }
+
+    // This node is balanced, no need to rotate.
+    return node;
+}
