@@ -135,4 +135,12 @@ void showAVLTree(AVLTree * tree);
  */
 void freeAVLTree(AVLTree * tree);
 
+/**
+ *@brief Remove a item from a AVL tree according item's name.
+ *
+ * @param tree the target tree
+ * @param item_name the item's name
+ */
+void removeItemfromAVLTree(AVLTree * tree, char * item_name);
+
 #endif // !_ITEM_H_
