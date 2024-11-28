@@ -204,7 +204,8 @@ void freeCategoryLinkListHelper(LinkListNode * node)
 {
     free(node->category_item.category_name); /* free category's name */
     // To Do: free the AVLTree
-    free(node); /* free node */
+    freeAVLTree(&node->category_item.item_tree); /* free item tree */
+    free(node);                                  /* free node */
     return;
 }
 
