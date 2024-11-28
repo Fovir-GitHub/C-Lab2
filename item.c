@@ -218,7 +218,7 @@ void freeAVLTree(AVLTree * tree)
 
 void removeItemfromAVLTree(AVLTree * tree, char * item_name)
 {
-    removeItemfromAVLTreeHelper(*tree, item_name);
+    *tree = removeItemfromAVLTreeHelper(*tree, item_name);
 
     return;
 }
