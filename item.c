@@ -247,6 +247,8 @@ AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
 void traverseAVLTreeHelper(AVLTreeNode * node,
                            void (*pointer_function)(AVLTreeNode *))
 {
+    if (!node)  /* if the node is empty */
+        return; /* return directly */
     if (node->left)
         traverseAVLTreeHelper(node->left, pointer_function);
     pointer_function(node);
