@@ -13,6 +13,22 @@
 static AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node,
                                              Item insert_item);
 
+/**
+ *@brief Recrusive apply function to all nodes in the AVL tree.
+ *
+ * @param node the node
+ * @param pointer_function the pointer to function
+ */
+static void traverseAVLTreeHelper(AVLTreeNode * node,
+                                  void (*pointer_function)(AVLTreeNode *));
+
+/**
+ *@brief Help to show the AVL tree node
+ *
+ * @param node the target node
+ */
+static void showAVLTreeHelper(AVLTreeNode * node);
+
 DateInformation getToday()
 {
     DateInformation today;
@@ -164,6 +180,20 @@ void insertAVLTreeNode(AVLTree * tree, Item insert_item)
     return;
 }
 
+void traverseAVLTree(AVLTree * tree, void (*pointer_function)(AVLTreeNode *))
+{
+    traverseAVLTreeHelper(*tree, pointer_function);
+
+    return;
+}
+
+void showAVLTree(AVLTree * tree)
+{
+    traverseAVLTree(tree, showAVLTreeHelper);
+
+    return;
+}
+
 AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
 {
     if (node == NULL) /* insert the node  */
@@ -183,4 +213,23 @@ AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
     node = rotateNode(node);       /* rotate the node, make the tree balanced */
 
     return node;
+}
+
+void traverseAVLTreeHelper(AVLTreeNode * node,
+                           void (*pointer_function)(AVLTreeNode *))
+{
+    if (node->left)
+        traverseAVLTreeHelper(node->left, pointer_function);
+    pointer_function(node);
+    if (node->right)
+        traverseAVLTreeHelper(node->right, pointer_function);
+
+    return;
+}
+
+void showAVLTreeHelper(AVLTreeNode * node)
+{
+    puts(node->item.name);
+
+    return;
 }
