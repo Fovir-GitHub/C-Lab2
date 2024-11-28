@@ -73,6 +73,22 @@ AVLTreeNode * rightRotate(AVLTreeNode * node)
     updateAVLTreeNodeHeight(node);
     updateAVLTreeNodeHeight(child);
 
-    // the child node become the original node, return child
+    // the child node become the original node, return child node
+    return child;
+}
+
+AVLTreeNode * leftRotate(AVLTreeNode * node)
+{
+    AVLTreeNode * child = node->right;
+    AVLTreeNode * grand_child = child->left;
+
+    child->left = node;        /* move the node to down */
+    node->right = grand_child; /* append the grand child node to the node */
+
+    // update nodes' height, the height of grand_child doesn't change
+    updateAVLTreeNodeHeight(node);
+    updateAVLTreeNodeHeight(child);
+
+    // the child node become the original node, return child node
     return child;
 }

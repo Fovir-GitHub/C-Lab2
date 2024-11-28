@@ -87,4 +87,12 @@ int getBalanceFactor(AVLTreeNode * node);
  */
 AVLTreeNode * rightRotate(AVLTreeNode * node);
 
+/**
+ *@brief Lefet rotate to make the tree balanced.
+ *
+ * @param node the node want to left rotate
+ * @return AVLTreeNode* The node after rotate.
+ */
+AVLTreeNode * leftRotate(AVLTreeNode * node);
+
 #endif // !_ITEM_H_
