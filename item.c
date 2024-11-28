@@ -279,17 +279,10 @@ AVLTreeNode * removeItemfromAVLTreeHelper(AVLTreeNode * node, char * item_name)
         {
             child = node->right ? node->right : node->left;
 
-            if (!child) /* node has no child node */
-            {
-                free(node);
-                node = NULL;
-                return NULL;
-            }
-            else /* node has one child node */
-            {
-                free(node);
-                node = child;
-            }
+            if (!child)       /* node has no child node */
+                return NULL;  /* return NULL */
+            else              /* node has one child node */
+                node = child; /* replace node with child */
         }
         else /* node has two child node */
         {
