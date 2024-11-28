@@ -121,6 +121,11 @@ void insertAVLTreeNode(AVLTree * tree, Item insert_item);
  */
 void traverseAVLTree(AVLTree * tree, void (*pointer_function)(AVLTreeNode *));
 
+/**
+ *@brief Show all elements in the AVL tree in alphabetical order.
+ *
+ * @param tree the target tree
+ */
 void showAVLTree(AVLTree * tree);
 
 #endif // !_ITEM_H_
