@@ -203,7 +203,7 @@ void showAVLTree(AVLTree * tree)
 
 void freeAVLTree(AVLTree * tree)
 {
-    traverseAVLTree(tree, freeAVLTreeHelper);
+    freeAVLTreeHelper(*tree);
     return;
 }
 
@@ -242,6 +242,11 @@ void traverseAVLTreeHelper(AVLTreeNode * node,
 
 void freeAVLTreeHelper(AVLTreeNode * node)
 {
+    if (node->left)
+        freeAVLTreeHelper(node->left);
+    if (node->right)
+        freeAVLTreeHelper(node->right);
+
     free(node->item.name); /* free item's name memory space */
     free(node);            /* free the node memory space */
 
