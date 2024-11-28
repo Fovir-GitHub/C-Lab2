@@ -47,6 +47,8 @@ typedef struct AVLTreeNode
 
 typedef AVLTreeNode * AVLTree;
 
+void initializeAVLTree(AVLTree * tree);
+
 /**
  *@brief Construct AVLTreeNode
  *
@@ -102,5 +104,13 @@ AVLTreeNode * leftRotate(AVLTreeNode * node);
  * @return AVLTreeNode* The node after rotate.
  */
 AVLTreeNode * rotateNode(AVLTreeNode * node);
+
+/**
+ *@brief Insert item to AVLTree.
+ *
+ * @param tree the target tree
+ * @param insert_item the item want to add
+ */
+void insertAVLTreeNode(AVLTree * tree, Item insert_item);
 
 #endif // !_ITEM_H_

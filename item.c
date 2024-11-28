@@ -3,6 +3,15 @@
 #include <stdlib.h>
 #include <time.h>
 
+/**
+ *@brief Recrusive add item to a AVL tree.
+ *
+ * @param insert_item the item to insert
+ * @return AVLTreeNode* the node after inserting
+ */
+static AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node,
+                                             Item insert_item);
+
 DateInformation getToday()
 {
     DateInformation today;
@@ -17,6 +26,11 @@ DateInformation getToday()
     today.day = local_time->tm_mday;         /*get today's day */
 
     return today;
+}
+
+void initializeAVLTree(AVLTree * tree)
+{
+    *tree = NULL;
 }
 
 AVLTreeNode * makeAVLTreeNode(Item item)
@@ -141,4 +155,16 @@ AVLTreeNode * rotateNode(AVLTreeNode * node)
 
     // This node is balanced, no need to rotate.
     return node;
+}
+
+void insertAVLTreeNode(AVLTree * tree, Item insert_item)
+{
+    *tree = insertAVLTreeNodeHelper(*tree, insert_item);
+    return;
+}
+
+AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
+{
+    if (node == NULL) /* the node is empty */
+        return makeAVLTreeNode(insert_item);
 }
