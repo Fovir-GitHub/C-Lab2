@@ -42,6 +42,7 @@ typedef struct AVLTreeNode
     struct AVLTreeNode * left;  /* pointer to the left child node */
     struct AVLTreeNode * right; /* pointer to the right child node */
     Item item;                  /* item detail */
+    int height;                 /* the tree node height */
 } AVLTreeNode;
 
 typedef AVLTreeNode * AVLTree;
