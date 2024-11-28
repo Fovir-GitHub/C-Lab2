@@ -23,6 +23,15 @@ static void traverseAVLTreeHelper(AVLTreeNode * node,
                                   void (*pointer_function)(AVLTreeNode *));
 
 /**
+ *@brief Help to remove item from a AVL tree recrusively.
+ *
+ * @param item_name the item's name
+ * @return AVLTreeNode* the node after removing item
+ */
+static AVLTreeNode * removeItemfromAVLTreeHelper(AVLTreeNode * node,
+                                                 char * item_name);
+
+/**
  *@brief Help to free the AVL tree recrusively.
  *
  * @param node the target node
@@ -207,6 +216,13 @@ void freeAVLTree(AVLTree * tree)
     return;
 }
 
+void removeItemfromAVLTree(AVLTree * tree, char * item_name)
+{
+    removeItemfromAVLTreeHelper(*tree, item_name);
+
+    return;
+}
+
 AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
 {
     if (node == NULL) /* insert the node  */
@@ -238,6 +254,59 @@ void traverseAVLTreeHelper(AVLTreeNode * node,
         traverseAVLTreeHelper(node->right, pointer_function);
 
     return;
+}
+
+AVLTreeNode * removeItemfromAVLTreeHelper(AVLTreeNode * node, char * item_name)
+{
+    AVLTreeNode *child, *grand_child;
+
+    // the node is empty
+    if (node == NULL)
+        return NULL;
+
+    int compare_result = compare2Strings(item_name, node->item.name);
+
+    if (compare_result == -1) /* find the left branch */
+        node->left = removeItemfromAVLTreeHelper(node->left, item_name);
+    else if (compare_result == 1) /* find the right branch */
+        node->right = removeItemfromAVLTreeHelper(node->right, item_name);
+    else /* match the item name */
+    {
+        if (node->left == NULL || node->right == NULL)
+        {
+            child = node->right ? node->right : node->left;
+
+            if (!child) /* node has no child node */
+            {
+                free(node);
+                node = NULL;
+                return NULL;
+            }
+            else /* node has one child node */
+            {
+                free(node);
+                node = child;
+            }
+        }
+        else /* node has two child node */
+        {
+            AVLTreeNode * temp = node->right; /* get the right child node */
+            while (temp->left)                /* find the minmum item's name */
+                temp = temp->left;
+
+            Item temp_item = temp->item;
+            /* remove the node with temp_item */
+            node->right =
+                removeItemfromAVLTreeHelper(node->right, temp_item.name);
+            node->item =
+                temp_item; /* replace the node's item with the temp_item */
+        }
+    }
+
+    updateAVLTreeNodeHeight(node); /* update node's height */
+    node = rotateNode(node);       /* rotate node to make the tree balance */
+
+    return node;
 }
 
 void freeAVLTreeHelper(AVLTreeNode * node)
