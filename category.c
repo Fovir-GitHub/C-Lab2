@@ -28,7 +28,7 @@ Category makeCategory(char * name)
     strcpy(result.category_name, name);
 
     // initialize the AVL tree
-    initializeAVLTree(result.item_tree);
+    initializeAVLTree(&result.item_tree);
 
     return result;
 }
