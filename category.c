@@ -19,27 +19,10 @@ static void showCategoryLinkListHelper(LinkListNode * node);
  */
 static void freeCategoryLinkListHelper(LinkListNode * node);
 
-int compareCategoryName(LinkListNode * first, LinkListNode * last)
+int compareCategoryName(LinkListNode * first, LinkListNode * second)
 {
-    // get the alphabetically compare result
-    int compare_result = strcmp(first->category_item.category_name,
-                                last->category_item.category_name);
-
-    // get the length of the two strings
-    int first_length = strlen(first->category_item.category_name),
-        last_length = strlen(last->category_item.category_name);
-
-    if (first_length < last_length)
-        return -1;
-    else if (first_length > last_length)
-        return 1;
-
-    if (compare_result < 0)
-        return -1;
-    else if (compare_result > 0)
-        return 1;
-    else
-        return 0;
+    return compare2Strings(first->category_item.category_name,
+                           second->category_item.category_name);
 }
 
 void initializeLinkList(LinkList * list)

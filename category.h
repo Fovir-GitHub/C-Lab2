@@ -39,12 +39,12 @@ typedef struct LinkListNode
  *@brief Used to sort the link list in alphabetical order.
  *
  * @param first the first link list node
- * @param last  the other one link list node
+ * @param second  the other one link list node
  * @return int  if first < last, return -1
  *  if first > last, return 1
  *  otherwise, return 0
  */
-int compareCategoryName(LinkListNode * first, LinkListNode * last);
+int compareCategoryName(LinkListNode * first, LinkListNode * second);
 
 typedef LinkListNode * LinkList; /* define the LinkList */
 
