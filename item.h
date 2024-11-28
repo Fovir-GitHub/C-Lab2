@@ -47,4 +47,12 @@ typedef struct AVLTreeNode
 
 typedef AVLTreeNode * AVLTree;
 
+/**
+ *@brief Construct AVLTreeNode
+ *
+ * @param item the node's item value
+ * @return AVLTreeNode pointer to the new tree node
+ */
+AVLTreeNode * makeAVLTreeNode(Item item);
+
 #endif // !_ITEM_H_
