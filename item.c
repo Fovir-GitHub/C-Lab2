@@ -60,3 +60,19 @@ int getBalanceFactor(AVLTreeNode * node)
                       getAVLTreeNodeHeight(node->right)
                 : 0;
 }
+
+AVLTreeNode * rightRotate(AVLTreeNode * node)
+{
+    AVLTreeNode * child = node->left;
+    AVLTreeNode * grand_child = child->right;
+
+    child->right = node;      /* move the node to down */
+    node->left = grand_child; /* move the grand child node */
+
+    // update nodes' height, the height of grand_child doesn't change
+    updateAVLTreeNodeHeight(node);
+    updateAVLTreeNodeHeight(child);
+
+    // the child node become the original node, return child
+    return child;
+}
