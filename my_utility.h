@@ -17,4 +17,15 @@ void getString(char ** str, int max_length);
  */
 void eatLine();
 
+/**
+ *@brief Compare two strings in alphabetical order
+ *
+ * @param first_string the first string
+ * @param second_string the second string
+ * @return If first string is alphabetically less than the second one, it
+ *returns -1. If the first string is alphabetically greater than the second one,
+ *it returns 1. Otherwise, it returns 0.
+ */
+int compare2Strings(const char * first_string, const char * second_string);
+
 #endif // !_MY_UTILITY_H_

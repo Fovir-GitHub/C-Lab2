@@ -42,3 +42,20 @@ void eatLine()
     while (getchar() != '\n') /* read until line breaker */
         continue;
 }
+
+int compare2Strings(const char * first_string, const char * second_string)
+{
+    // compare the length first
+    int first_length = strlen(first_string),
+        second_length = strlen(second_string);
+
+    if (first_length != second_length)
+        return first_length > second_length ? 1 : -1;
+    // compare the alphabetical order
+    int compare_result = strcmp(first_string, second_string);
+
+    if (compare_result == 0) /* the same strings */
+        return 0;
+
+    return compare_result > 0 ? 1 : -1;
+}
