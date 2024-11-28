@@ -1,4 +1,5 @@
 #include "item.h"
+#include "my_utility.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -165,6 +166,21 @@ void insertAVLTreeNode(AVLTree * tree, Item insert_item)
 
 AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
 {
-    if (node == NULL) /* the node is empty */
+    if (node == NULL) /* insert the node  */
         return makeAVLTreeNode(insert_item);
+
+    // compare two items' name
+    int compare_result = compare2Strings(insert_item.name, node->item.name);
+
+    if (compare_result == -1) /* insert to left */
+        node->left = insertAVLTreeNodeHelper(node->left, insert_item);
+    else if (compare_result == 1) /* insert to right */
+        node->right = insertAVLTreeNodeHelper(node->right, insert_item);
+    else /* duplicated node, no action to do */
+        return node;
+
+    updateAVLTreeNodeHeight(node); /* update the height of the new node */
+    node = rotateNode(node);       /* rotate the node, make the tree balanced */
+
+    return node;
 }
