@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    const int N = 5;
+    const int N = 3;
     const int LENGTH = 1024;
 
     AVLTree items_tree;
@@ -21,6 +21,8 @@ int main(void)
     }
 
     showAVLTree(&items_tree);
+    freeAVLTree(&items_tree);
+    puts("Success free");
 
     return 0;
 }
