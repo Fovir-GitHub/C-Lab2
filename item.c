@@ -23,7 +23,7 @@ static void traverseAVLTreeHelper(AVLTreeNode * node,
                                   void (*pointer_function)(AVLTreeNode *));
 
 /**
- *@brief Help to free the AVL tree.
+ *@brief Help to free the AVL tree recrusively.
  *
  * @param node the target node
  */
