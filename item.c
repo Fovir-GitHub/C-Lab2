@@ -35,3 +35,28 @@ AVLTreeNode * makeAVLTreeNode(Item item)
 
     return new_node;
 }
+
+int getAVLTreeNodeHeight(AVLTreeNode * node)
+{
+    return node ? node->height : -1;
+}
+
+void updateAVLTreeNodeHeight(AVLTreeNode * node)
+{
+    // get the heights of child nodes
+    int left_height = getAVLTreeNodeHeight(node->left),
+        right_height = getAVLTreeNodeHeight(node->right);
+
+    // update the height to the bigger height + 1
+    node->height =
+        left_height > right_height ? left_height + 1 : right_height + 1;
+
+    return;
+}
+
+int getBalanceFactor(AVLTreeNode * node)
+{
+    return node ? getAVLTreeNodeHeight(node->left) -
+                      getAVLTreeNodeHeight(node->right)
+                : 0;
+}

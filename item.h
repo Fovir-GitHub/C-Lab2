@@ -55,4 +55,36 @@ typedef AVLTreeNode * AVLTree;
  */
 AVLTreeNode * makeAVLTreeNode(Item item);
 
+/**
+ *@brief Get AVL tree node's height.
+ *
+ * @param node the AVL tree node
+ * @return int The height of the node. If the node is empty, it returns -1.
+ */
+int getAVLTreeNodeHeight(AVLTreeNode * node);
+
+/**
+ *@brief Update the height of the AVL tree node.
+ *
+ * @param node the target node
+ */
+void updateAVLTreeNodeHeight(AVLTreeNode * node);
+
+/**
+ *@brief Get the balance factor of the node
+ *
+ * @param node the target node
+ * @return int If the node is empty, the balance factor will be 0.
+ * If the node is not empty, return the left height - right height.
+ */
+int getBalanceFactor(AVLTreeNode * node);
+
+/**
+ *@brief Right rotate to make the tree balanced.
+ *
+ * @param node the node want to right rotate
+ * @return AVLTreeNode* The node after rotate.
+ */
+AVLTreeNode * rightRotate(AVLTreeNode * node);
+
 #endif // !_ITEM_H_
