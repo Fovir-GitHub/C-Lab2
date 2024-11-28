@@ -23,6 +23,13 @@ static void traverseAVLTreeHelper(AVLTreeNode * node,
                                   void (*pointer_function)(AVLTreeNode *));
 
 /**
+ *@brief Help to free the AVL tree.
+ *
+ * @param node the target node
+ */
+static void freeAVLTreeHelper(AVLTreeNode * node);
+
+/**
  *@brief Help to show the AVL tree node
  *
  * @param node the target node
@@ -194,6 +201,10 @@ void showAVLTree(AVLTree * tree)
     return;
 }
 
+void freeAVLTree(AVLTree * tree)
+{
+}
+
 AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
 {
     if (node == NULL) /* insert the node  */
@@ -223,6 +234,14 @@ void traverseAVLTreeHelper(AVLTreeNode * node,
     pointer_function(node);
     if (node->right)
         traverseAVLTreeHelper(node->right, pointer_function);
+
+    return;
+}
+
+void freeAVLTreeHelper(AVLTreeNode * node)
+{
+    free(node->item.name); /* free item's name memory space */
+    free(node);            /* free the node memory space */
 
     return;
 }
