@@ -307,6 +307,9 @@ AVLTreeNode * removeItemfromAVLTreeHelper(AVLTreeNode * node, char * item_name)
 
 void freeAVLTreeHelper(AVLTreeNode * node)
 {
+    if (!node) /* if the node is NULL (empty tree) */
+        return;
+
     if (node->left)
         freeAVLTreeHelper(node->left);
     if (node->right)
