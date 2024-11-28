@@ -6,51 +6,21 @@
 
 int main(void)
 {
-    const int LENGTH = 512;
+    const int N = 5;
+    const int LENGTH = 1024;
 
-    LinkList category_name;
-    char remove_category_name[LENGTH];
-    initializeLinkList(&category_name);
+    AVLTree items_tree;
+    initializeAVLTree(&items_tree);
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < N; i++)
     {
-        Category temp;
-        getString(&temp.category_name, LENGTH);
-        int status_code = addCategorytoLinkList(&category_name, temp);
+        Item temp_item;
+        getString(&temp_item.name, LENGTH);
 
-        // switch (status_code)
-        // {
-        // case SUCCESS_ADD:
-        // 	puts("Success add");
-        // 	break;
-        // case DUPLICATED_NODE:
-        // 	puts("Duplicated node");
-        // 	break;
-        // }
+        insertAVLTreeNode(&items_tree, temp_item);
     }
 
-    showCategoryLinkList(&category_name);
-    while (scanf("%s", remove_category_name) == 1)
-    {
-        int status =
-            removeCategoryfromLinkList(&category_name, remove_category_name);
-        switch (status)
-        {
-        case SUCCESS_REMOVE:
-            puts("Remove successfully!");
-            break;
-        case FAILED_REMOVE_EMPTY_LINK_LIST:
-            puts("The link list is empty!");
-            break;
-        case NODE_DOES_NOT_EXIST:
-            puts("Category doesn't exist!");
-            break;
-        }
-        showCategoryLinkList(&category_name);
-    }
-
-    freeCategoryLinkList(&category_name);
-    puts("Free successfully!");
+    showAVLTree(&items_tree);
 
     return 0;
 }
