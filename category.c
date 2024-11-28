@@ -19,6 +19,20 @@ static void showCategoryLinkListHelper(LinkListNode * node);
  */
 static void freeCategoryLinkListHelper(LinkListNode * node);
 
+Category makeCategory(char * name)
+{
+    Category result;
+
+    // copy category's name
+    result.category_name = (char *) malloc((strlen(name) + 1) * sizeof(char));
+    strcpy(result.category_name, name);
+
+    // initialize the AVL tree
+    initializeAVLTree(result.item_tree);
+
+    return result;
+}
+
 int compareCategoryName(LinkListNode * first, LinkListNode * second)
 {
     return compare2Strings(first->category_item.category_name,

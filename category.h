@@ -2,6 +2,7 @@
 #define _CATEGORY_H_
 
 #include "item.h"
+#define CATEGORY_NAME_MAX_LENGTH 1024
 
 /**
  *@brief The status code of link list's operation.
@@ -23,6 +24,14 @@ typedef struct
     char * category_name;
     AVLTree item_tree; /* item's tree */
 } Category;
+
+/**
+ *@brief Construct Category with its name.
+ *
+ * @param name category's name
+ * @return Category the object after constructing
+ */
+Category makeCategory(char * name);
 
 /**
  *@brief Use double way link list to store categories,
