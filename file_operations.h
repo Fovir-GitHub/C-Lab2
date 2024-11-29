@@ -43,4 +43,11 @@ void readCategoryDatafromFile(LinkList * list);
  */
 void readItemsDatafromFile(LinkList * list);
 
+/**
+ *@brief Output the categories to the file.
+ *
+ * @param list the categories' link list
+ */
+void outputCategoryDatatoFile(LinkList * list);
+
 #endif // !_FILE_OPERATIONS_H_

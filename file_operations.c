@@ -68,3 +68,19 @@ void readItemsDatafromFile(LinkList * list)
 
     return;
 }
+
+void outputCategoryDatatoFile(LinkList * list)
+{
+    FILE * output_category = fopen(CATEGORY_FILE_PATH, "w");
+    if (!output_category) /* can't open file */
+    {
+        // print error message
+        fprintf(stderr, "Can't open file %s\n", CATEGORY_FILE_PATH);
+        exit(EXIT_FAILURE); /* terminate program */
+    }
+
+    for (LinkListNode * current = *list; current; current = current->next)
+        fprintf(output_category, "%s\n", current->category_item.category_name);
+
+    return;
+}
