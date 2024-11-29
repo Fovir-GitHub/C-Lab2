@@ -67,7 +67,7 @@ void initializeLinkList(LinkList * list);
  *@brief Add new category to the link list.
  *
  * @param list the target link list
- * @param cate the category will be added
+ * @param category_name the category's name
  * @return if added successfully, it returns SUCCESS_ADD.
  * if can't allocate memory, it returns FAILED_ALLOCATE_MEMORY
  * if there has existed a same category, it returns DUPLICATED_NODE
