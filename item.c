@@ -71,11 +71,14 @@ Item makeItem(char * category, char * name, double price,
 {
     Item result;
 
-    result.category = category;
-    result.name = name;
+    // assign static variables
     result.price = price;
     result.produce_date = produce;
     result.due_date = due;
+
+    // assign dynamic variables
+    result.category = staticString2dynamicString(category);
+    result.name = staticString2dynamicString(name);
 
     return result;
 }
@@ -342,7 +345,6 @@ void freeAVLTreeHelper(AVLTreeNode * node)
 
 void showAVLTreeHelper(AVLTreeNode * node)
 {
-    puts(node->item.name);
-
+    printf("%s\t%.2lf\n", node->item.name, node->item.price);
     return;
 }
