@@ -66,6 +66,16 @@ DateInformation getToday()
     );
 }
 
+Item makeItem(char * category, char * name)
+{
+    Item result;
+
+    result.category = category;
+    result.name = name;
+
+    return result;
+}
+
 void initializeAVLTree(AVLTree * tree)
 {
     *tree = NULL;

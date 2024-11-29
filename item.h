@@ -47,6 +47,15 @@ typedef struct
 } Item;
 
 /**
+ *@brief Construct Item object.
+ *
+ * @param category the category's name
+ * @param name the item's name
+ * @return Item the Item object after construction
+ */
+Item makeItem(char * category, char * name);
+
+/**
  *@brief AVL tree's node. The left node is alphabetically less than this
 and the right node is alphabetically greater than this.
  */
