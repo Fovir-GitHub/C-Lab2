@@ -25,6 +25,10 @@
  */
 #define ITEM_FILE_PATH "./data/items.dat"
 
+// the max length of every line in items.dat
+#define ITEM_FILE_PER_LINE_MAX_LENGTH \
+    CATEGORY_NAME_MAX_LENGTH + ITEM_NAME_MAX_LENGTH + 32
+
 /**
  *@brief Read categories from file.
  *
