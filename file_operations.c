@@ -19,11 +19,14 @@ void readCategoryDatafromFile(LinkList * list)
         if (find)
             *find = '\0';
 
-        Category category = makeCategory(temp_string);
-        addCategorytoLinkList(list, category);
+        addCategorytoLinkList(list, temp_string);
     }
 
     fclose(read_category);
 
     return;
+}
+
+void readItemsDatafromFile(LinkList * list)
+{
 }
