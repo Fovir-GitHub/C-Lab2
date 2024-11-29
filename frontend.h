@@ -68,6 +68,9 @@ enum MAIN_MENU_OPTIONS {
     QUIT                           /* quit */
 };
 
+/**
+ *@brief Display the main menu
+ */
 void showMainMenu();
 
 #endif // !_FRONTEND_H_
