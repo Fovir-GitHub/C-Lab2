@@ -33,6 +33,14 @@ void printMenuTitle(char * title);
 void printMenuFrame(char frame_character);
 
 /**
+ *@brief Print options to menu.
+ *
+ * @param options the array of options
+ * @param options_number the size of the options array
+ */
+void printOptions(char * options[], int options_number);
+
+/**
  * Main menu include:
  * 1. show all categories
  * 2. add category
