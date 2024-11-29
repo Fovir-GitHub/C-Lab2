@@ -53,6 +53,8 @@ void printOptions(char * options[], int options_number);
  * q. quit
  */
 
+#define MAIN_MENU_OPTIONS_NUMBER 9 /* the number of options of main menu */
+
 enum MAIN_MENU_OPTIONS {
     SHOW_ALL_CATEGORIES,           /* show all categories */
     ADD_CATEGORY,                  /* add category */
