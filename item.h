@@ -15,6 +15,17 @@ typedef struct
 } DateInformation;
 
 /**
+ *@brief Construct DateInformation object.
+ *
+ * @param y year
+ * @param m month
+ * @param d day
+ *
+ * @return the object after construction
+ */
+DateInformation makeDateInformation(int y, int m, int d);
+
+/**
  *@brief Get the today's DateInformation
  *
  * @return today's date
