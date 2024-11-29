@@ -90,7 +90,7 @@ void printOptions(char * options[], int options_number)
 
 void showMainMenu()
 {
-    printMenuTitle("Home");
+    printMenuTitle("Main Menu");
 
     static char * options[MAIN_MENU_OPTIONS_NUMBER] = {
         "Show Categories",
