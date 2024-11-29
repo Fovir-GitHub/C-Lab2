@@ -9,7 +9,7 @@
  * @param title the menu title
  * @return int the prefix space length of the center title
  */
-int centerMenuTitle(char * title);
+int calculateCenterMenuTitle(char * title);
 
 /**
  *@brief Print the menu frame with the character.

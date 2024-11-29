@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int centerMenuTitle(char * title)
+int calculateCenterMenuTitle(char * title)
 {
     return (MENU_WIDTH - strlen(title)) / 2;
 }
