@@ -264,4 +264,8 @@ int addItemstoCategory(LinkList * list, Item item, int if_failed)
 
             return CREATE_NEW_CATEGORY; /* return the status code */
         }
+
+    // find the category, insert the item
+    insertAVLTreeNode(&category_position->category_item.item_tree, item);
+    return ADD_SUCCESS; /* return status code */
 }
