@@ -49,8 +49,9 @@ void readItemsDatafromFile(LinkList * list)
 
         // read information from the line string
         sscanf(line, "%[^@]@%[^@]@%lf@%d-%d-%d@%d-%d-%d", temp_category_name,
-               temp_item_name, price, produce_date_year, produce_date_month,
-               produce_date_day, due_date_year, due_date_month, due_date_day);
+               temp_item_name, &price, &produce_date_year, &produce_date_month,
+               &produce_date_day, &due_date_year, &due_date_month,
+               &due_date_day);
 
         // make the item and add to the list
         addItemstoCategory(
