@@ -23,4 +23,8 @@ int main(void)
     readItemsDatafromFile(&category_list);
 
     traverseCategoryLinkList(&category_list, show);
+    freeCategoryLinkList(&category_list);
+
+    puts("Free success");
+    return 0;
 }
