@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 
-int calculateCenterMenuTitle(char * title)
+int calculateCenterStringSpace(char * str)
 {
-    return (MENU_WIDTH - strlen(title)) / 2;
+    return (MENU_WIDTH - strlen(str)) / 2;
 }
 
 void printMenuFrame(char frame_character)

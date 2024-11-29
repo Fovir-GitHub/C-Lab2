@@ -4,12 +4,14 @@
 #define MENU_WIDTH 40 /* the width of menu */
 
 /**
- *@brief Center the title.
+ *@brief Calculate how many space need for center the string in the menu.
  *
- * @param title the menu title
+ * @param str the string to calculate center space
  * @return int the prefix space length of the center title
  */
-int calculateCenterMenuTitle(char * title);
+int calculateCenterStringSpace(char * str);
+
+void printStringinCenter(char * str);
 
 /**
  *@brief Print the menu frame with the character.
