@@ -17,4 +17,11 @@
  */
 void readCategoryDatafromFile(LinkList * list);
 
+/**
+ *@brief Read items from file.
+ *
+ * @param list the category's link list
+ */
+void readItemsDatafromFile(LinkList * list);
+
 #endif // !_FILE_OPERATIONS_H_
