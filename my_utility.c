@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void getString(char ** str, int max_length)
+char * getString(char ** str, int max_length)
 {
     char * temp_string = (char *) malloc(max_length * sizeof(char));
     if (!temp_string) /* failed to allocate memory */
@@ -34,7 +34,7 @@ void getString(char ** str, int max_length)
     strcpy(*str, temp_string); /* copy string */
     free(temp_string);         /* free temp string's memory */
 
-    return;
+    return *str;
 }
 
 void eatLine()

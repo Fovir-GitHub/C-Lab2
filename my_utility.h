@@ -10,7 +10,7 @@
  * @param str the string want to get
  * @param max_length the maximum length of the string
  */
-void getString(char ** str, int max_length);
+char * getString(char ** str, int max_length);
 
 /**
  *@brief Ignore characters until line breaker.
