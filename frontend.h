@@ -1,6 +1,8 @@
 #ifndef _FRONTEND_H_
 #define _FRONTEND_H_
 
+#define MENU_WIDTH 40 /* the width of menu */
+
 /**
  * Main menu include:
  * 1. show all categories
