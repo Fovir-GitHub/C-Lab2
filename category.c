@@ -228,3 +228,23 @@ void freeCategoryLinkList(LinkList * list)
     traverseCategoryLinkList(list, freeCategoryLinkListHelper);
     return;
 }
+
+LinkListNode * findCategoryinLinkList(LinkList * list, Category category)
+{
+    for (LinkListNode * current = *list; current; current = current->next)
+    {
+        int compare_result = compare2Strings(
+            current->category_item.category_name, category.category_name);
+
+        if (compare_result == 0) /* match the category's name */
+            return current;
+        if (compare_result == 1) /* not possible find the category's name */
+            return NULL;
+    }
+
+    return NULL; /* category doesn't exist */
+}
+
+void addItemstoCategory(LinkList * list, Item item)
+{
+}

@@ -110,4 +110,16 @@ void showCategoryLinkList(LinkList * list);
  */
 void freeCategoryLinkList(LinkList * list);
 
+/**
+ *@brief Find the category in the link list.
+ *
+ * @param list the link list to search
+ * @param category the category to find
+ * @return LinkListNode* the pointer to the place of the node with the category,
+ * if not found, return NULL.
+ */
+LinkListNode * findCategoryinLinkList(LinkList * list, Category category);
+
+void addItemstoCategory(LinkList * list, Item item);
+
 #endif // !_CATEGORY_H_
