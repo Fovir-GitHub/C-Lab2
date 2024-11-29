@@ -33,6 +33,13 @@ DateInformation makeDateInformation(int y, int m, int d);
 DateInformation getToday();
 
 /**
+ *@brief Show the date information.
+ *
+ * @param date the DateInformation object
+ */
+void showDateInformation(DateInformation * date);
+
+/**
  *@brief store the information about items
  */
 typedef struct

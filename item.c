@@ -66,6 +66,13 @@ DateInformation getToday()
     );
 }
 
+void showDateInformation(DateInformation * date)
+{
+    // format output to YYYY-MM-DD
+    printf("%04d-%02d-%02d\n", date->year, date->month, date->day);
+    return;
+}
+
 Item makeItem(char * category, char * name, double price,
               DateInformation produce, DateInformation due)
 {
