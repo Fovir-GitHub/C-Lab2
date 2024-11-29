@@ -11,7 +11,7 @@ static void outputItemsDatatoFileHelper(AVLTreeNode * node, FILE * output);
 
 void readCategoryDatafromFile(LinkList * list)
 {
-    FILE * read_category = fopen(CATEGORY_FILE_PATH, "r");
+    FILE * read_category = fopen(CATEGORY_FILE_PATH, "rb");
     if (!read_category) /* can't open file */
     {
         // print error message
@@ -37,7 +37,7 @@ void readCategoryDatafromFile(LinkList * list)
 
 void readItemsDatafromFile(LinkList * list)
 {
-    FILE * read_item = fopen(ITEM_FILE_PATH, "r");
+    FILE * read_item = fopen(ITEM_FILE_PATH, "rb");
     if (!read_item) /* can't open file */
     {
         // print error message
@@ -79,7 +79,7 @@ void readItemsDatafromFile(LinkList * list)
 
 void outputCategoryDatatoFile(LinkList * list)
 {
-    FILE * output_category = fopen(CATEGORY_FILE_PATH, "w");
+    FILE * output_category = fopen(CATEGORY_FILE_PATH, "wb");
     if (!output_category) /* can't open file */
     {
         // print error message
@@ -95,8 +95,8 @@ void outputCategoryDatatoFile(LinkList * list)
 
 void outputItemsDatatoFile(LinkList * list)
 {
-    FILE * output_item = fopen(ITEM_FILE_PATH, "w"); /* open file */
-    if (!output_item)                                /* can't open file */
+    FILE * output_item = fopen(ITEM_FILE_PATH, "wb"); /* open file */
+    if (!output_item)                                 /* can't open file */
     {
         // print error message
         fprintf(stderr, "Can't open file %s\n", ITEM_FILE_PATH);
