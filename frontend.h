@@ -42,6 +42,13 @@ void printMenuFrame(char frame_character);
 void printOptions(char * options[], int options_number);
 
 /**
+ *@brief Print the footer of a menu.
+ *
+ * @param footer the footer content
+ */
+void printMenuFooter(char * footer);
+
+/**
  * Main menu include:
  * 1. show all categories
  * 2. add category

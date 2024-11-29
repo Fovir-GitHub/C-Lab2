@@ -20,7 +20,7 @@ void printMenuTitle(char * title)
 {
     printMenuFrame('=');
     printStringinCenter(title);
-    printMenuFrame('=');
+    printMenuFrame('-');
 
     return;
 }
@@ -88,6 +88,13 @@ void printOptions(char * options[], int options_number)
     return;
 }
 
+void printMenuFooter(char * footer)
+{
+    printMenuFrame('-');
+    printStringinCenter(footer);
+    printMenuFrame('=');
+}
+
 void showMainMenu()
 {
     printMenuTitle("Main Menu");
@@ -103,5 +110,7 @@ void showMainMenu()
         "Edit Item",
         "Quit",
     };
+
     printOptions(options, MAIN_MENU_OPTIONS_NUMBER);
+    printMenuFooter("Footer");
 }
