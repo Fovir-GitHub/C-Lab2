@@ -2,6 +2,7 @@
 #define _FRONTEND_H_
 
 #define MENU_WIDTH 50 /* the width of menu */
+#define POWER_FOOTER "Powered by Fovir"
 
 /**
  *@brief Calculate how many space need for center the string in the menu.
