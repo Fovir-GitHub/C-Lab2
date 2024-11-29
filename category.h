@@ -72,7 +72,7 @@ void initializeLinkList(LinkList * list);
  * if can't allocate memory, it returns FAILED_ALLOCATE_MEMORY
  * if there has existed a same category, it returns DUPLICATED_NODE
  */
-int addCategorytoLinkList(LinkList * list, Category cate);
+int addCategorytoLinkList(LinkList * list, char * category_name);
 
 /**
  *@brief Remove a categoy from the link list.

@@ -46,7 +46,7 @@ void initializeLinkList(LinkList * list)
     return;
 }
 
-int addCategorytoLinkList(LinkList * list, Category cate)
+int addCategorytoLinkList(LinkList * list, char * category_name)
 {
     LinkListNode * add_node = (LinkListNode *) malloc(sizeof(LinkListNode));
     if (!add_node) /* can't allocate memory */
@@ -57,7 +57,8 @@ int addCategorytoLinkList(LinkList * list, Category cate)
         return FAILED_ALLOCATE_MEMORY; /* return status code */
     }
 
-    add_node->category_item = cate; /* assign the category */
+    add_node->category_item =
+        makeCategory(category_name); /* assign the category */
 
     // set the previous and the next node to NULL
     add_node->previous = add_node->next = NULL;
@@ -256,10 +257,9 @@ int addItemstoCategory(LinkList * list, Item item, int if_failed)
             return FAILED_TO_ADD;
         else /* create new category */
         {
-            Category new_category =
-                makeCategory(item.category); /* create new category */
+
             addCategorytoLinkList(
-                list, new_category); /* add the category to the link list */
+                list, item.category); /* add the category to the link list */
             addItemstoCategory(list, item, if_failed); /* readd the item */
 
             return CREATE_NEW_CATEGORY; /* return the status code */
