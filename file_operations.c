@@ -1,6 +1,14 @@
 #include "file_operations.h"
 #include <string.h>
 
+/**
+ *@brief Recrusively output items' data to the file from the AVL tree.
+ *
+ * @param node the AVL tree node
+ * @param output the FILE pointer
+ */
+static void outputItemsDatatoFileHelper(AVLTreeNode * node, FILE * output);
+
 void readCategoryDatafromFile(LinkList * list)
 {
     FILE * read_category = fopen(CATEGORY_FILE_PATH, "r");
@@ -81,6 +89,46 @@ void outputCategoryDatatoFile(LinkList * list)
 
     for (LinkListNode * current = *list; current; current = current->next)
         fprintf(output_category, "%s\n", current->category_item.category_name);
+
+    return;
+}
+
+void outputItemsDatatoFile(LinkList * list)
+{
+    FILE * output_item = fopen(ITEM_FILE_PATH, "w"); /* open file */
+    if (!output_item)                                /* can't open file */
+    {
+        // print error message
+        fprintf(stderr, "Can't open file %s\n", ITEM_FILE_PATH);
+        exit(EXIT_FAILURE); /* terminate program */
+    }
+
+    // traverse all link list node and apply output item to file method
+    for (LinkListNode * current = *list; current; current = current->next)
+        outputItemsDatatoFileHelper(current->category_item.item_tree,
+                                    output_item);
+
+    fclose(output_item); /* close file */
+    return;
+}
+
+void outputItemsDatatoFileHelper(AVLTreeNode * node, FILE * output)
+{
+    if (!node)
+        return;
+
+    // traverse left child node first
+    outputItemsDatatoFileHelper(node->left, output);
+
+    // output this node's information
+    fprintf(output, "%s@%s@%.2lf@%04d-%02d-%02d@%04d-%02d-%02d\n",
+            node->item.category, node->item.name, node->item.price,
+            node->item.produce_date.year, node->item.produce_date.month,
+            node->item.produce_date.day, node->item.due_date.year,
+            node->item.due_date.month, node->item.due_date.day);
+
+    // traverse right child node
+    outputItemsDatatoFileHelper(node->right, output);
 
     return;
 }

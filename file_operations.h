@@ -50,4 +50,11 @@ void readItemsDatafromFile(LinkList * list);
  */
 void outputCategoryDatatoFile(LinkList * list);
 
+/**
+ *@brief Output items' information to the file according to the category order.
+ *
+ * @param list the categories' link list
+ */
+void outputItemsDatatoFile(LinkList * list);
+
 #endif // !_FILE_OPERATIONS_H_
