@@ -51,9 +51,14 @@ typedef struct
  *
  * @param category the category's name
  * @param name the item's name
+ * @param price the item's price
+ * @param produce the produce date
+ * @param due the due date
+ *
  * @return Item the Item object after construction
  */
-Item makeItem(char * category, char * name);
+Item makeItem(char * category, char * name, double price,
+              DateInformation produce, DateInformation due);
 
 /**
  *@brief AVL tree's node. The left node is alphabetically less than this

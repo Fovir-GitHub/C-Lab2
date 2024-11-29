@@ -66,12 +66,16 @@ DateInformation getToday()
     );
 }
 
-Item makeItem(char * category, char * name)
+Item makeItem(char * category, char * name, double price,
+              DateInformation produce, DateInformation due)
 {
     Item result;
 
     result.category = category;
     result.name = name;
+    result.price = price;
+    result.produce_date = produce;
+    result.due_date = due;
 
     return result;
 }
