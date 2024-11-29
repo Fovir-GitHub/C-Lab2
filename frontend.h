@@ -1,7 +1,7 @@
 #ifndef _FRONTEND_H_
 #define _FRONTEND_H_
 
-#define MENU_WIDTH 40 /* the width of menu */
+#define MENU_WIDTH 50 /* the width of menu */
 
 /**
  *@brief Calculate how many space need for center the string in the menu.
