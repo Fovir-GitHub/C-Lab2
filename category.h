@@ -120,6 +120,21 @@ void freeCategoryLinkList(LinkList * list);
  */
 LinkListNode * findCategoryinLinkList(LinkList * list, char * category_name);
 
-void addItemstoCategory(LinkList * list, Item item);
+/**
+ *@brief The operation choice for addItemstoCategory() failed to find the
+ *category in the link list.
+ */
+enum IF_ADD_ITEM_TO_CATEGORY_LINK_LIST_FAILED {
+    CREATE_NEW_CATEGORY, /* create a new category */
+    TERMINATE_DIRECTLY   /* terminate the add process */
+};
+
+enum ADD_ITEM_TO_CATEGORY_STATUS_CODE {
+    ADD_SUCCESS,
+    CREATE_CATEGORY,
+    FAILED_TO_ADD
+};
+
+int addItemstoCategory(LinkList * list, Item item, int if_failed);
 
 #endif // !_CATEGORY_H_
