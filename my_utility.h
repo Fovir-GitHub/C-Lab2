@@ -9,6 +9,8 @@
  *
  * @param str the string want to get
  * @param max_length the maximum length of the string
+ *
+ * @return the string read in
  */
 char * getString(char ** str, int max_length);
 
