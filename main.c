@@ -19,12 +19,11 @@ int main(void)
     LinkList category_list;
 
     initializeLinkList(&category_list);
+
     readCategoryDatafromFile(&category_list);
-    readItemsDatafromFile(&category_list);
-
-    traverseCategoryLinkList(&category_list, show);
+    showCategoryLinkList(&category_list);
+    outputCategoryDatatoFile(&category_list);
     freeCategoryLinkList(&category_list);
-
     puts("Free success");
     return 0;
 }
