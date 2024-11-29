@@ -118,7 +118,7 @@ void freeCategoryLinkList(LinkList * list);
  * @return LinkListNode* the pointer to the place of the node with the category,
  * if not found, return NULL.
  */
-LinkListNode * findCategoryinLinkList(LinkList * list, Category category);
+LinkListNode * findCategoryinLinkList(LinkList * list, char * category_name);
 
 void addItemstoCategory(LinkList * list, Item item);
 

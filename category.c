@@ -229,12 +229,12 @@ void freeCategoryLinkList(LinkList * list)
     return;
 }
 
-LinkListNode * findCategoryinLinkList(LinkList * list, Category category)
+LinkListNode * findCategoryinLinkList(LinkList * list, char * category_name)
 {
     for (LinkListNode * current = *list; current; current = current->next)
     {
         int compare_result = compare2Strings(
-            current->category_item.category_name, category.category_name);
+            current->category_item.category_name, category_name);
 
         if (compare_result == 0) /* match the category's name */
             return current;
