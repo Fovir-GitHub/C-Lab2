@@ -138,6 +138,14 @@ enum ADD_ITEM_TO_CATEGORY_STATUS_CODE {
     FAILED_TO_ADD    /* terminate and failed to add item */
 };
 
+/**
+ *@brief Add items link list according to category.
+ *
+ * @param list the category's link list
+ * @param item the item to add
+ * @param if_failed operation to do if failed to add item
+ * @return int the status code from ADD_ITEM_TO_CATEGORY_STATUS_CODE
+ */
 int addItemstoCategory(LinkList * list, Item item, int if_failed);
 
 #endif // !_CATEGORY_H_
