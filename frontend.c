@@ -112,5 +112,5 @@ void showMainMenu()
     };
 
     printOptions(options, MAIN_MENU_OPTIONS_NUMBER);
-    printMenuFooter("Footer");
+    printMenuFooter(POWER_FOOTER);
 }
