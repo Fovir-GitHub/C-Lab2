@@ -129,10 +129,13 @@ enum IF_ADD_ITEM_TO_CATEGORY_LINK_LIST_FAILED {
     TERMINATE_DIRECTLY   /* terminate the add process */
 };
 
+/**
+ *@brief The status code returned by addItemstoCategory() function
+ */
 enum ADD_ITEM_TO_CATEGORY_STATUS_CODE {
-    ADD_SUCCESS,
-    CREATE_CATEGORY,
-    FAILED_TO_ADD
+    ADD_SUCCESS,     /* add item normally */
+    CREATE_CATEGORY, /* create new category */
+    FAILED_TO_ADD    /* terminate and failed to add item */
 };
 
 int addItemstoCategory(LinkList * list, Item item, int if_failed);
