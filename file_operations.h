@@ -7,6 +7,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * The categories.dat format:
+ *  category name 1
+ *  category name 2
+ *  ...
+ */
 #define CATEGORY_FILE_PATH "./data/categories.dat"
 #define ITEM_FILE_PATH "./data/items.dat"
 
