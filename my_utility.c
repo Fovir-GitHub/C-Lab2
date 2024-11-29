@@ -59,3 +59,15 @@ int compare2Strings(const char * first_string, const char * second_string)
 
     return compare_result > 0 ? 1 : -1;
 }
+
+char * staticString2dynamicString(char * static_string)
+{
+    // allocate memory
+    char * dynamic_string =
+        (char *) malloc((strlen(static_string) + 1) * sizeof(char));
+
+    // copy string
+    strcpy(dynamic_string, static_string);
+
+    return dynamic_string;
+}

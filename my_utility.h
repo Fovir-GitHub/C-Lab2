@@ -30,4 +30,12 @@ void eatLine();
  */
 int compare2Strings(const char * first_string, const char * second_string);
 
+/**
+ *@brief Convert static string to string with dynamic memory allocation.
+ *
+ * @param static_string the original static string
+ * @return char* the dynamic string after convertation.
+ */
+char * staticString2dynamicString(char * static_string);
+
 #endif // !_MY_UTILITY_H_
