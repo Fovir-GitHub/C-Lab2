@@ -29,7 +29,7 @@ void readCategoryDatafromFile(LinkList * list)
 
 void readItemsDatafromFile(LinkList * list)
 {
-    FILE * read_item = fopen(ITEM_FILE_PATH, "w");
+    FILE * read_item = fopen(ITEM_FILE_PATH, "r");
     if (!read_item) /* can't open file */
     {
         // print error message
