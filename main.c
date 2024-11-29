@@ -6,14 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void show(LinkListNode * node)
-{
-    puts(node->category_item.category_name);
-    showAVLTree(&node->category_item.item_tree);
-
-    return;
-}
-
 int main(void)
 {
     LinkList category_list;
