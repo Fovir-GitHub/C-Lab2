@@ -33,7 +33,8 @@ void printMenuTitle(char * title);
 void printMenuFrame(char frame_character);
 
 /**
- *@brief Print options to menu.
+ *@brief Print options to menu. Two options will be in a single line with order
+ *number.
  *
  * @param options the array of options
  * @param options_number the size of the options array
