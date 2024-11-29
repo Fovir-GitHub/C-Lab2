@@ -2,7 +2,7 @@
 #define _CATEGORY_H_
 
 #include "item.h"
-#define CATEGORY_NAME_MAX_LENGTH 1024
+#define CATEGORY_NAME_MAX_LENGTH 128
 
 /**
  *@brief The status code of link list's operation.

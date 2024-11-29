@@ -1,7 +1,7 @@
 #ifndef _ITEM_H_
 #define _ITEM_H_
 
-#define ITEM_NAME_MAX_LENGTH 1024
+#define ITEM_NAME_MAX_LENGTH 256
 
 /**
  *@brief store the date information like
