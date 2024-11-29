@@ -14,6 +14,15 @@
  *  ...
  */
 #define CATEGORY_FILE_PATH "./data/categories.dat"
+
+/**
+ * The items.dat format (per line):
+ * category_name@item_name@price@produce_date@due_date
+ * the produce_date and due_date formats are:
+ * YYYY-MM-DD
+ * and if they are blank, the format should also be
+ * 0000-00-00
+ */
 #define ITEM_FILE_PATH "./data/items.dat"
 
 /**
