@@ -1,10 +1,27 @@
 #include "frontend.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 int calculateCenterStringSpace(char * str)
 {
-    return (MENU_WIDTH - strlen(str)) / 2;
+    // calculate center the string need how many space before it
+    return abs(MENU_WIDTH - strlen(str)) / 2;
+}
+
+void printStringinCenter(char * str)
+{
+    printf("%*s%s\n", calculateCenterStringSpace(str) - 1, "", str);
+    return;
+}
+
+void printMenuTitle(char * title)
+{
+    printMenuFrame('=');
+    printStringinCenter(title);
+    printMenuFrame('=');
+
+    return;
 }
 
 void printMenuFrame(char frame_character)
@@ -17,4 +34,5 @@ void printMenuFrame(char frame_character)
 void showMainMenu()
 {
     char * title = "Main Menu";
+    printMenuTitle(title);
 }

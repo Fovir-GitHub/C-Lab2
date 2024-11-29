@@ -11,7 +11,19 @@
  */
 int calculateCenterStringSpace(char * str);
 
+/**
+ *@brief Print a string in the center of the menu line.
+ *
+ * @param str the string want to print in the center line.
+ */
 void printStringinCenter(char * str);
+
+/**
+ *@brief Print a menu's title and title frame.
+ *
+ * @param title the menu's title
+ */
+void printMenuTitle(char * title);
 
 /**
  *@brief Print the menu frame with the character.
