@@ -245,6 +245,23 @@ LinkListNode * findCategoryinLinkList(LinkList * list, char * category_name)
     return NULL; /* category doesn't exist */
 }
 
-void addItemstoCategory(LinkList * list, Item item)
+int addItemstoCategory(LinkList * list, Item item, int if_failed)
 {
+    // try to find the category's position
+    LinkListNode * category_position =
+        findCategoryinLinkList(list, item.category);
+
+    if (!category_position)                  /* not found the category */
+        if (if_failed == TERMINATE_DIRECTLY) /* terminate */
+            return FAILED_TO_ADD;
+        else /* create new category */
+        {
+            Category new_category =
+                makeCategory(item.category); /* create new category */
+            addCategorytoLinkList(
+                list, new_category); /* add the category to the link list */
+            addItemstoCategory(list, item, if_failed); /* readd the item */
+
+            return CREATE_NEW_CATEGORY; /* return the status code */
+        }
 }
