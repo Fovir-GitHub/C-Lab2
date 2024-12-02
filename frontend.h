@@ -81,4 +81,14 @@ enum MAIN_MENU_OPTIONS {
  */
 void showMainMenu();
 
+#define INVALID_CHOICE 0
+/**
+ *@brief Get the choice from user input. And judge whether the choice is valid.
+ *
+ * @param options the options' string
+ * @return char the user's choice,
+ * if the choice is invalid, returns INVALID_CHOICE.
+ */
+char getChoicefromUser(const char * options);
+
 #endif // !_FRONTEND_H_
