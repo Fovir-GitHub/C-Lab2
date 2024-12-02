@@ -126,24 +126,29 @@ char getMainMenuChoicefromUser()
 
     while (user_choice = getchar()) /* get user's input */
     {
-        if (user_choice == '\n')
+        if (user_choice == '\n') /* user inputs line breaker */
         {
-            clearScreen();
-            showMainMenu();
+            clearScreen();  /* clear screen */
+            showMainMenu(); /* show main menu */
             continue;
         }
 
-        if (!strchr(MAIN_MENU_OPTIONS_STRING, user_choice))
+        // find whether the choice is valid
+        if (!strchr(MAIN_MENU_OPTIONS_STRING, user_choice)) /* not valid */
         {
+            // tell user to input new option.
             printf("You entered an invalid chioce! Press Enter to continue...");
-            eatLine();
+            eatLine(); /* avoid multiple characters */
         }
         else
-            return user_choice;
+        {
+            eatLine();          /* avoid multiple characters */
+            return user_choice; /* return the choice */
+        }
 
         eatLine();
-        clearScreen();
-        showMainMenu();
+        clearScreen();  /* clear the terminal screen */
+        showMainMenu(); /* show the new main menu */
     }
 
     return 0;
