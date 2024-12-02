@@ -63,6 +63,8 @@ void printMenuFooter(char * footer);
  */
 
 #define MAIN_MENU_OPTIONS_NUMBER 9 /* the number of options of main menu */
+#define MAIN_MENU_OPTIONS_STRING \
+    "123456789q" /* the options' stirng for main menu */
 
 enum MAIN_MENU_OPTIONS {
     SHOW_ALL_CATEGORIES,           /* show all categories */
@@ -80,5 +82,12 @@ enum MAIN_MENU_OPTIONS {
  *@brief Display the main menu
  */
 void showMainMenu();
+
+/**
+ *@brief Get main menu's choice from user's input.
+ *
+ * @return char user's choice
+ */
+char getMainMenuChoicefromUser();
 
 #endif // !_FRONTEND_H_
