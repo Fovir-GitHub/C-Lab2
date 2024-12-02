@@ -120,13 +120,18 @@ char getMainMenuChoicefromUser()
 {
     char user_choice = 0;
 
+    // initialized status
     clearScreen();
     showMainMenu();
 
-    while (user_choice = getchar())
+    while (user_choice = getchar()) /* get user's input */
     {
         if (user_choice == '\n')
+        {
+            clearScreen();
+            showMainMenu();
             continue;
+        }
 
         if (!strchr(MAIN_MENU_OPTIONS_STRING, user_choice))
         {
