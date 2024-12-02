@@ -9,4 +9,9 @@
 
 int main(void)
 {
+    char choice = getMainMenuChoicefromUser();
+
+    putchar(choice);
+
+    return 0;
 }
