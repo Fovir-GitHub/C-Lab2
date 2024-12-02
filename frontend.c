@@ -114,22 +114,3 @@ void showMainMenu()
     printOptions(options, MAIN_MENU_OPTIONS_NUMBER);
     printMenuFooter(POWER_FOOTER);
 }
-
-char getChoicefromUser(const char * options)
-{
-    char user_choice = 0;
-
-    printf("Please enter your choice: ");
-    while (user_choice = getchar())
-        if (!strchr(options, user_choice))
-        {
-            user_choice = INVALID_CHOICE;
-            break;
-        }
-        else
-            break;
-
-    eatLine();
-
-    return user_choice;
-}
