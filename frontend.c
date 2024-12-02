@@ -113,4 +113,32 @@ void showMainMenu()
 
     printOptions(options, MAIN_MENU_OPTIONS_NUMBER);
     printMenuFooter(POWER_FOOTER);
+    printf("Please enter your choice: ");
+}
+
+char getMainMenuChoicefromUser()
+{
+    char user_choice = 0;
+
+    clearScreen();
+    showMainMenu();
+    printf("Please enter your choice: ");
+
+    while (user_choice = getchar())
+    {
+        if (!strchr(MAIN_MENU_OPTIONS_STRING, user_choice))
+        {
+            printf(
+                "You entered an invalid chioce! Press any key to continue...");
+            getchar();
+        }
+        else
+            return user_choice;
+
+        eatLine();
+        clearScreen();
+        showMainMenu();
+    }
+
+    return 0;
 }
