@@ -10,6 +10,9 @@
 int main(void)
 {
     showMainMenu();
+    getchar();
+    clearScreen();
+    getchar();
 
     return 0;
 }
