@@ -122,15 +122,16 @@ char getMainMenuChoicefromUser()
 
     clearScreen();
     showMainMenu();
-    printf("Please enter your choice: ");
 
     while (user_choice = getchar())
     {
+        if (user_choice == '\n')
+            continue;
+
         if (!strchr(MAIN_MENU_OPTIONS_STRING, user_choice))
         {
-            printf(
-                "You entered an invalid chioce! Press any key to continue...");
-            getchar();
+            printf("You entered an invalid chioce! Press Enter to continue...");
+            eatLine();
         }
         else
             return user_choice;
