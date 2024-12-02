@@ -39,4 +39,9 @@ int compare2Strings(const char * first_string, const char * second_string);
  */
 char * staticString2dynamicString(char * static_string);
 
+/**
+ *@brief Clear screen output.
+ */
+void clearScreen();
+
 #endif // !_MY_UTILITY_H_

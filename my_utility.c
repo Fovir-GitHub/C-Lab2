@@ -71,3 +71,18 @@ char * staticString2dynamicString(char * static_string)
 
     return dynamic_string;
 }
+
+void clearScreen()
+{
+// On Windows platform
+#ifdef _WIN32
+    system("cls");
+#endif
+
+// On Unix system like Linux, MacOS and so on
+#ifdef __unix__
+    system("clear");
+#endif
+
+    return;
+}
