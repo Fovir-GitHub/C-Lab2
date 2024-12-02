@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+// how many categories in a single line when use show categories method
+#define SHOW_CATEGORY_PER_LINE_NUMBER 5
+
 /**
  *@brief Show the node's information.
  *
