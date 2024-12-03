@@ -15,17 +15,19 @@ int main(void)
 
     initializeLinkList(&categories);
 
+    printf("%d\n", emptyLinkList(&categories));
     for (int i = 0; i < N; i++)
     {
         getString(&remove_name, CATEGORY_NAME_MAX_LENGTH);
         addCategorytoLinkList(&categories, remove_name);
     }
-
+    printf("%d\n", emptyLinkList(&categories));
     while (getString(&remove_name, CATEGORY_NAME_MAX_LENGTH))
     {
         removeCategoryfromLinkList(&categories, remove_name);
         putchar('\n');
         showCategoryLinkList(&categories);
+        printf("%d\n", emptyLinkList(&categories));
     }
     return 0;
 }
