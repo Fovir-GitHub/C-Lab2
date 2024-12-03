@@ -39,7 +39,7 @@ char * getString(char ** str, int max_length)
 
 void eatLine()
 {
-    while (getchar() != '\n') /* read until line breaker */
+    while (getchar() != '\n' && !feof(stdin)) /* read until line breaker */
         continue;
 }
 
