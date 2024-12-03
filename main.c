@@ -9,9 +9,10 @@
 
 int main(void)
 {
-    int choice = getMainMenuChoicefromUser();
+    LinkList categories;
 
-    printf("Your choice is %d\n", choice);
-
+    initializeLinkList(&categories);
+    readCategoryDatafromFile(&categories);
+    showCategories(&categories);
     return 0;
 }
