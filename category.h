@@ -2,6 +2,8 @@
 #define _CATEGORY_H_
 
 #include "item.h"
+#include <stdbool.h>
+#include <stdlib.h>
 #define CATEGORY_NAME_MAX_LENGTH 128
 
 /**
@@ -62,6 +64,18 @@ typedef LinkListNode * LinkList; /* define the LinkList */
  * @param list the link list will be initialized
  */
 void initializeLinkList(LinkList * list);
+
+/**
+ *@brief Judge whether the link list is empty.
+ *
+ * @param list the link list to check
+ * @return true the link list is emtpy
+ * @return false the link list is not empty
+ */
+bool emptyLinkList(LinkList * list)
+{
+    return *list == NULL;
+}
 
 /**
  *@brief Add new category to the link list.
