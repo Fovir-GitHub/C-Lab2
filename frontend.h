@@ -1,6 +1,8 @@
 #ifndef _FRONTEND_H_
 #define _FRONTEND_H_
 
+#include "category.h"
+
 #define MENU_WIDTH 50 /* the width of menu */
 #define POWER_FOOTER "Powered by Fovir"
 
@@ -92,6 +94,6 @@ void showMainMenu();
  */
 char getMainMenuChoicefromUser();
 
-void showCategories();
+void showCategories(LinkList * list);
 
 #endif // !_FRONTEND_H_
