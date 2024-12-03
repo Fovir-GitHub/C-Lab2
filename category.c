@@ -64,7 +64,7 @@ int addCategorytoLinkList(LinkList * list, char * category_name)
     // set the previous and the next node to NULL
     add_node->previous = add_node->next = NULL;
 
-    if (*list == NULL) /* the link list is empty */
+    if (emptyLinkList(list)) /* the link list is empty */
         *list = add_node;
     else
     {
