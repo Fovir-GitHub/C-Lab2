@@ -15,13 +15,6 @@ static int category_per_line_counter = 1;
  */
 static void showCategoryLinkListHelper(LinkListNode * node);
 
-/**
- *@brief Free the node.
- *
- * @param node the target node
- */
-static void freeCategoryLinkListHelper(LinkListNode * node);
-
 Category makeCategory(char * name)
 {
     Category result;
@@ -215,15 +208,6 @@ void showCategoryLinkList(LinkList * list)
 void showCategoryLinkListHelper(LinkListNode * node)
 {
     puts(node->category_item.category_name);
-    return;
-}
-
-void freeCategoryLinkListHelper(LinkListNode * node)
-{
-    free(node->category_item.category_name); /* free category's name */
-    // To Do: free the AVLTree
-    freeAVLTree(&node->category_item.item_tree); /* free item tree */
-    free(node);                                  /* free node */
     return;
 }
 
