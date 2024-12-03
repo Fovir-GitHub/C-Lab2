@@ -4,6 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ *@brief Used to traverse the link list.
+ *
+ * @param node link list node object
+ */
+static void showCategoriesHelper(LinkListNode * node);
+
 int calculateCenterStringSpace(char * str)
 {
     // calculate center the string need how many space before it
@@ -174,4 +181,27 @@ int getMainMenuChoicefromUser()
     }
 
     return 0;
+}
+
+void showCategories(LinkList * list)
+{
+    int list_size = 0;
+
+    // get list's size
+    for (LinkListNode * iter = *list; iter; iter = iter->next)
+        list_size++;
+
+    // print menu's title
+    printMenuTitle(list_size <= 1 ? "Category" : "Categories");
+    traverseCategoryLinkList(list, showCategoriesHelper); /* show categories */
+    printMenuFooter(POWER_FOOTER);                        /* show footer */
+
+    return;
+}
+
+void showCategoriesHelper(LinkListNode * node)
+{
+    // print category's name in the center
+    printStringinCenter(node->category_item.category_name);
+    return;
 }
