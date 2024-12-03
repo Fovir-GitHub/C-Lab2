@@ -4,6 +4,8 @@
 #define MENU_WIDTH 50 /* the width of menu */
 #define POWER_FOOTER "Powered by Fovir"
 
+#define CAGEGORY_NUMBER_PER_PAGE 5
+
 /**
  *@brief Calculate how many space need for center the string in the menu.
  *
