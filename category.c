@@ -5,9 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// how many categories in a single line when use show categories method
-#define SHOW_CATEGORY_PER_LINE_NUMBER 5
-
 // record categories in every line when output all categories.
 static int category_per_line_counter = 1;
 
@@ -218,10 +215,7 @@ void showCategoryLinkList(LinkList * list)
 
 void showCategoryLinkListHelper(LinkListNode * node)
 {
-    printf("%s%c", node->category_item.category_name,
-           (category_per_line_counter++ % SHOW_CATEGORY_PER_LINE_NUMBER == 0
-                ? '\n'
-                : ' '));
+    puts(node->category_item.category_name);
     return;
 }
 
