@@ -229,7 +229,7 @@ void freeCategoryLinkListHelper(LinkListNode * node)
 
 void freeCategoryLinkList(LinkList * list)
 {
-    traverseCategoryLinkList(list, freeCategoryLinkListHelper);
+    traverseCategoryLinkList(list, freeCategoryLinkListNode);
     return;
 }
 
