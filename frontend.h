@@ -101,4 +101,11 @@ int getMainMenuChoicefromUser();
  */
 void showCategories(LinkList * list);
 
+/**
+ *@brief Remove category with user's input.
+ *
+ * @param list the link list stores categories
+ */
+void removeCategory(LinkList * list);
+
 #endif // !_FRONTEND_H_

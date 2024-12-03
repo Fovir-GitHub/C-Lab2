@@ -1,5 +1,6 @@
 #include "frontend.h"
 #include "my_utility.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -195,6 +196,55 @@ void showCategories(LinkList * list)
     printMenuTitle(list_size <= 1 ? "Category" : "Categories");
     traverseCategoryLinkList(list, showCategoriesHelper); /* show categories */
     printMenuFooter(POWER_FOOTER);                        /* show footer */
+
+    return;
+}
+
+void removeCategory(LinkList * list)
+{
+    if (emptyLinkList(list))
+    {
+        printf("You don't have any category! "
+               "Press any key to continue...");
+        getchar();
+        return;
+    }
+    char * remove_category_name = NULL;
+
+    while (1)
+    {
+        clearScreen();
+        showCategories(list); /* show all categories at first */
+        printf("Please enter the name of the category (quit to quit): ");
+
+        getString(&remove_category_name, CATEGORY_NAME_MAX_LENGTH);
+
+        if (strcmp(remove_category_name, "quit") == 0)
+            return;
+
+        int remove_result =
+            removeCategoryfromLinkList(list, remove_category_name);
+
+        if (remove_result == FAILED_ALLOCATE_MEMORY)
+            exit(EXIT_FAILURE);
+
+        if (remove_result == NODE_DOES_NOT_EXIST)
+        {
+            printf("The category \"%s\" does not exist! "
+                   "Enter another one? [Y/n] ",
+                   remove_category_name);
+
+            int choice = getchar();
+            if (choice == '\n')
+                continue;
+
+            eatLine();
+            if (tolower(choice) == 'n')
+                break;
+        }
+        else
+            break;
+    }
 
     return;
 }
