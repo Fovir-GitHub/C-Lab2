@@ -110,6 +110,8 @@ void showCategoryLinkList(LinkList * list);
  */
 void freeCategoryLinkList(LinkList * list);
 
+void freeCategoryLinkListNode(LinkListNode * node);
+
 /**
  *@brief Find the category in the link list.
  *

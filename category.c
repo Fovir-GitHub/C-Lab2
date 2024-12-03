@@ -172,9 +172,8 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name)
                     *list = current->next; /* update root node */
                 else                       /* if there is no next node */
                 {
-                    *list = NULL;          /* assign root node to NULL */
-                    free(temp_node);       /* free temp node */
-                    return SUCCESS_REMOVE; /* return status code */
+                    freeCategoryLinkListNode(*list); /* free root */
+                    return SUCCESS_REMOVE;           /* return status code */
                 }
             }
             else
@@ -187,9 +186,9 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name)
                     current->next->previous = current->previous;
             }
 
-            free(current);         /* free memory */
-            free(temp_node);       /* free temp node*/
-            return SUCCESS_REMOVE; /* return status code */
+            freeCategoryLinkListNode(current); /* free current node */
+            free(temp_node);                   /* free temp node*/
+            return SUCCESS_REMOVE;             /* return status code */
         }
         current = current->next;
     }
@@ -272,4 +271,12 @@ int addItemstoCategory(LinkList * list, Item item, int if_failed)
     // find the category, insert the item
     insertAVLTreeNode(&category_position->category_item.item_tree, item);
     return ADD_SUCCESS; /* return status code */
+}
+
+void freeCategoryLinkListNode(LinkListNode * node)
+{
+    free(node->category_item.category_name);     /* free item name string */
+    freeAVLTree(&node->category_item.item_tree); /* free tree */
+    free(node);                                  /* free the node space */
+    node = NULL;                                 /* assign the node to NULL */
 }
