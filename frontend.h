@@ -90,9 +90,9 @@ void showMainMenu();
 /**
  *@brief Get main menu's choice from user's input.
  *
- * @return char user's choice
+ * @return int user's choice
  */
-char getMainMenuChoicefromUser();
+int getMainMenuChoicefromUser();
 
 void showCategories(LinkList * list);
 
