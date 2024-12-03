@@ -94,6 +94,11 @@ void showMainMenu();
  */
 int getMainMenuChoicefromUser();
 
+/**
+ *@brief Show categories function.
+ *
+ * @param list the categories' link list
+ */
 void showCategories(LinkList * list);
 
 #endif // !_FRONTEND_H_
