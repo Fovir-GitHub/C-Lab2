@@ -9,25 +9,14 @@
 
 int main(void)
 {
-    const int N = 3;
-    LinkList categories;
+    LinkList category_list;
     char * remove_name = NULL;
 
-    initializeLinkList(&categories);
+    initializeLinkList(&category_list);
+    readCategoryDatafromFile(&category_list);
 
-    printf("%d\n", emptyLinkList(&categories));
-    for (int i = 0; i < N; i++)
-    {
-        getString(&remove_name, CATEGORY_NAME_MAX_LENGTH);
-        addCategorytoLinkList(&categories, remove_name);
-    }
-    printf("%d\n", emptyLinkList(&categories));
-    while (getString(&remove_name, CATEGORY_NAME_MAX_LENGTH))
-    {
-        removeCategoryfromLinkList(&categories, remove_name);
-        putchar('\n');
-        showCategoryLinkList(&categories);
-        printf("%d\n", emptyLinkList(&categories));
-    }
+    removeCategory(&category_list);
+    showCategories(&category_list);
+
     return 0;
 }
