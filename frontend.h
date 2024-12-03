@@ -90,4 +90,6 @@ void showMainMenu();
  */
 char getMainMenuChoicefromUser();
 
+void showCategories();
+
 #endif // !_FRONTEND_H_
