@@ -9,9 +9,9 @@
 
 int main(void)
 {
-    char choice = getMainMenuChoicefromUser();
+    int choice = getMainMenuChoicefromUser();
 
-    putchar(choice);
+    printf("Your choice is %d\n", choice);
 
     return 0;
 }
