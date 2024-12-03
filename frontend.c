@@ -116,7 +116,7 @@ void showMainMenu()
     printf("Please enter your choice: ");
 }
 
-char getMainMenuChoicefromUser()
+int getMainMenuChoicefromUser()
 {
     char user_choice = 0;
 
@@ -142,8 +142,30 @@ char getMainMenuChoicefromUser()
         }
         else
         {
-            eatLine();          /* avoid multiple characters */
-            return user_choice; /* return the choice */
+            eatLine(); /* avoid multiple characters */
+
+            // judge user's choice and return the choice
+            switch (user_choice)
+            {
+            case '1':
+                return SHOW_ALL_CATEGORIES;
+            case '2':
+                return ADD_CATEGORY;
+            case '3':
+                return REMOVE_CATEGORY;
+            case '4':
+                return SHOW_ALL_ITEMS;
+            case '5':
+                return SHOW_ITEMS_ACCORDING_CATEGORY;
+            case '6':
+                return ADD_ITEM;
+            case '7':
+                return REMOVE_ITEM;
+            case '8':
+                return EDIT_ITEM;
+            case '9':
+                return QUIT;
+            }
         }
 
         eatLine();
