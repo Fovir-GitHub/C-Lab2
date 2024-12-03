@@ -42,6 +42,11 @@ void initializeLinkList(LinkList * list)
     return;
 }
 
+bool emptyLinkList(LinkList * list)
+{
+    return *list == NULL;
+}
+
 int addCategorytoLinkList(LinkList * list, char * category_name)
 {
     LinkListNode * add_node = (LinkListNode *) malloc(sizeof(LinkListNode));

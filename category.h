@@ -72,10 +72,7 @@ void initializeLinkList(LinkList * list);
  * @return true the link list is emtpy
  * @return false the link list is not empty
  */
-bool emptyLinkList(LinkList * list)
-{
-    return *list == NULL;
-}
+bool emptyLinkList(LinkList * list);
 
 /**
  *@brief Add new category to the link list.
