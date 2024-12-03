@@ -165,8 +165,12 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name)
                     *list = current->next; /* update root node */
                 else                       /* if there is no next node */
                 {
-                    freeCategoryLinkListNode(*list); /* free root */
-                    return SUCCESS_REMOVE;           /* return status code */
+                    // free memory
+                    free(current->category_item.category_name);
+                    freeAVLTree(&current->category_item.item_tree);
+
+                    *list = NULL;          /* assign root to NULL */
+                    return SUCCESS_REMOVE; /* return status code */
                 }
             }
             else
