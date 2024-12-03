@@ -8,6 +8,9 @@
 // how many categories in a single line when use show categories method
 #define SHOW_CATEGORY_PER_LINE_NUMBER 5
 
+// record categories in every line when output all categories.
+static int category_per_line_counter = 1;
+
 /**
  *@brief Show the node's information.
  *
@@ -208,13 +211,17 @@ void traverseCategoryLinkList(LinkList * list,
 
 void showCategoryLinkList(LinkList * list)
 {
+    category_per_line_counter = 1;
     traverseCategoryLinkList(list, showCategoryLinkListHelper);
     return;
 }
 
 void showCategoryLinkListHelper(LinkListNode * node)
 {
-    puts(node->category_item.category_name);
+    printf("%s%c", node->category_item.category_name,
+           (category_per_line_counter++ % SHOW_CATEGORY_PER_LINE_NUMBER == 0
+                ? '\n'
+                : ' '));
     return;
 }
 
