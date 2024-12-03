@@ -81,7 +81,7 @@ int addCategorytoLinkList(LinkList * list, char * category_name);
  * @param category_name the category's name that want to remove
  * @return
  * if remove successfully, it returns SUCCESS_REMOVE
- * if can't allcate memory, it returns FAILED_ALLOCATE_MEMORY
+ * if can't allocate memory, it returns FAILED_ALLOCATE_MEMORY
  * if there doesn't exist the category, it returns NODE_DOES_NOT_EXIST
  * if the link list is empty, it returns FAILED_REMOVE_EMPTY_LINK_LIST
  */
