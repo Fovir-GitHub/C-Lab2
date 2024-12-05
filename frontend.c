@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define ORDER_NUMBER_WIDTH 4
 
 /**
  *@brief Used to traverse the link list.
@@ -44,8 +45,6 @@ void printMenuFrame(char frame_character)
 
 void printOptions(char * options[], int options_number)
 {
-#define ORDER_NUMBER_WIDTH 4
-
     int max_odd_string_length = 0, max_even_string_length = 0,
         max_string_length = 0;
 
@@ -259,5 +258,10 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
                           int total_page_number)
 {
     printMenuTitle("Category");
+
     int counter = 1;
+    for (LinkListNode * iter = current;
+         iter && counter <= CAGEGORY_NUMBER_PER_PAGE; iter++, counter++)
+    {
+    }
 }
