@@ -274,10 +274,42 @@ void removeCategory(LinkList * list)
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
                           int total_page_number)
 {
+    clearScreen();
+    printShowCategories(current, current_page_number, total_page_number);
 
+    int choice = 0; /* get user's choice */
 
-    int choice = 0;
-    while (!strchr("pqn", tolower((choice = getchar()))))
+    while ((choice = getchar()) != 'q') /* the choice is not quit */
     {
+        LinkListNode * iter = current;
+        int counter = 1;
+
+        if (choice == 'p') /* previous page */
+        {
+            for (; iter && counter <= CAGEGORY_NUMBER_PER_PAGE;
+                 iter = iter->previous)
+                counter++;
+            if (!iter)
+                continue;
+            else
+                return showCategoriesHelper(iter, current_page_number - 1,
+                                            total_page_number);
+        }
+        else if (choice == 'n') /* next page */
+        {
+            for (; iter && counter <= CAGEGORY_NUMBER_PER_PAGE;
+                 iter = iter->next)
+                counter++;
+            if (!iter)
+                continue;
+            else
+                return showCategoriesHelper(iter, current_page_number + 1,
+                                            total_page_number);
+        }
+
+        clearScreen();
+        printShowCategories(current, current_page_number, total_page_number);
     }
+
+    return;
 }
