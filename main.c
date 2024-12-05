@@ -10,12 +10,9 @@
 int main(void)
 {
     LinkList category_list;
-    char * remove_name = NULL;
-
     initializeLinkList(&category_list);
-    readCategoryDatafromFile(&category_list);
 
-    removeCategory(&category_list);
+    readCategoryDatafromFile(&category_list);
     showCategories(&category_list);
 
     return 0;
