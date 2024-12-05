@@ -6,6 +6,7 @@
 #define MENU_WIDTH 50 /* the width of menu */
 #define POWER_FOOTER "Powered by Fovir"
 
+// show how many categories in one page
 #define CAGEGORY_NUMBER_PER_PAGE 5
 
 /**
