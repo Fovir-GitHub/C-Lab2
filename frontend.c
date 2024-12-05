@@ -10,7 +10,9 @@
  *
  * @param node link list node object
  */
-static void showCategoriesHelper(LinkListNode * node);
+static void showCategoriesHelper(LinkListNode * current,
+                                 int current_page_number,
+                                 int total_page_number);
 
 int calculateCenterStringSpace(char * str)
 {
@@ -186,16 +188,20 @@ int getMainMenuChoicefromUser()
 
 void showCategories(LinkList * list)
 {
-    int list_size = 0;
-
-    // get list's size
+    int total_page_number = 0;
     for (LinkListNode * iter = *list; iter; iter = iter->next)
-        list_size++;
+        total_page_number++;
 
+    total_page_number = total_page_number / CAGEGORY_NUMBER_PER_PAGE + 1;
+
+    LinkListNode * current = *list;
+    showCategoriesHelper(current, 1, total_page_number);
     // print menu's title
-    printMenuTitle(list_size <= 1 ? "Category" : "Categories");
-    traverseCategoryLinkList(list, showCategoriesHelper); /* show categories */
-    printMenuFooter(POWER_FOOTER);                        /* show footer */
+    printMenuTitle("Category");
+    // traverseCategoryLinkList(list, showCategoriesHelper); /* show categories
+    // */
+    printMenuFooter(
+        "[p]revious page    [q] quit    [n]ext page"); /* show footer */
 
     return;
 }
@@ -249,9 +255,9 @@ void removeCategory(LinkList * list)
     return;
 }
 
-void showCategoriesHelper(LinkListNode * node)
+void showCategoriesHelper(LinkListNode * current, int current_page_number,
+                          int total_page_number)
 {
-    // print category's name in the center
-    printStringinCenter(node->category_item.category_name);
-    return;
+    printMenuTitle("Category");
+    int counter = 1;
 }
