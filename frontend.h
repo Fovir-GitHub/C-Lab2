@@ -102,6 +102,9 @@ int getMainMenuChoicefromUser();
  */
 void showCategories(LinkList * list);
 
+void printShowCategories(LinkListNode * current, int current_page_number,
+                         int total_page_number);
+
 /**
  *@brief Remove category with user's input.
  *

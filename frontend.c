@@ -192,17 +192,34 @@ void showCategories(LinkList * list)
         total_page_number++;
 
     total_page_number = total_page_number / CAGEGORY_NUMBER_PER_PAGE + 1;
-
     LinkListNode * current = *list;
     showCategoriesHelper(current, 1, total_page_number);
-    // print menu's title
-    printMenuTitle("Category");
-    // traverseCategoryLinkList(list, showCategoriesHelper); /* show categories
-    // */
-    printMenuFooter(
-        "[p]revious page    [q] quit    [n]ext page"); /* show footer */
 
     return;
+}
+
+void printShowCategories(LinkListNode * current, int current_page_number,
+                         int total_page_number)
+{
+    printMenuTitle("Category");
+
+    // print categories' name
+    char output_string[CATEGORY_NAME_MAX_LENGTH + ORDER_NUMBER_WIDTH];
+    int counter = 1;
+    for (LinkListNode * iter = current;
+         iter && counter <= CAGEGORY_NUMBER_PER_PAGE;
+         iter = iter->next, counter++)
+    {
+        sprintf(output_string, "[%d] %s", counter,
+                iter->category_item.category_name);
+        printStringinCenter(output_string);
+    }
+    printStringinCenter("[q] quit"); /* print the quit option */
+
+    // print footer
+    sprintf(output_string, "[p]revious page    %d/%d    [n]ext page",
+            current_page_number, total_page_number);
+    printMenuFooter(output_string);
 }
 
 void removeCategory(LinkList * list)
@@ -257,11 +274,10 @@ void removeCategory(LinkList * list)
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
                           int total_page_number)
 {
-    printMenuTitle("Category");
 
-    int counter = 1;
-    for (LinkListNode * iter = current;
-         iter && counter <= CAGEGORY_NUMBER_PER_PAGE; iter++, counter++)
+
+    int choice = 0;
+    while (!strchr("pqn", tolower((choice = getchar()))))
     {
     }
 }
