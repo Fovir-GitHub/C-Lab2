@@ -137,7 +137,7 @@ void showItemInformation(Item * item)
     int ITEM_FRAME_WIDTH = MAX(strlen(item->category), strlen(item->name)) +
                            ITEM_INFORMATION_WIDTH + 4; /* get the frame width */
 
-    puts("The item's information:");
+    puts("The item's information:\n");
 
     // print frame
     for (int i = 0; i < ITEM_FRAME_WIDTH; i++)
@@ -155,7 +155,7 @@ void showItemInformation(Item * item)
     // print frame
     for (int i = 0; i < ITEM_FRAME_WIDTH; i++)
         putchar('*');
-    putchar('\n');
+    puts("\n");
 
     return;
 }
