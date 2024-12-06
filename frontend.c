@@ -362,15 +362,17 @@ void showItems(LinkList * list)
 
 void addItem(LinkList * list)
 {
-    clearScreen();
+    DateInformation produce_date = getToday(); /* set produce date to today */
+    DateInformation due_date =
+        makeDateInformation(0, 0, 0); /* set due date to empty */
+    char * category_name = NULL;      /* category's name */
+    char * item_name = NULL;          /* item's name */
+    double price = (double) 0;        /* item's price */
+    char date_string[12];             /* string to get date from user */
 
-    DateInformation produce_date = getToday();
-    DateInformation due_date = makeDateInformation(0, 0, 0);
+    // temp data
     DateInformation temp_date;
     int temp_year = 0, temp_month = 0, temp_day = 0;
-    char * category_name = NULL;
-    char * item_name = NULL;
-    double price = (double) 0;
 
     while (1)
     {
@@ -380,48 +382,87 @@ void addItem(LinkList * list)
         if (strcmp("quit", category_name) == 0)
             return;
 
+        // the category does not exist
         if (!findCategoryinLinkList(list, category_name))
-            printf("The category \"%s\" does not exist!\n", category_name);
+        {
+            printf("The category \"%s\" does not exist! "
+                   "Enter another category? [Y/n] ",
+                   category_name);
+
+            // get user's choice and judge
+            if (tolower(getchar()) == 'n')
+                return;
+            else
+                continue;
+        }
         else
             break;
     }
 
     while (1)
     {
+        // get item's name
         printf("Please enter the item's name (quit to quit): ");
         getString(&item_name, ITEM_NAME_MAX_LENGTH);
 
-        if (strcmp("quit", item_name) == 0)
+        if (strcmp("quit", item_name) == 0) /* quit */
             return;
 
-        if (!legalString(item_name))
-            printf("The name is illegal!\n");
+        if (!legalString(item_name)) /* the name is illegal */
+        {
+            printf("The item name \"%s\" is illegal! Enter another one? [Y/n] ",
+                   item_name);
+
+            if (tolower(getchar()) == 'n')
+                return;
+            else
+                continue;
+        }
 
         break;
     }
 
+    // get the price
     printf("Please enter the price: ");
     while (scanf("%lf", &price) != 1)
-        printf("Please enter the right form!\nPlease enter the price: ");
+    {
+        printf("Please enter the right form! Enter another price? [Y/n] ");
+        if (tolower(getchar()) != 'n')
+            return;
+    }
 
+    // get produce date
     printf("Please enter the produce date in YYYY-MM-DD form (leave blank will "
            "set it to today): ");
-    scanf("%d-%d-%d", &temp_year, &temp_month, &temp_day);
-    if (!validDate(temp_date =
-                       makeDateInformation(temp_year, temp_month, temp_day)))
-        puts("The date is invalid! Set produce date to today by default!");
-    else
-        produce_date = temp_date;
+    fgets(date_string, sizeof(date_string), stdin); /* read the whole line */
 
+    // read data from string
+    sscanf(date_string, "%d-%d-%d", &temp_year, &temp_month, &temp_day);
+
+    if (date_string[0] != '\n') /* the string is empty */
+        if (!validDate(
+                temp_date = makeDateInformation(
+                    temp_year, temp_month, temp_day))) /* the date is invalid */
+            puts("The date is invalid! Set produce date to today by default!");
+        else                          /* the date is valid */
+            produce_date = temp_date; /* assign the date */
+
+    // get due date
     printf("Please enter the expiration date in YYYY-MM-DD form (leave blank "
            "will set it to blank): ");
-    scanf("%d-%d-%d", &temp_year, &temp_month, &temp_day);
-    if (!validDate(temp_date =
-                       makeDateInformation(temp_year, temp_month, temp_day)))
-        puts("The date is invalid! Set expiration date to blank by default!");
-    else
-        due_date = temp_date;
+    fgets(date_string, sizeof(date_string), stdin); /* read the whole line */
+    // read data from string
+    sscanf(date_string, "%d-%d-%d", &temp_year, &temp_month, &temp_day);
 
+    if (date_string[0] != '\n') /* the string is empty */
+        if (!validDate(temp_date = makeDateInformation(temp_year, temp_month,
+                                                       temp_day)))
+            puts("The date is invalid! Set expiration date to blank by "
+                 "default!");
+        else
+            due_date = temp_date;
+
+    // get status code after add item
     int status = addItemstoCategory(
         list, makeItem(category_name, item_name, price, produce_date, due_date),
         CREATE_NEW_CATEGORY);
