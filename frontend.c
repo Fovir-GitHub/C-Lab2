@@ -429,9 +429,11 @@ void addItem(LinkList * list)
         printf("Please enter the right form! Enter another price? [Y/n] ");
         if (tolower(getchar()) == 'n')
             return;
+
         printf("Please enter the price: ");
     }
 
+    eatLine();
     // get produce date
     printf("Please enter the produce date in YYYY-MM-DD form (leave blank will "
            "set it to today): ");
@@ -448,6 +450,7 @@ void addItem(LinkList * list)
         else                          /* the date is valid */
             produce_date = temp_date; /* assign the date */
 
+    eatLine();
     // get due date
     printf("Please enter the expiration date in YYYY-MM-DD form (leave blank "
            "will set it to blank): ");
