@@ -7,9 +7,11 @@
 #define ORDER_NUMBER_WIDTH 4
 
 /**
- *@brief Used to traverse the link list.
+ *@brief Used to show the categories in a menu form.
  *
- * @param node link list node object
+ * @param current the current category location
+ * @param current_page_number the current page number
+ * @param total_page_number the total page numebr
  */
 static void showCategoriesHelper(LinkListNode * current,
                                  int current_page_number,
