@@ -133,10 +133,13 @@ Item makeItem(char * category, char * name, double price,
 void showItemInformation(Item * item)
 {
     static const int ITEM_INFORMATION_WIDTH = 15;
+
     int ITEM_FRAME_WIDTH = MAX(strlen(item->category), strlen(item->name)) +
-                           ITEM_INFORMATION_WIDTH + 4;
+                           ITEM_INFORMATION_WIDTH + 4; /* get the frame width */
+
     puts("The item's information:");
 
+    // print frame
     for (int i = 0; i < ITEM_FRAME_WIDTH; i++)
         putchar('*');
     putchar('\n');
@@ -149,6 +152,7 @@ void showItemInformation(Item * item)
     printf("%-*s: ", ITEM_INFORMATION_WIDTH, "Expiration Date");
     showDateInformation(&item->due_date);
 
+    // print frame
     for (int i = 0; i < ITEM_FRAME_WIDTH; i++)
         putchar('*');
     putchar('\n');
