@@ -132,6 +132,11 @@ void addCategory(LinkList * list);
  */
 void showItems(LinkList * list);
 
+/**
+ *@brief Add item from user input.
+ *
+ * @param list the target category link list
+ */
 void addItem(LinkList * list);
 
 #endif // !_FRONTEND_H_
