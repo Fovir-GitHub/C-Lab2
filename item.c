@@ -46,6 +46,14 @@ static void freeAVLTreeHelper(AVLTreeNode * node);
  */
 static void showAVLTreeHelper(AVLTreeNode * node);
 
+/**
+ *@brief Help to find item in the AVL tree recrusively.
+ *
+ * @param node current node
+ * @param item_name the item's name
+ * @return true the item exist
+ * @return false the item does not exist
+ */
 static bool findIteminAVLTreeHelper(AVLTreeNode * node, char * item_name);
 
 DateInformation makeDateInformation(int y, int m, int d)
@@ -446,16 +454,17 @@ void showAVLTreeHelper(AVLTreeNode * node)
 
 bool findIteminAVLTreeHelper(AVLTreeNode * node, char * item_name)
 {
-    if (!node)
+    if (!node) /* the node is NULL */
         return false;
 
+    // compare the two strings
     int compare_result = compare2Strings(node->item.name, item_name);
 
-    if (compare_result == 0)
+    if (compare_result == 0) /* find the item */
         return true;
 
-    if (compare_result == 1)
+    if (compare_result == 1) /* the item should be in the left node */
         return findIteminAVLTreeHelper(node->left, item_name);
-    else
+    else /* the item should be in the right node */
         return findIteminAVLTreeHelper(node->right, item_name);
 }
