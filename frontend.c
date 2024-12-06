@@ -306,14 +306,17 @@ void printRemoveCategoryList(LinkList * list)
 
 void addCategory(LinkList * list)
 {
-    char * add_category_name = NULL;
+    char * add_category_name = NULL; /* the name of the new category */
 
     while (1)
     {
-        printf("Enter the new category's name: ");
+        printf("Enter the new category's name (quit to quit): ");
         getString(&add_category_name, CATEGORY_NAME_MAX_LENGTH);
 
-        if (!legalString(add_category_name))
+        if (strcmp("quit", add_category_name) == 0) /* quit */
+            return;
+
+        if (!legalString(add_category_name)) /* the name is illegal */
         {
             printf("The category name is illegal! "
                    "Press Enter to continue...");
@@ -321,6 +324,7 @@ void addCategory(LinkList * list)
             continue;
         }
 
+        // get the status code after add to link list
         int add_result = addCategorytoLinkList(list, add_category_name);
         switch (add_result)
         {
@@ -330,16 +334,16 @@ void addCategory(LinkList * list)
                    add_category_name);
             printf("Enter another category name? [Y/n] ");
 
-            int choice = getchar();
-            if (tolower(choice) == 'n')
+            int choice = getchar();     /* get choice */
+            if (tolower(choice) == 'n') /* terminate */
                 return;
             else
                 continue;
 
         case FAILED_ALLOCATE_MEMORY:
-            exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE); /* terminate the programme */
 
-        case SUCCESS_ADD:
+        case SUCCESS_ADD: /* successfully added the category */
             printf("Successfully add new category \"%s\"\n", add_category_name);
             printf("Press Enter to continue...");
             getchar();
@@ -431,6 +435,23 @@ void addItem(LinkList * list)
     getchar();
 
     return;
+}
+
+void removeItem(LinkList * list)
+{
+    clearScreen();
+
+    char * remove_item_name = NULL;
+    char * remove_item_category_name = NULL;
+
+    printf("Please enter the item's name (quit to quit): ");
+    while (getString(&remove_item_name, ITEM_NAME_MAX_LENGTH))
+    {
+        if (strcmp("quit", remove_item_name) == 0)
+            return;
+        if (!legalString(remove_item_name))
+            printf("The item's name is illegal! Enter another one? [Y/n] ");
+    }
 }
 
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
