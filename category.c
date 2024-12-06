@@ -49,6 +49,9 @@ bool emptyLinkList(LinkList * list)
 
 int addCategorytoLinkList(LinkList * list, char * category_name)
 {
+    if (!legalString(category_name)) /* if the category's name is illegal */
+        return ILLEGAL_STRING;
+
     LinkListNode * add_node = (LinkListNode *) malloc(sizeof(LinkListNode));
     if (!add_node) /* can't allocate memory */
     {
