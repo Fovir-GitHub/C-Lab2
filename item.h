@@ -209,4 +209,14 @@ void freeAVLTree(AVLTree * tree);
  */
 void removeItemfromAVLTree(AVLTree * tree, char * item_name);
 
+/**
+ *@brief Whether the item exists in the AVL tree.
+ *
+ * @param tree the AVL tree
+ * @param item_name the item's name to be found
+ * @return true the item exists
+ * @return false the item does not exist
+ */
+bool findIteminAVLTree(AVLTree * tree, char * item_name);
+
 #endif // !_ITEM_H_

@@ -46,6 +46,8 @@ static void freeAVLTreeHelper(AVLTreeNode * node);
  */
 static void showAVLTreeHelper(AVLTreeNode * node);
 
+static bool findIteminAVLTreeHelper(AVLTreeNode * node, char * item_name);
+
 DateInformation makeDateInformation(int y, int m, int d)
 {
     DateInformation result = {y, m, d};
@@ -330,6 +332,11 @@ void removeItemfromAVLTree(AVLTree * tree, char * item_name)
     return;
 }
 
+bool findIteminAVLTree(AVLTree * tree, char * item_name)
+{
+    return findIteminAVLTreeHelper(*tree, item_name);
+}
+
 AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
 {
     if (node == NULL) /* insert the node  */
@@ -435,4 +442,20 @@ void showAVLTreeHelper(AVLTreeNode * node)
 {
     printf("%s\t%.2lf\n", node->item.name, node->item.price);
     return;
+}
+
+bool findIteminAVLTreeHelper(AVLTreeNode * node, char * item_name)
+{
+    if (!node)
+        return false;
+
+    int compare_result = compare2Strings(node->item.name, item_name);
+
+    if (compare_result == 0)
+        return true;
+
+    if (compare_result == 1)
+        return findIteminAVLTreeHelper(node->left, item_name);
+    else
+        return findIteminAVLTreeHelper(node->right, item_name);
 }
