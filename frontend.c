@@ -287,20 +287,22 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
         LinkListNode * iter = current;
         int counter = 1;
 
-        if (choice == 'p' || choice == 'n')
+        if (choice == 'p' || choice == 'n') /* legal option */
         {
+            // judge whether the next page or the previous page exist
             for (; iter && counter <= CAGEGORY_NUMBER_PER_PAGE;
                  iter = (choice == 'p' ? iter->previous : iter->next))
                 counter++;
-            if (!iter)
+            if (!iter) /* the page does not exist, skip */
                 continue;
-            else
+            else /* the page exist, go to the page */
                 return showCategoriesHelper(iter,
                                             (choice == 'p'
                                                  ? (current_page_number - 1)
                                                  : (current_page_number + 1)),
                                             total_page_number);
         }
+
         clearScreen();
         printShowCategories(current, current_page_number, total_page_number);
     }
