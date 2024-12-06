@@ -187,13 +187,15 @@ int getMainMenuChoicefromUser()
 
 void showCategories(LinkList * list)
 {
+    // get total page number
     int total_page_number = 0;
     for (LinkListNode * iter = *list; iter; iter = iter->next)
-        total_page_number++;
+        total_page_number++; /* get how many category */
 
+    // calculate total page number
     total_page_number = total_page_number / CAGEGORY_NUMBER_PER_PAGE + 1;
-    LinkListNode * current = *list;
-    showCategoriesHelper(current, 1, total_page_number);
+
+    showCategoriesHelper(*list, 1, total_page_number); /* show the first page */
 
     return;
 }
