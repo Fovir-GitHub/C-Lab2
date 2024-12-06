@@ -42,6 +42,15 @@ DateInformation getToday();
 void showDateInformation(DateInformation * date);
 
 /**
+ *@brief Judge whether the date is valid.
+ *
+ * @param date the DateInformation object
+ * @return true the date is valid
+ * @return false the date is invalid
+ */
+bool validDate(DateInformation * date);
+
+/**
  *@brief store the information about items
  */
 typedef struct

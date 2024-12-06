@@ -73,6 +73,45 @@ void showDateInformation(DateInformation * date)
     return;
 }
 
+bool validDate(DateInformation * date)
+{
+    // non-positive number
+    if (date->day <= 0 || date->month <= 0 || date->year <= 0)
+        return false;
+
+    bool leap_year = !(date->year % 4); /* judge the year is leap year */
+
+    switch (date->month)
+    {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+        if (date->day > 31)
+            return false;
+        break;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        if (date->day > 30)
+            return false;
+        break;
+    case 2:
+        if (leap_year && date->day > 29)
+            return false;
+        if (!leap_year && date->day > 28)
+            return false;
+    default:
+        return false;
+    }
+
+    return true;
+}
+
 Item makeItem(char * category, char * name, double price,
               DateInformation produce, DateInformation due)
 {
@@ -150,7 +189,8 @@ AVLTreeNode * rightRotate(AVLTreeNode * node)
     child->right = node;      /* move the node to down */
     node->left = grand_child; /* move the grand child node */
 
-    // update nodes' height, the height of grand_child doesn't change
+    // update nodes' height, the height of grand_child doesn't
+    // change
     updateAVLTreeNodeHeight(node);
     updateAVLTreeNodeHeight(child);
 
@@ -166,7 +206,8 @@ AVLTreeNode * leftRotate(AVLTreeNode * node)
     child->left = node;        /* move the node to down */
     node->right = grand_child; /* append the grand child node to the node */
 
-    // update nodes' height, the height of grand_child doesn't change
+    // update nodes' height, the height of grand_child doesn't
+    // change
     updateAVLTreeNodeHeight(node);
     updateAVLTreeNodeHeight(child);
 
@@ -331,8 +372,8 @@ AVLTreeNode * removeItemfromAVLTreeHelper(AVLTreeNode * node, char * item_name)
             /* remove the node with temp_item */
             node->right =
                 removeItemfromAVLTreeHelper(node->right, temp_item.name);
-            node->item =
-                temp_item; /* replace the node's item with the temp_item */
+            node->item = temp_item; /* replace the node's item with
+                                       the temp_item */
         }
     }
 
