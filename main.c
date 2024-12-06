@@ -13,6 +13,7 @@ int main(void)
     initializeLinkList(&category_list);
 
     readCategoryDatafromFile(&category_list);
+    readItemsDatafromFile(&category_list);
 
     int user_choice = 0;
 
@@ -28,6 +29,9 @@ int main(void)
             break;
         case REMOVE_CATEGORY:
             removeCategory(&category_list);
+            break;
+        case SHOW_ALL_ITEMS:
+            showItems(&category_list);
             break;
         default:
             printf("%d\n", user_choice);
