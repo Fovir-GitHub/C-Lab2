@@ -67,20 +67,19 @@ void printMenuFooter(char * footer);
  * q. quit
  */
 
-#define MAIN_MENU_OPTIONS_NUMBER 9 /* the number of options of main menu */
+#define MAIN_MENU_OPTIONS_NUMBER 8 /* the number of options of main menu */
 #define MAIN_MENU_OPTIONS_STRING \
-    "12345678q" /* the options' stirng for main menu */
+    "1234567q" /* the options' stirng for main menu */
 
 enum MAIN_MENU_OPTIONS {
-    SHOW_ALL_CATEGORIES,           /* show all categories */
-    ADD_CATEGORY,                  /* add category */
-    REMOVE_CATEGORY,               /* remove category */
-    SHOW_ALL_ITEMS,                /* show all items */
-    SHOW_ITEMS_ACCORDING_CATEGORY, /* show items according categories */
-    ADD_ITEM,                      /* add item */
-    REMOVE_ITEM,                   /* remove item */
-    EDIT_ITEM,                     /* edit item information */
-    QUIT                           /* quit */
+    SHOW_ALL_CATEGORIES, /* show all categories */
+    ADD_CATEGORY,        /* add category */
+    REMOVE_CATEGORY,     /* remove category */
+    SHOW_ALL_ITEMS,      /* show all items */
+    ADD_ITEM,            /* add item */
+    REMOVE_ITEM,         /* remove item */
+    EDIT_ITEM,           /* edit item information */
+    QUIT                 /* quit */
 };
 
 /**

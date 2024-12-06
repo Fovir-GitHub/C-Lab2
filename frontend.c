@@ -138,15 +138,8 @@ void showMainMenu()
     printMenuTitle("Main Menu");
 
     static char * options[MAIN_MENU_OPTIONS_NUMBER] = {
-        "Show Categories",
-        "Add Category",
-        "Remove Category",
-        "Show All Items",
-        "Show Items By Category",
-        "Add Item",
-        "Remove Item",
-        "Edit Item",
-        "Quit",
+        "Show Categories", "Add Category", "Remove Category", "Show All Items",
+        "Add Item",        "Remove Item",  "Edit Item",       "Quit",
     };
 
     printOptions(options, MAIN_MENU_OPTIONS_NUMBER);
@@ -189,12 +182,10 @@ int getMainMenuChoicefromUser()
             case '4':
                 return SHOW_ALL_ITEMS;
             case '5':
-                return SHOW_ITEMS_ACCORDING_CATEGORY;
-            case '6':
                 return ADD_ITEM;
-            case '7':
+            case '6':
                 return REMOVE_ITEM;
-            case '8':
+            case '7':
                 return EDIT_ITEM;
             case 'q':
                 return QUIT;
