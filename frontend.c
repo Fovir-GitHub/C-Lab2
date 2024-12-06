@@ -109,6 +109,7 @@ void printMenuFooter(char * footer)
 
 void showMainMenu()
 {
+    clearScreen();
     printMenuTitle("Main Menu");
 
     static char * options[MAIN_MENU_OPTIONS_NUMBER] = {
@@ -133,17 +134,12 @@ int getMainMenuChoicefromUser()
     char user_choice = 0;
 
     // initialized status
-    clearScreen();
     showMainMenu();
 
     while (user_choice = getchar()) /* get user's input */
     {
         if (user_choice == '\n') /* user inputs line breaker */
-        {
-            clearScreen();  /* clear screen */
-            showMainMenu(); /* show main menu */
-            continue;
-        }
+            continue;            /* ignore */
 
         // find whether the choice is valid
         if (!strchr(MAIN_MENU_OPTIONS_STRING, user_choice)) /* not valid */
@@ -181,7 +177,6 @@ int getMainMenuChoicefromUser()
         }
 
         eatLine();
-        clearScreen();  /* clear the terminal screen */
         showMainMenu(); /* show the new main menu */
     }
 
@@ -195,7 +190,6 @@ void showCategories(LinkList * list)
         ceil((double) getLinkListSize(list) / CAGEGORY_NUMBER_PER_PAGE);
 
     showCategoriesHelper(*list, 1, total_page_number); /* show the first page */
-
     return;
 }
 
@@ -294,6 +288,42 @@ void printRemoveCategoryList(LinkList * list)
     return;
 }
 
+void addCategory(LinkList * list)
+{
+    char * add_category_name = NULL;
+
+    while (1)
+    {
+        printf("Enter the new category's name: ");
+        getString(&add_category_name, CATEGORY_NAME_MAX_LENGTH);
+
+        int add_result = addCategorytoLinkList(list, add_category_name);
+        switch (add_result)
+        {
+        case DUPLICATED_NODE:
+        case ILLEGAL_STRING:
+            printf("The category \"%s\" exists or has illegal character!\n",
+                   add_category_name);
+            printf("Enter another category name? [Y/n] ");
+
+            int choice = getchar();
+            if (tolower(choice) == 'n')
+                return;
+            else
+                continue;
+
+        case FAILED_ALLOCATE_MEMORY:
+            exit(EXIT_FAILURE);
+
+        case SUCCESS_ADD:
+            printf("Successfully add new category \"%s\"\n", add_category_name);
+            printf("Press Enter to continue...");
+            getchar();
+            return;
+        }
+    }
+}
+
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
                           int total_page_number)
 {
@@ -327,6 +357,5 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
         clearScreen();
         printShowCategories(current, current_page_number, total_page_number);
     }
-
     return;
 }

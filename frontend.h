@@ -119,4 +119,6 @@ void removeCategory(LinkList * list);
  */
 void printRemoveCategoryList(LinkList * list);
 
+void addCategory(LinkList * list);
+
 #endif // !_FRONTEND_H_
