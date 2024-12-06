@@ -427,7 +427,7 @@ void addItem(LinkList * list)
     while (scanf("%lf", &price) != 1)
     {
         printf("Please enter the right form! Enter another price? [Y/n] ");
-        if (tolower(getchar()) != 'n')
+        if (tolower(getchar()) == 'n')
             return;
     }
 
