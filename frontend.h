@@ -119,6 +119,11 @@ void removeCategory(LinkList * list);
  */
 void printRemoveCategoryList(LinkList * list);
 
+/**
+ *@brief Add new category from user
+ *
+ * @param list the target link list
+ */
 void addCategory(LinkList * list);
 
 #endif // !_FRONTEND_H_
