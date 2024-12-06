@@ -441,7 +441,7 @@ void addItem(LinkList * list)
     fgets(date_string, sizeof(date_string), stdin); /* read the whole line */
 
     // read data from string
-    sscanf(date_string, "%02d-%02d-%02d", &temp_year, &temp_month, &temp_day);
+    sscanf(date_string, "%d-%d-%d", &temp_year, &temp_month, &temp_day);
 
     if (date_string[0] != '\n') /* the string is empty */
         if (!validDate(
@@ -456,7 +456,7 @@ void addItem(LinkList * list)
            "will set it to blank): ");
     fgets(date_string, sizeof(date_string), stdin); /* read the whole line */
     // read data from string
-    sscanf(date_string, "%02d-%02d-%02d", &temp_year, &temp_month, &temp_day);
+    sscanf(date_string, "%d-%d-%d", &temp_year, &temp_month, &temp_day);
 
     if (date_string[0] != '\n') /* the string is empty */
         if (!validDate(temp_date = makeDateInformation(temp_year, temp_month,
