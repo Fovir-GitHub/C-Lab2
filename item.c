@@ -134,12 +134,12 @@ void showItemInformation(Item * item)
     static const int ITEM_INFORMATION_WIDTH = 15;
     puts("The item's information:");
 
-    printf("%-*s:%s\n%-*s:%s\n", ITEM_INFORMATION_WIDTH, "Category",
+    printf("%-*s: %s\n%-*s: %s\n", ITEM_INFORMATION_WIDTH, "Category",
            item->category, ITEM_INFORMATION_WIDTH, "Item Name", item->name);
-    printf("%-*s:%.2lf\n", ITEM_INFORMATION_WIDTH, "Price", item->price);
-    printf("%-*s:", ITEM_INFORMATION_WIDTH, "Produce Date");
+    printf("%-*s: %.2lf\n", ITEM_INFORMATION_WIDTH, "Price", item->price);
+    printf("%-*s: ", ITEM_INFORMATION_WIDTH, "Produce Date");
     showDateInformation(&item->produce_date);
-    printf("%-*s:", ITEM_INFORMATION_WIDTH, "Expiration Date");
+    printf("%-*s: ", ITEM_INFORMATION_WIDTH, "Expiration Date");
     showDateInformation(&item->due_date);
 
     return;
