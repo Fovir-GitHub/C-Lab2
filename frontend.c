@@ -429,6 +429,7 @@ void addItem(LinkList * list)
         printf("Please enter the right form! Enter another price? [Y/n] ");
         if (tolower(getchar()) == 'n')
             return;
+        printf("Please enter the price: ");
     }
 
     // get produce date
