@@ -73,15 +73,15 @@ void showDateInformation(DateInformation * date)
     return;
 }
 
-bool validDate(DateInformation * date)
+bool validDate(DateInformation date)
 {
     // non-positive number
-    if (date->day <= 0 || date->month <= 0 || date->year <= 0)
+    if (date.day <= 0 || date.month <= 0 || date.year <= 0)
         return false;
 
-    bool leap_year = !(date->year % 4); /* judge the year is leap year */
+    bool leap_year = !(date.year % 4); /* judge the year is leap year */
 
-    switch (date->month)
+    switch (date.month)
     {
     case 1:
     case 3:
@@ -90,20 +90,20 @@ bool validDate(DateInformation * date)
     case 8:
     case 10:
     case 12:
-        if (date->day > 31)
+        if (date.day > 31)
             return false;
         break;
     case 4:
     case 6:
     case 9:
     case 11:
-        if (date->day > 30)
+        if (date.day > 30)
             return false;
         break;
     case 2:
-        if (leap_year && date->day > 29)
+        if (leap_year && date.day > 29)
             return false;
-        if (!leap_year && date->day > 28)
+        if (!leap_year && date.day > 28)
             return false;
     default:
         return false;

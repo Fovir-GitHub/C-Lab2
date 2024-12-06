@@ -48,7 +48,7 @@ void showDateInformation(DateInformation * date);
  * @return true the date is valid
  * @return false the date is invalid
  */
-bool validDate(DateInformation * date);
+bool validDate(DateInformation date);
 
 /**
  *@brief store the information about items
