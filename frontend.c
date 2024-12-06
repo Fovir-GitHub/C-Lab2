@@ -239,7 +239,7 @@ void removeCategory(LinkList * list)
     {
         printf("You don't have any category! "
                "Press Enter to continue...");
-        getchar();
+        eatLine();
         return;
     }
     char * remove_category_name = NULL;
@@ -286,7 +286,7 @@ void removeCategory(LinkList * list)
             printf("You have removed the category \"%s\"!\n",
                    remove_category_name);
             printf("Press Enter to continue...");
-            getchar();
+            eatLine();
             break;
         }
     }
@@ -320,7 +320,7 @@ void addCategory(LinkList * list)
         {
             printf("The category name is illegal! "
                    "Press Enter to continue...");
-            getchar();
+            eatLine();
             continue;
         }
 
@@ -346,7 +346,7 @@ void addCategory(LinkList * list)
         case SUCCESS_ADD: /* successfully added the category */
             printf("Successfully add new category \"%s\"\n", add_category_name);
             printf("Press Enter to continue...");
-            getchar();
+            eatLine();
             return;
         }
     }
@@ -482,7 +482,7 @@ void addItem(LinkList * list)
     }
 
     printf("Press Enter to continue...");
-    getchar();
+    eatLine();
 
     return;
 }
