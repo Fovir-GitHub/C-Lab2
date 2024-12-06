@@ -231,7 +231,7 @@ void removeCategory(LinkList * list)
     if (emptyLinkList(list))
     {
         printf("You don't have any category! "
-               "Press any key to continue...");
+               "Press Enter to continue...");
         getchar();
         return;
     }
