@@ -477,7 +477,7 @@ void addItem(LinkList * list)
         printf("Failed to add the item! ");
     else
     {
-        puts("Add item successfully!");
+        puts("Add item successfully!\n");
         showItemInformation(&temp_item);
     }
 
