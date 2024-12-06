@@ -132,4 +132,6 @@ void addCategory(LinkList * list);
  */
 void showItems(LinkList * list);
 
+void addItem(LinkList * list);
+
 #endif // !_FRONTEND_H_
