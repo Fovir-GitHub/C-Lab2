@@ -285,8 +285,7 @@ bool removeItemfromCategoryLinkList(LinkList * list, char * item_name)
         if (findIteminAVLTree(&iter->category_item.item_tree, item_name))
         {
             // if found, then remove the item
-            removeItemfromCategoryLinkList(&iter->category_item.item_tree,
-                                           item_name);
+            removeItemfromAVLTree(&iter->category_item.item_tree, item_name);
             return true;
         }
 
