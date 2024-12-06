@@ -23,6 +23,9 @@ int main(void)
         case SHOW_ALL_CATEGORIES:
             showCategories(&category_list);
             break;
+        case REMOVE_CATEGORY:
+            removeCategory(&category_list);
+            break;
         default:
             printf("%d\n", user_choice);
         }
