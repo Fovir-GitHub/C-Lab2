@@ -125,6 +125,11 @@ void printRemoveCategoryList(LinkList * list);
  */
 void addCategory(LinkList * list);
 
+/**
+ *@brief Show all items according by category.
+ *
+ * @param list the link list of categories
+ */
 void showItems(LinkList * list);
 
 #endif // !_FRONTEND_H_
