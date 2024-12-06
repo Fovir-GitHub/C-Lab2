@@ -174,7 +174,7 @@ int getMainMenuChoicefromUser()
                 return REMOVE_ITEM;
             case '8':
                 return EDIT_ITEM;
-            case '9':
+            case 'q':
                 return QUIT;
             }
         }
