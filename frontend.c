@@ -489,19 +489,80 @@ void addItem(LinkList * list)
 
 void removeItem(LinkList * list)
 {
-    clearScreen();
-
     char * remove_item_name = NULL;
-    char * remove_item_category_name = NULL;
 
     printf("Please enter the item's name (quit to quit): ");
     while (getString(&remove_item_name, ITEM_NAME_MAX_LENGTH))
     {
         if (strcmp("quit", remove_item_name) == 0)
             return;
-        if (!legalString(remove_item_name))
-            printf("The item's name is illegal! Enter another one? [Y/n] ");
+
+        int item_number = findIteminLinkList(list, remove_item_name);
+        if (item_number == 0)
+        {
+            printf("The item \"%s\" does not exist! Enter another one? [Y/n] ",
+                   remove_item_name);
+            if (tolower(getchar()) == 'n')
+                return;
+            else
+            {
+                printf("Please enter the item's name (quit to quit): ");
+                continue;
+            }
+        }
+
+        if (item_number == 1)
+        {
+            if (removeItemfromCategoryLinkList(list, remove_item_name))
+                printf("Remove successfully! Press Enter to continue...");
+            else
+                printf("Fail to remove! Press Enter to continue...");
+            eatLine();
+            break;
+        }
+
+        if (item_number > 1)
+        {
+            char * remove_item_category_name = NULL;
+            printf("Please enter the category of \"%s\" (quit to quit): ",
+                   remove_item_name);
+            while (
+                getString(&remove_item_category_name, CATEGORY_NAME_MAX_LENGTH))
+            {
+                LinkListNode * temp_node = NULL;
+
+                if (strcmp(remove_item_category_name, "quit") == 0)
+                    return;
+
+                if (!(temp_node = findCategoryinLinkList(
+                          list, remove_item_category_name)))
+                    printf("The category \"%s\" does not exist! ",
+                           remove_item_category_name);
+                else if (!findIteminAVLTree(&temp_node->category_item.item_tree,
+                                            remove_item_name))
+                    printf("The category \"%s\" does not have item \"%s\"! ",
+                           remove_item_category_name, remove_item_name);
+                else
+                {
+                    removeItemfromAVLTree(&temp_node->category_item.item_tree,
+                                          remove_item_name);
+                    printf("Remove successfully! Press Enter to continue...");
+                    eatLine();
+
+                    return;
+                }
+                printf("Enter another one? [Y/n] ");
+                if (tolower(getchar()) == 'n')
+                    return;
+                else
+                    printf(
+                        "Please enter the category of \"%s\" (quit to quit): ",
+                        remove_item_name);
+            }
+        }
     }
+
+    return;
 }
 
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
