@@ -134,6 +134,14 @@ void freeCategoryLinkListNode(LinkListNode * node);
 LinkListNode * findCategoryinLinkList(LinkList * list, char * category_name);
 
 /**
+ *@brief Get the size of link list.
+ *
+ * @param list the link list to get size
+ * @return int the number of elements in the link list
+ */
+int getLinkListSize(LinkList * list);
+
+/**
  *@brief The operation choice for addItemstoCategory() failed to find the
  *category in the link list.
  */

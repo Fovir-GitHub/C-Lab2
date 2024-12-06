@@ -242,6 +242,15 @@ LinkListNode * findCategoryinLinkList(LinkList * list, char * category_name)
     return NULL; /* category doesn't exist */
 }
 
+int getLinkListSize(LinkList * list)
+{
+    int size = 0;
+    for (LinkListNode * iter = *list; iter; iter = iter->next)
+        size++;
+
+    return size;
+}
+
 int addItemstoCategory(LinkList * list, Item item, int if_failed)
 {
     // try to find the category's position
