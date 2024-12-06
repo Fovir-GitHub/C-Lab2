@@ -139,4 +139,9 @@ void showItems(LinkList * list);
  */
 void addItem(LinkList * list);
 
+/**
+ *@brief Remove an item from user input.
+ */
+void removeItem(LinkList * list);
+
 #endif // !_FRONTEND_H_
