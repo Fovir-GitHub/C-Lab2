@@ -275,6 +275,16 @@ void removeCategory(LinkList * list)
     return;
 }
 
+void printRemoveCategoryList(LinkList * list)
+{
+    printMenuTitle("Category");
+    for (LinkListNode * iter = *list; iter; iter = iter->next)
+        printStringinCenter(iter->category_item.category_name);
+    printMenuFooter(POWER_FOOTER);
+
+    return;
+}
+
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
                           int total_page_number)
 {
