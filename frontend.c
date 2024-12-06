@@ -348,6 +348,83 @@ void showItems(LinkList * list)
     return;
 }
 
+void addItem(LinkList * list)
+{
+    clearScreen();
+
+    DateInformation produce_date = getToday();
+    DateInformation due_date = makeDateInformation(0, 0, 0);
+    DateInformation temp_date;
+    int temp_year = 0, temp_month = 0, temp_day = 0;
+    char * category_name = NULL;
+    char * item_name = NULL;
+    double price = (double) 0;
+
+    while (1)
+    {
+        printf("Please enter the category's name (quit to quit): ");
+        getString(&category_name, CATEGORY_NAME_MAX_LENGTH);
+
+        if (strcmp("quit", category_name) == 0)
+            return;
+
+        if (!findCategoryinLinkList(list, category_name))
+            printf("The category \"%s\" does not exist!\n", category_name);
+        else
+            break;
+    }
+
+    while (1)
+    {
+        printf("Please enter the item's name (quit to quit): ");
+        getString(&item_name, ITEM_NAME_MAX_LENGTH);
+
+        if (strcmp("quit", item_name) == 0)
+            return;
+
+        if (!legalString(item_name))
+            printf("The name is illegal!\n");
+
+        break;
+    }
+
+    printf("Please enter the price: ");
+    while (scanf("%lf", &price) != 1)
+        printf("Please enter the right form!\nPlease enter the price: ");
+
+    printf("Please enter the produce date in YYYY-MM-DD form (leave blank will "
+           "set it to today): ");
+    scanf("%d-%d-%d", &temp_year, &temp_month, &temp_day);
+    if (!validDate(temp_date =
+                       makeDateInformation(temp_year, temp_month, temp_day)))
+        puts("The date is invalid! Set produce date to today by default!");
+    else
+        produce_date = temp_date;
+
+    printf("Please enter the expiration date in YYYY-MM-DD form (leave blank "
+           "will set it to blank): ");
+    scanf("%d-%d-%d", &temp_year, &temp_month, &temp_day);
+    if (!validDate(temp_date =
+                       makeDateInformation(temp_year, temp_month, temp_day)))
+        puts("The date is invalid! Set expiration date to blank by default!");
+    else
+        due_date = temp_date;
+
+    int status = addItemstoCategory(
+        list, makeItem(category_name, item_name, price, produce_date, due_date),
+        CREATE_NEW_CATEGORY);
+
+    if (status == FAILED_TO_ADD)
+        printf("Failed to add the item! ");
+    else
+        printf("Add item successfully! ");
+
+    printf("Press Enter to continue...");
+    getchar();
+
+    return;
+}
+
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
                           int total_page_number)
 {
