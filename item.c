@@ -269,8 +269,11 @@ AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
         node->left = insertAVLTreeNodeHelper(node->left, insert_item);
     else if (compare_result == 1) /* insert to right */
         node->right = insertAVLTreeNodeHelper(node->right, insert_item);
-    else /* duplicated node, no action to do */
+    else /* duplicated node */
+    {
+        node->item = insert_item; /* replace original item */
         return node;
+    }
 
     updateAVLTreeNodeHeight(node); /* update the height of the new node */
     node = rotateNode(node);       /* rotate the node, make the tree balanced */
