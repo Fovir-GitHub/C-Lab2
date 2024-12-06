@@ -132,7 +132,7 @@ Item makeItem(char * category, char * name, double price,
 
 void showItemInformation(Item * item)
 {
-    static const int ITEM_INFORMATION_WIDTH = 15;
+    static const int ITEM_INFORMATION_WIDTH = 16;
 
     int ITEM_FRAME_WIDTH = MAX(strlen(item->category), strlen(item->name)) +
                            ITEM_INFORMATION_WIDTH + 4; /* get the frame width */
