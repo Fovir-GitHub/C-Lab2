@@ -15,7 +15,8 @@ enum LINK_LIST_STATUS_CODES {
     FAILED_ALLOCATE_MEMORY,        /* can't allocate memory for new node */
     FAILED_REMOVE_EMPTY_LINK_LIST, /* remove node in a empty link list */
     NODE_DOES_NOT_EXIST,           /* try to remove a non-exist node */
-    DUPLICATED_NODE                /* the node item (category) exists */
+    DUPLICATED_NODE,               /* the node item (category) exists */
+    ILLEGAL_STRING                 /* the string is illegal */
 };
 
 /**
@@ -82,6 +83,7 @@ bool emptyLinkList(LinkList * list);
  * @return if added successfully, it returns SUCCESS_ADD.
  * if can't allocate memory, it returns FAILED_ALLOCATE_MEMORY
  * if there has existed a same category, it returns DUPLICATED_NODE
+ * if the category's name is illegal, it returns ILLEGAL_STRING
  */
 int addCategorytoLinkList(LinkList * list, char * category_name);
 
