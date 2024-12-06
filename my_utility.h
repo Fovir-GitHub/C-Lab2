@@ -1,6 +1,8 @@
 #ifndef _MY_UTILITY_H_
 #define _MY_UTILITY_H_
 
+#include <stdbool.h>
+
 #define MAX(A, B) ((A) > (B) ? (A) : (B))
 #define MY_DEBUG puts("DEBUG")
 
@@ -43,5 +45,7 @@ char * staticString2dynamicString(char * static_string);
  *@brief Clear screen output.
  */
 void clearScreen();
+
+bool legalString(char * str);
 
 #endif // !_MY_UTILITY_H_

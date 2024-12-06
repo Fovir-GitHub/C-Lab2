@@ -86,3 +86,15 @@ void clearScreen()
 
     return;
 }
+
+bool legalString(char * str)
+{
+    static const char * ILLEGAL_CHRACTERS = "@";
+    char * iter = str;
+
+    while (*iter)
+        if (strchr(ILLEGAL_CHRACTERS, *iter++))
+            return false;
+
+    return true;
+}
