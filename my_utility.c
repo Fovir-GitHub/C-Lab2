@@ -95,6 +95,9 @@ bool legalString(char * str)
     if (strcmp(str, "quit") == 0)
         return false;
 
+    if (str[0] == '\0')
+        return false;
+
     while (*iter)
         if (strchr(ILLEGAL_CHRACTERS, *iter++))
             return false;
