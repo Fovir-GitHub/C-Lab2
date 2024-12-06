@@ -313,6 +313,14 @@ void addCategory(LinkList * list)
         printf("Enter the new category's name: ");
         getString(&add_category_name, CATEGORY_NAME_MAX_LENGTH);
 
+        if (!legalString(add_category_name))
+        {
+            printf("The category name is illegal! "
+                   "Press Enter to continue...");
+            getchar();
+            continue;
+        }
+
         int add_result = addCategorytoLinkList(list, add_category_name);
         switch (add_result)
         {
