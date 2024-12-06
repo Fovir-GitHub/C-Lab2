@@ -33,8 +33,12 @@ int main(void)
         case SHOW_ALL_ITEMS:
             showItems(&category_list);
             break;
+        case ADD_ITEM:
+            addItem(&category_list);
+            break;
         default:
             printf("%d\n", user_choice);
+            getchar();
         }
     }
 
