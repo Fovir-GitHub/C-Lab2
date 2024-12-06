@@ -228,7 +228,7 @@ void printShowCategories(LinkListNode * current, int current_page_number,
 
 void removeCategory(LinkList * list)
 {
-    if (emptyLinkList(list))
+    if (emptyLinkList(list)) /* there is no category */
     {
         printf("You don't have any category! "
                "Press Enter to continue...");
@@ -240,36 +240,48 @@ void removeCategory(LinkList * list)
     while (1)
     {
         clearScreen();
-        showCategories(list); /* show all categories at first */
+        printRemoveCategoryList(list); /* show all categories at first */
         printf("Please enter the name of the category (quit to quit): ");
 
         getString(&remove_category_name, CATEGORY_NAME_MAX_LENGTH);
 
-        if (strcmp(remove_category_name, "quit") == 0)
+        if (strcmp(remove_category_name, "quit") == 0) /* if the name is quit */
             return;
 
+        // get the status code after remove
         int remove_result =
             removeCategoryfromLinkList(list, remove_category_name);
 
-        if (remove_result == FAILED_ALLOCATE_MEMORY)
+        if (remove_result == FAILED_ALLOCATE_MEMORY) /* can't allocate memory */
             exit(EXIT_FAILURE);
 
+        // the category does not exist
         if (remove_result == NODE_DOES_NOT_EXIST)
         {
+            // ask user whether to enter a new category or not, default is yes
             printf("The category \"%s\" does not exist! "
                    "Enter another one? [Y/n] ",
                    remove_category_name);
 
             int choice = getchar();
+
+            // the choice is default
             if (choice == '\n')
                 continue;
-
             eatLine();
+
+            // the user doesn't want to remove new category
             if (tolower(choice) == 'n')
                 break;
         }
-        else
+        else /* remove the category successfully */
+        {
+            printf("You have removed the category \"%s\"!\n",
+                   remove_category_name);
+            printf("Press Enter to continue...");
+            getchar();
             break;
+        }
     }
 
     return;
