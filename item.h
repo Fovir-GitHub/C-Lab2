@@ -81,6 +81,11 @@ typedef struct AVLTreeNode
 
 typedef AVLTreeNode * AVLTree;
 
+/**
+ *@brief Initialize the AVL tree.
+ *
+ * @param tree the AVL tree to initialize
+ */
 void initializeAVLTree(AVLTree * tree);
 
 /**
