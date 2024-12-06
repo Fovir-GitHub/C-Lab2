@@ -134,8 +134,9 @@ void showItemInformation(Item * item)
 {
     static const int ITEM_INFORMATION_WIDTH = 16;
 
-    int ITEM_FRAME_WIDTH = MAX(strlen(item->category), strlen(item->name)) +
-                           ITEM_INFORMATION_WIDTH + 4; /* get the frame width */
+    int ITEM_FRAME_WIDTH =
+        MAX(MAX(strlen(item->category), strlen(item->name)), 12) +
+        ITEM_INFORMATION_WIDTH + 4; /* get the frame width */
 
     puts("The item's information:\n");
 
