@@ -284,7 +284,7 @@ bool removeItemfromCategoryLinkList(LinkList * list, char * item_name)
     for (LinkListNode * iter = *list; iter; iter = iter->next)
         if (findIteminAVLTree(&iter->category_item.item_tree, item_name))
         {
-            // if found, then remove the item
+            // if found, then remove the item from the tree
             removeItemfromAVLTree(&iter->category_item.item_tree, item_name);
             return true;
         }
