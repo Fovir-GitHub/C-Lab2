@@ -172,6 +172,16 @@ enum ADD_ITEM_TO_CATEGORY_STATUS_CODE {
 int addItemstoCategory(LinkList * list, Item item, int if_failed);
 
 /**
+ *@brief Remove item from a link list.
+ *
+ * @param list category's link list
+ * @param item_name the name of the item to remove
+ * @return true remove successfully
+ * @return false fail to remove
+ */
+bool removeItemfromCategoryLinkList(LinkList * list, char * item_name);
+
+/**
  *@brief Find how many item exist in the link list.
  *
  * @param list the category's link list
