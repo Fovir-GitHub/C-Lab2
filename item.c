@@ -95,6 +95,11 @@ void initializeAVLTree(AVLTree * tree)
     *tree = NULL;
 }
 
+bool emptyAVLTree(AVLTree * tree)
+{
+    return *tree == NULL;
+}
+
 AVLTreeNode * makeAVLTreeNode(Item item)
 {
     AVLTreeNode * new_node = (AVLTreeNode *) malloc(sizeof(AVLTreeNode));

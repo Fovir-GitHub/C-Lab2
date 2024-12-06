@@ -1,6 +1,8 @@
 #ifndef _ITEM_H_
 #define _ITEM_H_
 
+#include <stdbool.h>
+
 #define ITEM_NAME_MAX_LENGTH 256
 
 /**
@@ -87,6 +89,15 @@ typedef AVLTreeNode * AVLTree;
  * @param tree the AVL tree to initialize
  */
 void initializeAVLTree(AVLTree * tree);
+
+/**
+ *@brief Judge whether the AVL tree is empty or not.
+ *
+ * @param tree the AVL tree to judge
+ * @return true the tree is empty
+ * @return false the tree is not empty
+ */
+bool emptyAVLTree(AVLTree * tree);
 
 /**
  *@brief Construct AVLTreeNode
