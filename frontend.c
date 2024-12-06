@@ -202,7 +202,6 @@ void showCategories(LinkList * list)
 void printShowCategories(LinkListNode * current, int current_page_number,
                          int total_page_number)
 {
-    printf("%d\n", total_page_number);
     printMenuTitle("Category");
 
     // print categories' name
