@@ -190,12 +190,8 @@ int getMainMenuChoicefromUser()
 void showCategories(LinkList * list)
 {
     // get total page number
-    int total_page_number = 0;
-    for (LinkListNode * iter = *list; iter; iter = iter->next)
-        total_page_number++; /* get how many category */
-
-    // calculate total page number
-    total_page_number = total_page_number / CAGEGORY_NUMBER_PER_PAGE + 1;
+    int total_page_number =
+        getLinkListSize(list) / CAGEGORY_NUMBER_PER_PAGE + 1;
 
     showCategoriesHelper(*list, 1, total_page_number); /* show the first page */
 
@@ -205,6 +201,7 @@ void showCategories(LinkList * list)
 void printShowCategories(LinkListNode * current, int current_page_number,
                          int total_page_number)
 {
+    printf("%d\n", total_page_number);
     printMenuTitle("Category");
 
     // print categories' name
