@@ -28,8 +28,8 @@ int main(void)
             break;
         default:
             printf("%d\n", user_choice);
+            getchar();
         }
-        getchar();
     }
 
     puts("Bye");
