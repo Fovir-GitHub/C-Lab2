@@ -2,6 +2,7 @@
 #include "my_utility.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 /**
@@ -132,7 +133,13 @@ Item makeItem(char * category, char * name, double price,
 void showItemInformation(Item * item)
 {
     static const int ITEM_INFORMATION_WIDTH = 15;
+    int ITEM_FRAME_WIDTH = MAX(strlen(item->category), strlen(item->name)) +
+                           ITEM_INFORMATION_WIDTH + 4;
     puts("The item's information:");
+
+    for (int i = 0; i < ITEM_FRAME_WIDTH; i++)
+        putchar('*');
+    putchar('\n');
 
     printf("%-*s: %s\n%-*s: %s\n", ITEM_INFORMATION_WIDTH, "Category",
            item->category, ITEM_INFORMATION_WIDTH, "Item Name", item->name);
@@ -141,6 +148,10 @@ void showItemInformation(Item * item)
     showDateInformation(&item->produce_date);
     printf("%-*s: ", ITEM_INFORMATION_WIDTH, "Expiration Date");
     showDateInformation(&item->due_date);
+
+    for (int i = 0; i < ITEM_FRAME_WIDTH; i++)
+        putchar('*');
+    putchar('\n');
 
     return;
 }
