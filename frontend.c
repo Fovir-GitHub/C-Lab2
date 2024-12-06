@@ -18,6 +18,31 @@ static void showCategoriesHelper(LinkListNode * current,
                                  int current_page_number,
                                  int total_page_number);
 
+/**
+ *@brief Used to print the items according its category to every page.
+ *
+ * @param node the link list node
+ */
+static void printShowItems(LinkListNode * node, int current_page,
+                           int total_page);
+
+/**
+ *@brief Show items with category in a recrusive way.
+ *
+ * @param current current category
+ * @param current_page_number current page number
+ * @param total_page_number total page number
+ */
+static void showItemsHelper(LinkListNode * current, int current_page_number,
+                            int total_page_number);
+
+/**
+ *@brief Used to traverse AVL tree to print the item's name in the center.
+ *
+ * @param node the AVL tree node
+ */
+static void printAVLTreeNodeCenterHelper(AVLTreeNode * node);
+
 int calculateCenterStringSpace(char * str)
 {
     // calculate center the string need how many space before it
@@ -324,6 +349,14 @@ void addCategory(LinkList * list)
     }
 }
 
+void showItems(LinkList * list)
+{
+    int total_page = getLinkListSize(list);
+    showItemsHelper(*list, 1, total_page);
+
+    return;
+}
+
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
                           int total_page_number)
 {
@@ -357,5 +390,59 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
         clearScreen();
         printShowCategories(current, current_page_number, total_page_number);
     }
+    return;
+}
+
+void printShowItems(LinkListNode * node, int current_page, int total_page)
+{
+    clearScreen(); /* clear screen at first */
+
+    // get footer
+    char footer[MENU_WIDTH];
+    sprintf(footer, "[p]revious    %d/%d    [n]ext", current_page, total_page);
+
+    printMenuTitle("Item");
+
+    // print category name
+    printf("%-*s\n", MENU_WIDTH, node->category_item.category_name);
+
+    // print items' name
+    traverseAVLTree(&node->category_item.item_tree,
+                    printAVLTreeNodeCenterHelper);
+    printStringinCenter("[q] quit"); /* print quit option */
+    printMenuFooter(footer);         /* print footer */
+
+    return;
+}
+
+void showItemsHelper(LinkListNode * current, int current_page_number,
+                     int total_page_number)
+{
+    // show current page at first
+    printShowItems(current, current_page_number, total_page_number);
+
+    int choice = 0;                     /* user's choice */
+    while ((choice = getchar()) != 'q') /* choice is not quit */
+    {
+        if (choice == 'p' && current_page_number > 1) /* previous page */
+            return showItemsHelper(current->previous, current_page_number - 1,
+                                   total_page_number);
+
+        if (choice == 'n' &&
+            current_page_number < total_page_number) /* next page */
+            return showItemsHelper(current->next, current_page_number + 1,
+                                   total_page_number);
+
+        // invalid option, then show the same page
+        printShowItems(current, current_page_number, total_page_number);
+    }
+
+    return;
+}
+
+void printAVLTreeNodeCenterHelper(AVLTreeNode * node)
+{
+    // print item's name in the center of the menu
+    printStringinCenter(node->item.name);
     return;
 }
