@@ -1,6 +1,7 @@
 #include "frontend.h"
 #include "my_utility.h"
 #include <ctype.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -191,7 +192,7 @@ void showCategories(LinkList * list)
 {
     // get total page number
     int total_page_number =
-        getLinkListSize(list) / CAGEGORY_NUMBER_PER_PAGE + 1;
+        ceil((double) getLinkListSize(list) / CAGEGORY_NUMBER_PER_PAGE);
 
     showCategoriesHelper(*list, 1, total_page_number); /* show the first page */
 
