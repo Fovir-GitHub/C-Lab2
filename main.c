@@ -13,7 +13,23 @@ int main(void)
     initializeLinkList(&category_list);
 
     readCategoryDatafromFile(&category_list);
-    showCategories(&category_list);
+
+    int user_choice = 0;
+
+    while ((user_choice = getMainMenuChoicefromUser()) != QUIT)
+    {
+        switch (user_choice)
+        {
+        case SHOW_ALL_CATEGORIES:
+            showCategories(&category_list);
+            break;
+        default:
+            printf("%d\n", user_choice);
+        }
+        getchar();
+    }
+
+    puts("Bye");
 
     return 0;
 }
