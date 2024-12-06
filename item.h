@@ -79,6 +79,13 @@ Item makeItem(char * category, char * name, double price,
               DateInformation produce, DateInformation due);
 
 /**
+ *@brief Show Item's information.
+ *
+ * @param item item to be shown
+ */
+void showItemInformation(Item * item);
+
+/**
  *@brief AVL tree's node. The left node is alphabetically less than this
 and the right node is alphabetically greater than this.
  */
