@@ -372,6 +372,7 @@ void addItem(LinkList * list)
 
     // temp data
     DateInformation temp_date;
+    Item temp_item;
     int temp_year = 0, temp_month = 0, temp_day = 0;
 
     while (1)
@@ -466,14 +467,19 @@ void addItem(LinkList * list)
             due_date = temp_date;
 
     // get status code after add item
-    int status = addItemstoCategory(
-        list, makeItem(category_name, item_name, price, produce_date, due_date),
-        CREATE_NEW_CATEGORY);
+    int status =
+        addItemstoCategory(list,
+                           temp_item = makeItem(category_name, item_name, price,
+                                                produce_date, due_date),
+                           CREATE_NEW_CATEGORY);
 
     if (status == FAILED_TO_ADD)
         printf("Failed to add the item! ");
     else
+    {
         printf("Add item successfully! ");
+        showItemInformation(&temp_item);
+    }
 
     printf("Press Enter to continue...");
     getchar();
