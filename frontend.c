@@ -626,9 +626,13 @@ void printShowItems(LinkListNode * node, int current_page, int total_page)
     // print category name
     printf("%-*s\n", MENU_WIDTH, node->category_item.category_name);
 
-    // print items' name
-    traverseAVLTree(&node->category_item.item_tree,
-                    printAVLTreeNodeCenterHelper);
+    // the category has no items
+    if (emptyAVLTree(&node->category_item.item_tree))
+        printStringinCenter("No item!");
+    else
+        traverseAVLTree(&node->category_item.item_tree,
+                        printAVLTreeNodeCenterHelper); /* print items' name */
+
     printStringinCenter("[q] quit"); /* print quit option */
     printMenuFooter(footer);         /* print footer */
 
