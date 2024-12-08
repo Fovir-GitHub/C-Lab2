@@ -51,8 +51,7 @@ static void showAVLTreeHelper(AVLTreeNode * node);
  *
  * @param node current node
  * @param item_name the item's name
- * @return true the item exist
- * @return false the item does not exist
+ * @return the item position
  */
 static AVLTreeNode * findIteminAVLTreeHelper(AVLTreeNode * node,
                                              char * item_name);
@@ -455,7 +454,7 @@ void showAVLTreeHelper(AVLTreeNode * node)
 
 AVLTreeNode * findIteminAVLTreeHelper(AVLTreeNode * node, char * item_name)
 {
-    if (!node) /* the node is NULL */
+    if (!node) /* the item doesn't exist */
         return NULL;
 
     // compare the two strings
