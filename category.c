@@ -231,6 +231,9 @@ void freeCategoryLinkList(LinkList * list)
 
 LinkListNode * findCategoryinLinkList(LinkList * list, char * category_name)
 {
+    if (!legalString(category_name)) /* the category name is illegal */
+        return NULL;
+
     for (LinkListNode * current = *list; current; current = current->next)
     {
         int compare_result = compare2Strings(
