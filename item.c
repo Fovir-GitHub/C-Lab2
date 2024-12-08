@@ -448,7 +448,7 @@ void freeAVLTreeHelper(AVLTreeNode * node)
 
 void showAVLTreeHelper(AVLTreeNode * node)
 {
-    printf("%s\t%.2lf\n", node->item.name, node->item.price);
+    puts(node->item.name);
     return;
 }
 
