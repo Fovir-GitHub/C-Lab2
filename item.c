@@ -54,7 +54,8 @@ static void showAVLTreeHelper(AVLTreeNode * node);
  * @return true the item exist
  * @return false the item does not exist
  */
-static bool findIteminAVLTreeHelper(AVLTreeNode * node, char * item_name);
+static AVLTreeNode * findIteminAVLTreeHelper(AVLTreeNode * node,
+                                             char * item_name);
 
 DateInformation makeDateInformation(int y, int m, int d)
 {
@@ -340,7 +341,7 @@ void removeItemfromAVLTree(AVLTree * tree, char * item_name)
     return;
 }
 
-bool findIteminAVLTree(AVLTree * tree, char * item_name)
+AVLTreeNode * findIteminAVLTree(AVLTree * tree, char * item_name)
 {
     return findIteminAVLTreeHelper(*tree, item_name);
 }
@@ -452,16 +453,16 @@ void showAVLTreeHelper(AVLTreeNode * node)
     return;
 }
 
-bool findIteminAVLTreeHelper(AVLTreeNode * node, char * item_name)
+AVLTreeNode * findIteminAVLTreeHelper(AVLTreeNode * node, char * item_name)
 {
     if (!node) /* the node is NULL */
-        return false;
+        return NULL;
 
     // compare the two strings
     int compare_result = compare2Strings(node->item.name, item_name);
 
     if (compare_result == 0) /* find the item */
-        return true;
+        return node;
 
     if (compare_result == 1) /* the item should be in the left node */
         return findIteminAVLTreeHelper(node->left, item_name);

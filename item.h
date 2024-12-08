@@ -217,6 +217,6 @@ void removeItemfromAVLTree(AVLTree * tree, char * item_name);
  * @return true the item exists
  * @return false the item does not exist
  */
-bool findIteminAVLTree(AVLTree * tree, char * item_name);
+AVLTreeNode * findIteminAVLTree(AVLTree * tree, char * item_name);
 
 #endif // !_ITEM_H_
