@@ -520,7 +520,7 @@ void removeItem(LinkList * list)
     while (getString(&remove_item_name, ITEM_NAME_MAX_LENGTH))
     {
         if (strcmp("quit", remove_item_name) == 0) /*  quit */
-            return;
+            break;
 
         // find how many item have the same name in the whole system
         int item_number = findIteminLinkList(list, remove_item_name);
@@ -530,11 +530,14 @@ void removeItem(LinkList * list)
                    "[Y/n] ",
                    remove_item_name);
             if (tolower(getchar()) == 'n')
-                return;
+                break;
             else
             {
                 printf("Please enter the item's name (quit to "
                        "quit): ");
+
+                // free memory space before next entering
+                free(remove_item_name);
                 continue;
             }
         }
@@ -558,13 +561,14 @@ void removeItem(LinkList * list)
             char * remove_item_category_name = NULL;
             printf("Please enter the category of \"%s\" (quit to quit): ",
                    remove_item_name);
+
             while (
                 getString(&remove_item_category_name, CATEGORY_NAME_MAX_LENGTH))
             {
                 LinkListNode * temp_node = NULL;
 
                 if (strcmp(remove_item_category_name, "quit") == 0) /* quit */
-                    return;
+                    break;
 
                 // the category does not exist in the link list
                 if (!(temp_node = findCategoryinLinkList(
@@ -587,21 +591,28 @@ void removeItem(LinkList * list)
                            "to continue...");
                     eatLine();
 
-                    return; /* return directly */
+                    break;
                 }
 
                 // handle exceptions
                 printf("Enter another one? [Y/n] ");
                 if (tolower(getchar()) == 'n')
-                    return;
+                    break;
                 else
+                {
                     printf("Please enter the category of \"%s\" "
                            "(quit to quit): ",
                            remove_item_name);
+                    free(remove_item_category_name); /* free space */
+                    continue;
+                }
             }
+            free(remove_item_category_name); /* free memory space */
+            break;
         }
     }
 
+    free(remove_item_name); /* free space */
     return;
 }
 
