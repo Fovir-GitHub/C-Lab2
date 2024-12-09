@@ -4,12 +4,24 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ENCRYPTION_OFFSET 47
-#define MIN_VISIBLE_CHARACTER_ASCII 32
-#define VISIBLE_CHARACTER_NUMBER 95
+#define ENCRYPTION_OFFSET 47           /* the offset of encryption */
+#define MIN_VISIBLE_CHARACTER_ASCII 32 /* the minimal visible character */
+#define VISIBLE_CHARACTER_NUMBER 95    /* the number of all visible character */
 
+/**
+ *@brief Encode single character.
+ *
+ * @param ch the character to be encoded
+ * @return char the character after encoding
+ */
 static char encodeCharacter(char ch);
 
+/**
+ *@brief Decode single character.
+ *
+ * @param ch the character to be decoded.
+ * @return char the character after decode
+ */
 static char decodeCharacter(char ch);
 
 char * getString(char ** str, int max_length)

@@ -55,8 +55,18 @@ void clearScreen();
  */
 bool legalString(char * str);
 
+/**
+ *@brief Encode string.
+ *
+ * @param str the string to be encode
+ */
 void encodeString(char * str);
 
+/**
+ *@brief Decode string.
+ *
+ * @param str the string to be decode
+ */
 void decodeString(char * str);
 
 #endif // !_MY_UTILITY_H_
