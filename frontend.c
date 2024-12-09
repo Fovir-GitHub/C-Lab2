@@ -625,9 +625,9 @@ void editItem(LinkList * list)
 
     while (getString(&edit_item_category_name, CATEGORY_NAME_MAX_LENGTH))
     {
-        if (strcmp(edit_item_category_name, "quit") == 0)
+        if (strcmp(edit_item_category_name, "quit") == 0) /* quit */
         {
-            free(edit_item_category_name);
+            free(edit_item_category_name); /* free space */
             return;
         }
 
@@ -641,7 +641,7 @@ void editItem(LinkList * list)
                 "The category \"%s\" does not exist! Enter another one? [Y/n] ",
                 edit_item_category_name);
 
-            free(edit_item_category_name);
+            free(edit_item_category_name); /* free space */
 
             if (tolower(getchar()) == 'n')
                 return;
@@ -652,30 +652,39 @@ void editItem(LinkList * list)
             break;
     }
 
+    free(edit_item_category_name); /* free the space */
+
+    // clear the screen and show all items in this category
     clearScreen();
     puts("Items:");
     showAVLTree(&category_position->category_item.item_tree);
+
+    // get the item to edit
     printf("Please enter the item you want to edit: ");
     while (getString(&edit_item_category_name, ITEM_NAME_MAX_LENGTH))
     {
+        // find the item's position in AVL tree
         AVLTreeNode * item_position =
             findIteminAVLTree(&category_position->category_item.item_tree,
                               edit_item_category_name);
 
-        if (!item_position) /* the name is wrong */
+        if (!item_position) /* the item does not exist */
         {
             printf("The item \"%s\" does not exist! Enter another one? [Y/n] ",
                    edit_item_category_name);
 
-            free(edit_item_category_name);
+            free(edit_item_category_name); /* free space before continue */
             if (tolower(getchar()) == 'n')
                 return;
 
             printf("Please enter the item you want to edit: ");
             continue;
         }
-        else
+        else /* find the item */
         {
+            free(edit_item_category_name); /* free the space at first */
+
+            // show the item's information at first
             showItemInformation(&item_position->item);
 
             // back up original data
@@ -683,35 +692,47 @@ void editItem(LinkList * list)
             DateInformation produce_date = item_position->item.produce_date;
             DateInformation due_date = item_position->item.due_date;
 
+            // record whether the item is changed
             bool changed = false;
+
+            // the new item will be added after the process
             Item new_item = item_position->item;
 
+            // temp data
             char * temp_string = NULL;
-            char date_string[DATE_STRING_MAX_LENGTH];
+            char date_string[DATE_STRING_MAX_LENGTH]; /* get date information */
             int temp_year = 0, temp_month = 0, temp_day = 0;
             DateInformation temp_date;
 
             printf("Please enter the new category (leave blank will change "
                    "nothing): ");
             getString(&temp_string, CATEGORY_NAME_MAX_LENGTH);
-            if (legalString(temp_string))
+            if (legalString(temp_string)) /* the string is valid */
             {
-                changed = true;
+                changed = true; /* update change status */
+
+                // assign the category name
                 new_item.category = staticString2dynamicString(temp_string);
             }
             else
                 puts("The string is illegal! The category does not change!");
+
+            free(temp_string); /* free space */
 
             printf("Please enter the new item's name (leave blank will change "
                    "nothing): ");
             getString(&temp_string, ITEM_NAME_MAX_LENGTH);
             if (legalString(temp_string))
             {
-                changed = true;
+                changed = true; /* update status */
+
+                // assign the name
                 new_item.name = staticString2dynamicString(temp_string);
             }
             else
                 puts("The string is illegal! The item's name does not change!");
+
+            free(temp_string); /* free space */
 
             printf(
                 "Please enter the new price (leave blank will do nothing): ");
@@ -720,27 +741,32 @@ void editItem(LinkList * list)
             if (sscanf(temp_string, "%lf", &new_item.price) != 1)
             {
                 puts("Invalid price format! The price does not change!");
-                new_item.price = price;
+                new_item.price = price; /* reset to the previous price */
             }
             else
-                changed = true;
+                changed = true; /* update status */
 
+            free(temp_string); /* free space */
+
+            // get the produce date
             printf("Please enter the produce date (leave blank will do "
                    "nothing): ");
             fgets(date_string, sizeof(date_string), stdin);
-            if (date_string[0] == '\n')
-                ;
+            if (date_string[0] == '\n') /* the line is blank */
+                ;                       /* do nothing and skip */
+            // invalid date
             else if (sscanf(date_string, "%d-%d-%d", &temp_year, &temp_month,
                             &temp_day) != 3 ||
                      !validDate(temp_date = makeDateInformation(
                                     temp_year, temp_month, temp_day)))
                 puts("Invalid date! The produce date does not change!");
-            else
+            else /* the date in valid */
             {
-                changed = true;
-                new_item.produce_date = temp_date;
+                changed = true;                    /* update the status */
+                new_item.produce_date = temp_date; /* assign the date */
             }
 
+            // get new due date
             printf("Please enter the expiration date (leave blank will do "
                    "nothing): ");
             fgets(date_string, sizeof(date_string), stdin);
@@ -757,15 +783,18 @@ void editItem(LinkList * list)
                 new_item.due_date = temp_date;
             }
 
-            if (changed)
+            if (changed) /* if the information is changed */
             {
+                // remove the original item at first
                 removeItemfromAVLTree(
                     &category_position->category_item.item_tree,
                     item_position->item.name);
 
+                // insert the new item
                 insertAVLTreeNode(&category_position->category_item.item_tree,
                                   new_item);
 
+                // message user
                 printf("The item has been updated! Press Enter to continue...");
             }
             else
