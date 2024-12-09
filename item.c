@@ -56,6 +56,14 @@ static void showAVLTreeHelper(AVLTreeNode * node);
 static AVLTreeNode * findIteminAVLTreeHelper(AVLTreeNode * node,
                                              char * item_name);
 
+/**
+ *@brief Help to get the size of an AVL tree.
+ *
+ * @param node the current node
+ * @return int the size of the sub-tree
+ */
+static int getAVLTreeSizeHelper(AVLTreeNode * node);
+
 DateInformation makeDateInformation(int y, int m, int d)
 {
     DateInformation result = {y, m, d};
@@ -345,6 +353,11 @@ AVLTreeNode * findIteminAVLTree(AVLTree * tree, char * item_name)
     return findIteminAVLTreeHelper(*tree, item_name);
 }
 
+int getAVLTreeSize(AVLTree * tree)
+{
+    return getAVLTreeSizeHelper(*tree);
+}
+
 AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
 {
     if (node == NULL) /* insert the node  */
@@ -467,4 +480,13 @@ AVLTreeNode * findIteminAVLTreeHelper(AVLTreeNode * node, char * item_name)
         return findIteminAVLTreeHelper(node->left, item_name);
     else /* the item should be in the right node */
         return findIteminAVLTreeHelper(node->right, item_name);
+}
+
+int getAVLTreeSizeHelper(AVLTreeNode * node)
+{
+    if (!node) /* the node is NULL */
+        return 0;
+
+    return getAVLTreeSizeHelper(node->left) +
+           getAVLTreeSizeHelper(node->right) + 1;
 }

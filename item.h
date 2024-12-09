@@ -218,4 +218,12 @@ void removeItemfromAVLTree(AVLTree * tree, char * item_name);
  */
 AVLTreeNode * findIteminAVLTree(AVLTree * tree, char * item_name);
 
+/**
+ *@brief Get the size of AVL tree object.
+ *
+ * @param tree the AVL tree
+ * @return int the size of the AVL tree
+ */
+int getAVLTreeSize(AVLTree * tree);
+
 #endif // !_ITEM_H_
