@@ -144,4 +144,11 @@ void addItem(LinkList * list);
  */
 void removeItem(LinkList * list);
 
+/**
+ * @brief Edit an item's information in a link list.
+ *
+ * @param list the category's link list
+ */
+void editItem(LinkList * list);
+
 #endif // !_FRONTEND_H_

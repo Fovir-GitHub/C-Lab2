@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 #define ORDER_NUMBER_WIDTH 4
+#define PRICE_STRING_MAX_LENGTH 24
+#define DATE_STRING_MAX_LENGTH 12
 
 /**
  *@brief Used to show the categories in a menu form.
@@ -113,8 +115,8 @@ void printOptions(char * options[], int options_number)
                    '\0'); /* align to left and print the middle space */
         else
             printf("%-*s\n", max_even_string_length,
-                   temp_string); /* align to left and be sure that the longest
-                                    string reaches the right side */
+                   temp_string); /* align to left and be sure that the
+                                    longest string reaches the right side */
     }
 
     if (options_number & 1) /* if the number of options is odd, */
@@ -163,7 +165,8 @@ int getMainMenuChoicefromUser()
         if (!strchr(MAIN_MENU_OPTIONS_STRING, user_choice)) /* not valid */
         {
             // tell user to input new option.
-            printf("You entered an invalid chioce! Press Enter to continue...");
+            printf("You entered an invalid chioce! Press Enter to "
+                   "continue...");
             eatLine(); /* avoid multiple characters */
         }
         else
@@ -265,7 +268,8 @@ void removeCategory(LinkList * list)
         // the category does not exist
         if (remove_result == NODE_DOES_NOT_EXIST)
         {
-            // ask user whether to enter a new category or not, default is yes
+            // ask user whether to enter a new category or not, default
+            // is yes
             printf("The category \"%s\" does not exist! "
                    "Enter another one? [Y/n] ",
                    remove_category_name);
@@ -330,7 +334,8 @@ void addCategory(LinkList * list)
         {
         case DUPLICATED_NODE:
         case ILLEGAL_STRING:
-            printf("The category \"%s\" exists or has illegal character!\n",
+            printf("The category \"%s\" exists or has illegal "
+                   "character!\n",
                    add_category_name);
             printf("Enter another category name? [Y/n] ");
 
@@ -364,11 +369,11 @@ void addItem(LinkList * list)
 {
     DateInformation produce_date = getToday(); /* set produce date to today */
     DateInformation due_date =
-        makeDateInformation(0, 0, 0); /* set due date to empty */
-    char * category_name = NULL;      /* category's name */
-    char * item_name = NULL;          /* item's name */
-    double price = (double) 0;        /* item's price */
-    char date_string[12];             /* string to get date from user */
+        makeDateInformation(0, 0, 0);         /* set due date to empty */
+    char * category_name = NULL;              /* category's name */
+    char * item_name = NULL;                  /* item's name */
+    double price = (double) 0;                /* item's price */
+    char date_string[DATE_STRING_MAX_LENGTH]; /* string to get date from user */
 
     // temp data
     DateInformation temp_date;
@@ -411,7 +416,8 @@ void addItem(LinkList * list)
 
         if (!legalString(item_name)) /* the name is illegal */
         {
-            printf("The item name \"%s\" is illegal! Enter another one? [Y/n] ",
+            printf("The item name \"%s\" is illegal! Enter another "
+                   "one? [Y/n] ",
                    item_name);
 
             if (tolower(getchar()) == 'n')
@@ -502,13 +508,15 @@ void removeItem(LinkList * list)
         int item_number = findIteminLinkList(list, remove_item_name);
         if (item_number == 0) /* the item's name does not exist */
         {
-            printf("The item \"%s\" does not exist! Enter another one? [Y/n] ",
+            printf("The item \"%s\" does not exist! Enter another one? "
+                   "[Y/n] ",
                    remove_item_name);
             if (tolower(getchar()) == 'n')
                 return;
             else
             {
-                printf("Please enter the item's name (quit to quit): ");
+                printf("Please enter the item's name (quit to "
+                       "quit): ");
                 continue;
             }
         }
@@ -548,7 +556,8 @@ void removeItem(LinkList * list)
                 // the category's name is incorrect
                 else if (!findIteminAVLTree(&temp_node->category_item.item_tree,
                                             remove_item_name))
-                    printf("The category \"%s\" does not have item \"%s\"! ",
+                    printf("The category \"%s\" does not have item "
+                           "\"%s\"! ",
                            remove_item_category_name, remove_item_name);
                 // get the correct category name
                 else
@@ -556,7 +565,8 @@ void removeItem(LinkList * list)
                     // remove the item
                     removeItemfromAVLTree(&temp_node->category_item.item_tree,
                                           remove_item_name);
-                    printf("Remove successfully! Press Enter to continue...");
+                    printf("Remove successfully! Press Enter "
+                           "to continue...");
                     eatLine();
 
                     return; /* return directly */
@@ -567,10 +577,174 @@ void removeItem(LinkList * list)
                 if (tolower(getchar()) == 'n')
                     return;
                 else
-                    printf(
-                        "Please enter the category of \"%s\" (quit to quit): ",
-                        remove_item_name);
+                    printf("Please enter the category of \"%s\" "
+                           "(quit to quit): ",
+                           remove_item_name);
             }
+        }
+    }
+
+    return;
+}
+
+void editItem(LinkList * list)
+{
+    char * edit_item_category_name = NULL;
+    LinkListNode * category_position = NULL;
+
+    printf("Please enter the item's category (quit to quit): ");
+
+    while (getString(&edit_item_category_name, CATEGORY_NAME_MAX_LENGTH))
+    {
+        if (strcmp(edit_item_category_name, "quit") == 0)
+        {
+            free(edit_item_category_name);
+            return;
+        }
+
+        // find the category
+        category_position =
+            findCategoryinLinkList(list, edit_item_category_name);
+
+        if (!category_position) /* the category does not exist */
+        {
+            printf(
+                "The category \"%s\" does not exist! Enter another one? [Y/n] ",
+                edit_item_category_name);
+
+            free(edit_item_category_name);
+
+            if (tolower(getchar()) == 'n')
+                return;
+
+            printf("Please enter the item's category (quit to quit): ");
+        }
+        else
+            break;
+    }
+
+    clearScreen();
+    puts("Items:");
+    showAVLTree(&category_position->category_item.item_tree);
+    printf("Please enter the item you want to edit: ");
+    while (getString(&edit_item_category_name, ITEM_NAME_MAX_LENGTH))
+    {
+        AVLTreeNode * item_position =
+            findIteminAVLTree(&category_position->category_item.item_tree,
+                              edit_item_category_name);
+
+        if (!item_position) /* the name is wrong */
+        {
+            printf("The item \"%s\" does not exist! Enter another one? [Y/n] ",
+                   edit_item_category_name);
+
+            free(edit_item_category_name);
+            if (tolower(getchar()) == 'n')
+                return;
+
+            printf("Please enter the item you want to edit: ");
+            continue;
+        }
+        else
+        {
+            showItemInformation(&item_position->item);
+
+            // back up original data
+            double price = item_position->item.price;
+            DateInformation produce_date = item_position->item.produce_date;
+            DateInformation due_date = item_position->item.due_date;
+
+            bool changed = false;
+            Item new_item = item_position->item;
+
+            char * temp_string = NULL;
+            char date_string[DATE_STRING_MAX_LENGTH];
+            int temp_year = 0, temp_month = 0, temp_day = 0;
+            DateInformation temp_date;
+
+            printf("Please enter the new category (leave blank will change "
+                   "nothing): ");
+            getString(&temp_string, CATEGORY_NAME_MAX_LENGTH);
+            if (legalString(temp_string))
+            {
+                changed = true;
+                new_item.category = staticString2dynamicString(temp_string);
+            }
+            else
+                puts("The string is illegal! The category does not change!");
+
+            printf("Please enter the new item's name (leave blank will change "
+                   "nothing): ");
+            getString(&temp_string, ITEM_NAME_MAX_LENGTH);
+            if (legalString(temp_string))
+            {
+                changed = true;
+                new_item.name = staticString2dynamicString(temp_string);
+            }
+            else
+                puts("The string is illegal! The item's name does not change!");
+
+            printf(
+                "Please enter the new price (leave blank will do nothing): ");
+            getString(&temp_string, PRICE_STRING_MAX_LENGTH);
+
+            if (sscanf(temp_string, "%lf", &new_item.price) != 1)
+            {
+                puts("Invalid price format! The price does not change!");
+                new_item.price = price;
+            }
+            else
+                changed = true;
+
+            printf("Please enter the produce date (leave blank will do "
+                   "nothing): ");
+            fgets(date_string, sizeof(date_string), stdin);
+            if (date_string[0] == '\n')
+                ;
+            else if (sscanf(date_string, "%d-%d-%d", &temp_year, &temp_month,
+                            &temp_day) != 3 ||
+                     !validDate(temp_date = makeDateInformation(
+                                    temp_year, temp_month, temp_day)))
+                puts("Invalid date! The produce date does not change!");
+            else
+            {
+                changed = true;
+                new_item.produce_date = temp_date;
+            }
+
+            printf("Please enter the expiration date (leave blank will do "
+                   "nothing): ");
+            fgets(date_string, sizeof(date_string), stdin);
+            if (date_string[0] == '\n')
+                ;
+            else if (sscanf(date_string, "%d-%d-%d", &temp_year, &temp_month,
+                            &temp_day) != 3 ||
+                     !validDate(temp_date = makeDateInformation(
+                                    temp_year, temp_month, temp_day)))
+                puts("Invalid date! The expiration date does not change!");
+            else
+            {
+                changed = true;
+                new_item.due_date = temp_date;
+            }
+
+            if (changed)
+            {
+                removeItemfromAVLTree(
+                    &category_position->category_item.item_tree,
+                    item_position->item.name);
+
+                insertAVLTreeNode(&category_position->category_item.item_tree,
+                                  new_item);
+
+                printf("The item has been updated! Press Enter to continue...");
+            }
+            else
+                printf(
+                    "There is nothing to change! Press Enter to continue...");
+
+            eatLine();
+            break;
         }
     }
 
