@@ -45,10 +45,24 @@ static void showItemsHelper(LinkListNode * current, int current_page_number,
  */
 static void printAVLTreeNodeCenterHelper(AVLTreeNode * node);
 
+/**
+ *@brief Convert AVL tree to an array.
+ *
+ * @param tree the AVL tree to be converted
+ * @param tree_size the size of the AVL tree
+ * @return AVLTreeNode* the result array
+ */
 static AVLTreeNode * generateAVLTreeNodeArray(AVLTree * tree, int tree_size);
 
+// the index of AVL tree node array when generating
 static int generate_AVL_tree_node_array_index = 0;
 
+/**
+ *@brief Help to generate AVL tree node array.
+ *
+ * @param node the current AVL tree node
+ * @param node_array the nodes' array
+ */
 static void generateAVLTreeNodeArrayHelper(AVLTreeNode * node,
                                            AVLTreeNode * node_array);
 
