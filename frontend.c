@@ -256,14 +256,20 @@ void removeCategory(LinkList * list)
         getString(&remove_category_name, CATEGORY_NAME_MAX_LENGTH);
 
         if (strcmp(remove_category_name, "quit") == 0) /* if the name is quit */
+        {
+            free(remove_category_name); /* free space */
             return;
+        }
 
         // get the status code after remove
         int remove_result =
             removeCategoryfromLinkList(list, remove_category_name);
 
         if (remove_result == FAILED_ALLOCATE_MEMORY) /* can't allocate memory */
-            exit(EXIT_FAILURE);
+        {
+            free(remove_category_name); /* free space */
+            exit(EXIT_FAILURE);         /* terminate program */
+        }
 
         // the category does not exist
         if (remove_result == NODE_DOES_NOT_EXIST)
@@ -274,16 +280,10 @@ void removeCategory(LinkList * list)
                    "Enter another one? [Y/n] ",
                    remove_category_name);
 
-            int choice = getchar();
-
-            // the choice is default
-            if (choice == '\n')
-                continue;
-            eatLine();
-
-            // the user doesn't want to remove new category
-            if (tolower(choice) == 'n')
+            if (tolower(getchar()) == 'n')
                 break;
+            else
+                continue;
         }
         else /* remove the category successfully */
         {
