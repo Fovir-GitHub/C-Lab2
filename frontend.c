@@ -952,13 +952,15 @@ void printAVLTreeNodeCenterHelper(AVLTreeNode * node)
 
 AVLTreeNode * generateAVLTreeNodeArray(AVLTree * tree, int tree_size)
 {
+    // allocate memory for the tree node array
     AVLTreeNode * tree_node_array =
         (AVLTreeNode *) malloc(tree_size * sizeof(AVLTreeNode));
-    generate_AVL_tree_node_array_index = 0;
+    generate_AVL_tree_node_array_index = 0; /* reset the index to 0 */
 
+    // start generating
     generateAVLTreeNodeArrayHelper(*tree, tree_node_array);
 
-    return tree_node_array;
+    return tree_node_array; /* return the array */
 }
 
 void generateAVLTreeNodeArrayHelper(AVLTreeNode * node,
