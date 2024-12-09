@@ -43,8 +43,8 @@ int main(void)
             editItem(&category_list);
             break;
         default:
-            printf("%d\n", user_choice);
-            getchar();
+            printf("Please enter the right option! Press Enter to continue...");
+            eatLine();
         }
     }
 
