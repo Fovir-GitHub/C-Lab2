@@ -46,6 +46,13 @@ char * staticString2dynamicString(char * static_string);
  */
 void clearScreen();
 
+/**
+ *@brief Judge whether the string is legal.
+ *
+ * @param str the string to be judged
+ * @return true the string is legal
+ * @return false the string is illegal
+ */
 bool legalString(char * str);
 
 #endif // !_MY_UTILITY_H_
