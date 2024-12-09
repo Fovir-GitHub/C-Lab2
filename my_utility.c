@@ -92,6 +92,9 @@ bool legalString(char * str)
     static const char * ILLEGAL_CHRACTERS = "@";
     char * iter = str;
 
+    if (!str)
+        return false;
+
     if (strcmp(str, "quit") == 0)
         return false;
 
