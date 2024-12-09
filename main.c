@@ -48,7 +48,10 @@ int main(void)
         }
     }
 
-    puts("Bye");
+    puts("Bye!");
+
+    outputCategoryDatatoFile(&category_list);
+    outputItemsDatatoFile(&category_list);
 
     return 0;
 }
