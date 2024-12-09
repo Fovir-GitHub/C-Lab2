@@ -393,7 +393,10 @@ void addItem(LinkList * list)
         getString(&category_name, CATEGORY_NAME_MAX_LENGTH);
 
         if (strcmp("quit", category_name) == 0)
+        {
+            free(category_name); /* free space */
             return;
+        }
 
         // the category does not exist
         if (!findCategoryinLinkList(list, category_name))
@@ -402,11 +405,11 @@ void addItem(LinkList * list)
                    "Enter another category? [Y/n] ",
                    category_name);
 
+            free(category_name); /* free space */
+
             // get user's choice and judge
             if (tolower(getchar()) == 'n')
                 return;
-            else
-                continue;
         }
         else
             break;
@@ -419,7 +422,10 @@ void addItem(LinkList * list)
         getString(&item_name, ITEM_NAME_MAX_LENGTH);
 
         if (strcmp("quit", item_name) == 0) /* quit */
+        {
+            free(item_name); /* free space */
             return;
+        }
 
         if (!legalString(item_name)) /* the name is illegal */
         {
@@ -427,30 +433,32 @@ void addItem(LinkList * list)
                    "one? [Y/n] ",
                    item_name);
 
+            free(item_name); /* free space */
+
             if (tolower(getchar()) == 'n')
                 return;
-            else
-                continue;
         }
-
-        break;
+        else
+            break;
     }
 
     // get the price
     printf("Please enter the price: ");
-    while (scanf("%lf", &price) != 1)
+    while (scanf("%lf", &price) != 1) /* fail to get price */
     {
-        printf("Please enter the right form! Enter another price? [Y/n] ");
+        printf("The format is invalid! Enter another price? [Y/n] ");
         if (tolower(getchar()) == 'n')
             return;
 
         printf("Please enter the price: ");
     }
 
-    eatLine();
+    eatLine(); /* flush the buffer */
+
     // get produce date
-    printf("Please enter the produce date in YYYY-MM-DD form (leave blank will "
-           "set it to today): ");
+    printf(
+        "Please enter the produce date in YYYY-MM-DD format (leave blank will "
+        "set it to today): ");
     fgets(date_string, sizeof(date_string), stdin); /* read the whole line */
 
     // read data from string
@@ -465,9 +473,10 @@ void addItem(LinkList * list)
             produce_date = temp_date; /* assign the date */
 
     // get due date
-    printf("Please enter the expiration date in YYYY-MM-DD form (leave blank "
+    printf("Please enter the expiration date in YYYY-MM-DD format (leave blank "
            "will set it to blank): ");
     fgets(date_string, sizeof(date_string), stdin); /* read the whole line */
+
     // read data from string
     sscanf(date_string, "%d-%d-%d", &temp_year, &temp_month, &temp_day);
 
@@ -486,11 +495,13 @@ void addItem(LinkList * list)
                                                 produce_date, due_date),
                            CREATE_NEW_CATEGORY);
 
-    if (status == FAILED_TO_ADD)
+    if (status == FAILED_TO_ADD) /* failed to add the item */
         printf("Failed to add the item! ");
     else
     {
         puts("Add item successfully!\n");
+
+        // show item's information after being added
         showItemInformation(&temp_item);
     }
 
