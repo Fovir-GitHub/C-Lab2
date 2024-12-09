@@ -332,7 +332,6 @@ void addCategory(LinkList * list)
 
         // get the status code after add to link list
         int add_result = addCategorytoLinkList(list, add_category_name);
-        free(add_category_name);
 
         switch (add_result)
         {
@@ -344,22 +343,27 @@ void addCategory(LinkList * list)
             printf("Enter another category name? [Y/n] ");
 
             if (tolower(getchar()) == 'n')
+            {
+                free(add_category_name);
                 return;
+            }
             else
+            {
+                free(add_category_name);
                 continue;
-
+            }
         case FAILED_ALLOCATE_MEMORY:
+            free(add_category_name);
             exit(EXIT_FAILURE); /* terminate the programme */
 
         case SUCCESS_ADD: /* successfully added the category */
             printf("Successfully add new category \"%s\"\n", add_category_name);
             printf("Press Enter to continue...");
             eatLine();
+            free(add_category_name);
             return;
         }
     }
-
-    free(add_category_name);
 
     return;
 }
