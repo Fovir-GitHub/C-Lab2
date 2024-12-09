@@ -861,7 +861,8 @@ void printShowItems(char * category_name, AVLTreeNode * node_array,
 {
     clearScreen(); /* clear screen at first */
 
-    char item_name[ITEM_NAME_MAX_LENGTH];
+    char item_name[ITEM_NAME_MAX_LENGTH]; /* store item's name */
+
     // get footer
     char footer[MENU_WIDTH];
     sprintf(footer, "[p]revious    %d/%d    [n]ext", current_page, total_page);
@@ -871,12 +872,13 @@ void printShowItems(char * category_name, AVLTreeNode * node_array,
     // print category name
     printf("%-*s\n", MENU_WIDTH, category_name);
 
-    // the category has no items
+    // there is no item
     if (array_size == 0)
         printStringinCenter("No items!");
     else
         for (int i = 0; i < array_size; i++)
         {
+            // show items
             sprintf(item_name, "[%d] %s", i + 1, node_array[i].item.name);
             printStringinCenter(item_name);
         }
@@ -884,6 +886,7 @@ void printShowItems(char * category_name, AVLTreeNode * node_array,
     printStringinCenter("[q] quit"); /* print quit option */
     printMenuFooter(footer);         /* print footer */
 
+    printf("Enter your choice: "); /* ask user to enter choice */
     return;
 }
 
