@@ -23,9 +23,8 @@ void readCategoryDatafromFile(LinkList * list)
     while (fgets(temp_string, CATEGORY_NAME_MAX_LENGTH, read_category))
     {
         // remove line breaker
-        char * find = strchr(temp_string, '\n');
-        if (find)
-            *find = '\0';
+        temp_string[strcspn(temp_string, "\n")] = '\0';
+        decodeString(temp_string);
 
         addCategorytoLinkList(list, temp_string); /* add the category */
     }
@@ -49,6 +48,9 @@ void readItemsDatafromFile(LinkList * list)
     char line[ITEM_FILE_PER_LINE_MAX_LENGTH];
     while (fgets(line, ITEM_FILE_PER_LINE_MAX_LENGTH, read_item))
     {
+        line[strcspn(line, "\n")] = '\0'; /* remove line breaker */
+        decodeString(line);               /* decode the string */
+
         char temp_category_name[CATEGORY_NAME_MAX_LENGTH];
         char temp_item_name[ITEM_NAME_MAX_LENGTH];
         double price = (double) 0;
@@ -88,8 +90,11 @@ void outputCategoryDatatoFile(LinkList * list)
     }
 
     for (LinkListNode * current = *list; current; current = current->next)
+    {
+        // encode the category's name
+        encodeString(current->category_item.category_name);
         fprintf(output_category, "%s\n", current->category_item.category_name);
-
+    }
     return;
 }
 
@@ -120,12 +125,17 @@ void outputItemsDatatoFileHelper(AVLTreeNode * node, FILE * output)
     // traverse left child node first
     outputItemsDatatoFileHelper(node->left, output);
 
+    char output_line[ITEM_FILE_PER_LINE_MAX_LENGTH];
     // output this node's information
-    fprintf(output, "%s@%s@%.2lf@%04d-%02d-%02d@%04d-%02d-%02d\n",
+    sprintf(output_line, "%s@%s@%.2lf@%04d-%02d-%02d@%04d-%02d-%02d",
             node->item.category, node->item.name, node->item.price,
             node->item.produce_date.year, node->item.produce_date.month,
             node->item.produce_date.day, node->item.due_date.year,
             node->item.due_date.month, node->item.due_date.day);
+
+    // encode string
+    encodeString(output_line);
+    fprintf(output, "%s\n", output_line);
 
     // traverse right child node
     outputItemsDatatoFileHelper(node->right, output);
