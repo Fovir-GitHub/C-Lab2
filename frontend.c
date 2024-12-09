@@ -319,10 +319,8 @@ void addCategory(LinkList * list)
         getString(&add_category_name, CATEGORY_NAME_MAX_LENGTH);
 
         if (strcmp("quit", add_category_name) == 0) /* quit */
-        {
-            free(add_category_name); /* free memory */
-            return;
-        }
+            break;                                  /* jump out the loop */
+
         if (!legalString(add_category_name)) /* the name is illegal */
         {
             printf("The category name is illegal! "
@@ -334,6 +332,8 @@ void addCategory(LinkList * list)
 
         // get the status code after add to link list
         int add_result = addCategorytoLinkList(list, add_category_name);
+        free(add_category_name);
+
         switch (add_result)
         {
         case DUPLICATED_NODE:
@@ -343,8 +343,7 @@ void addCategory(LinkList * list)
                    add_category_name);
             printf("Enter another category name? [Y/n] ");
 
-            int choice = getchar();     /* get choice */
-            if (tolower(choice) == 'n') /* terminate */
+            if (tolower(getchar()) == 'n')
                 return;
             else
                 continue;
@@ -359,6 +358,10 @@ void addCategory(LinkList * list)
             return;
         }
     }
+
+    free(add_category_name);
+
+    return;
 }
 
 void showItems(LinkList * list)
