@@ -896,7 +896,7 @@ void showItemsHelper(LinkListNode * current, int current_page_number,
     // get the size of the tree
     int tree_size = getAVLTreeSize(&current->category_item.item_tree);
 
-    // allocate memory for the tree node array
+    // generate the tree node array
     AVLTreeNode * tree_node_array =
         generateAVLTreeNodeArray(&current->category_item.item_tree, tree_size);
 
