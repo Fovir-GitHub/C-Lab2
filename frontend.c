@@ -966,11 +966,16 @@ AVLTreeNode * generateAVLTreeNodeArray(AVLTree * tree, int tree_size)
 void generateAVLTreeNodeArrayHelper(AVLTreeNode * node,
                                     AVLTreeNode * node_array)
 {
-    if (!node)
+    if (!node) /* the node is NULL */
         return;
 
+    // traverse left child node at first
     generateAVLTreeNodeArrayHelper(node->left, node_array);
+
+    // assign the node
     *(node_array + generate_AVL_tree_node_array_index++) = *node;
+
+    // traverse right child node
     generateAVLTreeNodeArrayHelper(node->right, node_array);
 
     return;
