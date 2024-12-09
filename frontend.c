@@ -256,10 +256,7 @@ void removeCategory(LinkList * list)
         getString(&remove_category_name, CATEGORY_NAME_MAX_LENGTH);
 
         if (strcmp(remove_category_name, "quit") == 0) /* if the name is quit */
-        {
-            free(remove_category_name); /* free space */
-            return;
-        }
+            break;                                     /* jump out the loop */
 
         // get the status code after remove
         int remove_result =
@@ -283,7 +280,10 @@ void removeCategory(LinkList * list)
             if (tolower(getchar()) == 'n')
                 break;
             else
+            {
+                free(remove_category_name); /* free the space */
                 continue;
+            }
         }
         else /* remove the category successfully */
         {
@@ -295,6 +295,7 @@ void removeCategory(LinkList * list)
         }
     }
 
+    free(remove_category_name);
     return;
 }
 
@@ -318,13 +319,16 @@ void addCategory(LinkList * list)
         getString(&add_category_name, CATEGORY_NAME_MAX_LENGTH);
 
         if (strcmp("quit", add_category_name) == 0) /* quit */
+        {
+            free(add_category_name); /* free memory */
             return;
-
+        }
         if (!legalString(add_category_name)) /* the name is illegal */
         {
             printf("The category name is illegal! "
                    "Press Enter to continue...");
             eatLine();
+            free(add_category_name);
             continue;
         }
 
