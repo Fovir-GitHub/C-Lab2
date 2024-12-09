@@ -66,6 +66,13 @@ char * staticString2dynamicString(char * static_string)
     char * dynamic_string =
         (char *) malloc((strlen(static_string) + 1) * sizeof(char));
 
+    if (!dynamic_string)
+    {
+        fprintf(stderr, "Can't allocate memory for dynamic_string in %s()\n",
+                __func__);  /* print error message */
+        exit(EXIT_FAILURE); /* terminate program */
+    }
+
     // copy string
     strcpy(dynamic_string, static_string);
 
