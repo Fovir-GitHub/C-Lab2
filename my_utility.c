@@ -96,7 +96,7 @@ void clearScreen()
 
 bool legalString(char * str)
 {
-    static const char * ILLEGAL_CHRACTERS = "@";
+    static const char * ILLEGAL_CHRACTERS = "@\t";
     char * iter = str;
 
     if (!str)
