@@ -4,6 +4,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define ENCRYPTION_OFFSET 47
+#define MIN_VISIBLE_CHARACTER_ASCII 32
+#define VISIBLE_CHARACTER_NUMBER 95
+
+static char encodeCharacter(char ch);
+
+static char decodeCharacter(char ch);
+
 char * getString(char ** str, int max_length)
 {
     char * temp_string = (char *) malloc(max_length * sizeof(char));
@@ -113,4 +121,31 @@ bool legalString(char * str)
             return false;
 
     return true;
+}
+
+void encodeString(char * str)
+{
+    while (*str)
+        *str++ = encodeCharacter(*str);
+}
+
+void decodeString(char * str)
+{
+    while (*str)
+        *str++ = decodeCharacter(*str);
+}
+
+char encodeCharacter(char ch)
+{
+    return (ch - MIN_VISIBLE_CHARACTER_ASCII + ENCRYPTION_OFFSET) %
+               VISIBLE_CHARACTER_NUMBER +
+           MIN_VISIBLE_CHARACTER_ASCII;
+}
+
+char decodeCharacter(char ch)
+{
+    return (ch - MIN_VISIBLE_CHARACTER_ASCII - ENCRYPTION_OFFSET +
+            VISIBLE_CHARACTER_NUMBER) %
+               VISIBLE_CHARACTER_NUMBER +
+           MIN_VISIBLE_CHARACTER_ASCII;
 }

@@ -55,4 +55,8 @@ void clearScreen();
  */
 bool legalString(char * str);
 
+void encodeString(char * str);
+
+void decodeString(char * str);
+
 #endif // !_MY_UTILITY_H_
