@@ -39,6 +39,9 @@ int main(void)
         case REMOVE_ITEM:
             removeItem(&category_list);
             break;
+        case EDIT_ITEM:
+            editItem(&category_list);
+            break;
         default:
             printf("%d\n", user_choice);
             getchar();
