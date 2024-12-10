@@ -49,9 +49,13 @@ int main(void)
     }
 
     puts("Bye!");
+    printf("Press Enter to exit...");
+    eatLine();
 
     outputCategoryDatatoFile(&category_list);
     outputItemsDatatoFile(&category_list);
+
+    clearScreen();
 
     return 0;
 }
