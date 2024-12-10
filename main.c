@@ -10,13 +10,15 @@
 int main(void)
 {
     LinkList category_list;
-    initializeLinkList(&category_list);
+    initializeLinkList(&category_list); /* initialize the link list */
 
+    // read data from files
     readCategoryDatafromFile(&category_list);
     readItemsDatafromFile(&category_list);
 
-    int user_choice = 0;
+    int user_choice = 0; /* stores user's choice */
 
+    // continuously get user's choice until QUIT
     while ((user_choice = getMainMenuChoicefromUser()) != QUIT)
     {
         switch (user_choice)
@@ -48,10 +50,12 @@ int main(void)
         }
     }
 
+    // before quit the program
     puts("Bye!");
     printf("Press Enter to exit...");
     eatLine();
 
+    // output data to file
     outputCategoryDatatoFile(&category_list);
     outputItemsDatatoFile(&category_list);
 
