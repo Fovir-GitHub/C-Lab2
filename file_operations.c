@@ -24,6 +24,10 @@ void readCategoryDatafromFile(LinkList * list)
     {
         // remove line breaker
         temp_string[strcspn(temp_string, "\n")] = '\0';
+
+        if (strcmp(temp_string, "") == 0) /* avoid empty string */
+            break;
+
         decodeString(temp_string);
 
         addCategorytoLinkList(list, temp_string); /* add the category */
@@ -49,7 +53,11 @@ void readItemsDatafromFile(LinkList * list)
     while (fgets(line, ITEM_FILE_PER_LINE_MAX_LENGTH, read_item))
     {
         line[strcspn(line, "\n")] = '\0'; /* remove line breaker */
-        decodeString(line);               /* decode the string */
+
+        if (strcmp(line, "") == 0) /* avoid empty string */
+            break;
+
+        decodeString(line); /* decode the string */
 
         char temp_category_name[CATEGORY_NAME_MAX_LENGTH];
         char temp_item_name[ITEM_NAME_MAX_LENGTH];
