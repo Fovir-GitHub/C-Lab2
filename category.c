@@ -313,3 +313,14 @@ void freeCategoryLinkListNode(LinkListNode * node)
     free(node);                                  /* free the node space */
     node = NULL;                                 /* assign the node to NULL */
 }
+
+int getNumberofItems(LinkList * list)
+{
+    int number_of_item = 0;
+
+    // traverse the link list
+    for (LinkListNode * iter = *list; iter; iter = iter->next)
+        number_of_item += getAVLTreeSize(&iter->category_item.item_tree);
+
+    return number_of_item;
+}

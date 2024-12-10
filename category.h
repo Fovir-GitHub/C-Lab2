@@ -190,4 +190,12 @@ bool removeItemfromCategoryLinkList(LinkList * list, char * item_name);
  */
 int findIteminLinkList(LinkList * list, char * item_name);
 
+/**
+ *@brief Get the number of Items object.
+ *
+ * @param list the link lists
+ * @return int the number of items
+ */
+int getNumberofItems(LinkList * list);
+
 #endif // !_CATEGORY_H_
