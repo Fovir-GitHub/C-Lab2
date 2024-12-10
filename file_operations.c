@@ -14,9 +14,17 @@ void readCategoryDatafromFile(LinkList * list)
     FILE * read_category = fopen(CATEGORY_FILE_PATH, "rb");
     if (!read_category) /* can't open file */
     {
-        // print error message
-        fprintf(stderr, "Can't open file %s\n", CATEGORY_FILE_PATH);
-        exit(EXIT_FAILURE); /* terminate program */
+        // if the file doesn't exist, then try to create the file
+        read_category = fopen(CATEGORY_FILE_PATH, "wb");
+        if (!read_category) /* the file has problem */
+        {
+            // print error message
+            fprintf(stderr, "Can't open file %s\n", CATEGORY_FILE_PATH);
+            exit(EXIT_FAILURE); /* terminate program */
+        }
+
+        fclose(read_category);                           /* close the file */
+        read_category = fopen(CATEGORY_FILE_PATH, "rb"); /* reopen the file */
     }
 
     char temp_string[CATEGORY_NAME_MAX_LENGTH];
@@ -43,9 +51,17 @@ void readItemsDatafromFile(LinkList * list)
     FILE * read_item = fopen(ITEM_FILE_PATH, "rb");
     if (!read_item) /* can't open file */
     {
-        // print error message
-        fprintf(stderr, "Can't open file %s\n", ITEM_FILE_PATH);
-        exit(EXIT_FAILURE); /* terminate program */
+        // if the file does not exist, try to write the file
+        read_item = fopen(ITEM_FILE_PATH, "wb");
+        if (!read_item) /* can't write the file, the file has problem */
+        {
+            // print error message
+            fprintf(stderr, "Can't open file %s\n", ITEM_FILE_PATH);
+            exit(EXIT_FAILURE); /* terminate program */
+        }
+        fclose(read_item); /* close the file */
+
+        read_item = fopen(ITEM_FILE_PATH, "rb"); /* reopen the file */
     }
 
     // get per line content
