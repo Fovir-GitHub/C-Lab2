@@ -394,13 +394,16 @@ void showItems(LinkList * list)
 {
     int total_page = getLinkListSize(list);
 
-    if (total_page == 0)
+    if (total_page == 0) /* no category */
     {
-        clearScreen();
+        clearScreen(); /* clear screen at first */
+
         printMenuTitle("Item");
         printStringinCenter("No items!");
         printMenuFooter("Press Enter to continue...");
+
         eatLine();
+
         return;
     }
 
