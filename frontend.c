@@ -229,7 +229,8 @@ void showCategories(LinkList * list)
     int total_page_number =
         ceil((double) getLinkListSize(list) / CAGEGORY_NUMBER_PER_PAGE);
 
-    showCategoriesHelper(*list, 1, total_page_number); /* show the first page */
+    showCategoriesHelper(*list, total_page_number % 1,
+                         total_page_number); /* show the first page */
     return;
 }
 
