@@ -553,6 +553,15 @@ void addItem(LinkList * list)
 
 void removeItem(LinkList * list)
 {
+    if (getNumberofItems(list) == 0) /* there is no item */
+    {
+        // print message
+        printf("No items! Press Enter to continue...");
+        eatLine();
+
+        return; /* termiante the remove process */
+    }
+
     char * remove_item_name = NULL;
 
     // get item's name
