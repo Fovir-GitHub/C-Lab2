@@ -393,6 +393,17 @@ void addCategory(LinkList * list)
 void showItems(LinkList * list)
 {
     int total_page = getLinkListSize(list);
+
+    if (total_page == 0)
+    {
+        clearScreen();
+        printMenuTitle("Item");
+        printStringinCenter("No items!");
+        printMenuFooter("Press Enter to continue...");
+        eatLine();
+        return;
+    }
+
     showItemsHelper(*list, 1, total_page);
 
     return;
