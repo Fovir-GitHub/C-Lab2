@@ -678,7 +678,8 @@ void editItem(LinkList * list)
     }
 
     clearScreen();
-    printRemoveCategoryList(list);
+    printRemoveCategoryList(list); /* show categories */
+
     printf("Please enter the item's category (quit to quit): ");
 
     while (getString(&edit_item_category_name, CATEGORY_NAME_MAX_LENGTH))
