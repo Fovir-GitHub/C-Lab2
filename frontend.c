@@ -756,15 +756,18 @@ void editItem(LinkList * list)
             printf("Please enter the new category (leave blank will change "
                    "nothing): ");
             getString(&temp_string, CATEGORY_NAME_MAX_LENGTH);
-            if (legalString(temp_string)) /* the string is valid */
-            {
-                changed = true; /* update change status */
 
-                // assign the category name
-                new_item.category = staticString2dynamicString(temp_string);
-            }
-            else
-                puts("The string is illegal! The category does not change!");
+            if (strcmp(temp_string, "") != 0)
+                if (legalString(temp_string)) /* the string is valid */
+                {
+                    changed = true; /* update change status */
+
+                    // assign the category name
+                    new_item.category = staticString2dynamicString(temp_string);
+                }
+                else
+                    puts(
+                        "The string is illegal! The category does not change!");
 
             free(temp_string); /* free space */
 
@@ -843,8 +846,11 @@ void editItem(LinkList * list)
                 insertAVLTreeNode(&category_position->category_item.item_tree,
                                   new_item);
 
-                // message user
-                printf("The item has been updated! Press Enter to continue...");
+                // print message
+                puts("The item has been updated!");
+
+                showItemInformation(&new_item);
+                printf("Press Enter to continue...");
             }
             else
                 printf(
