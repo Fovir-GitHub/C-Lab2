@@ -121,13 +121,13 @@ bool legalString(char * str)
     static const char * ILLEGAL_CHRACTERS = "@\t";
     char * iter = str;
 
-    if (!str)
+    if (!str) /* NULL pointer */
         return false;
 
     if (strcmp(str, "quit") == 0)
         return false;
 
-    if (str[0] == '\0')
+    if (emptyString(str)) /* empty string */
         return false;
 
     while (*iter)
