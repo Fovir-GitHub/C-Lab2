@@ -11,6 +11,8 @@ static void outputItemsDatatoFileHelper(AVLTreeNode * node, FILE * output);
 
 void readCategoryDatafromFile(LinkList * list)
 {
+    ensureFolder(DATA_FILE_PATH);
+
     FILE * read_category = fopen(CATEGORY_FILE_PATH, "rb");
     if (!read_category) /* can't open file */
     {
@@ -48,6 +50,8 @@ void readCategoryDatafromFile(LinkList * list)
 
 void readItemsDatafromFile(LinkList * list)
 {
+    ensureFolder(DATA_FILE_PATH);
+
     FILE * read_item = fopen(ITEM_FILE_PATH, "rb");
     if (!read_item) /* can't open file */
     {
@@ -105,6 +109,8 @@ void readItemsDatafromFile(LinkList * list)
 
 void outputCategoryDatatoFile(LinkList * list)
 {
+    ensureFolder(DATA_FILE_PATH);
+
     FILE * output_category = fopen(CATEGORY_FILE_PATH, "wb");
     if (!output_category) /* can't open file */
     {
@@ -124,6 +130,8 @@ void outputCategoryDatatoFile(LinkList * list)
 
 void outputItemsDatatoFile(LinkList * list)
 {
+    ensureFolder(DATA_FILE_PATH);
+
     FILE * output_item = fopen(ITEM_FILE_PATH, "wb"); /* open file */
     if (!output_item)                                 /* can't open file */
     {

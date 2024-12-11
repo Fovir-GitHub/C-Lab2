@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define DATA_FILE_PATH "data"
+
 /**
  * The categories.dat format:
  *  category name 1
