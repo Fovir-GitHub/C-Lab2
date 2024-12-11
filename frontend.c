@@ -757,7 +757,7 @@ void editItem(LinkList * list)
                    "nothing): ");
             getString(&temp_string, CATEGORY_NAME_MAX_LENGTH);
 
-            if (strcmp(temp_string, "") != 0)
+            if (!emptyString(temp_string))
                 if (legalString(temp_string)) /* the string is valid */
                 {
                     changed = true; /* update change status */
@@ -774,15 +774,18 @@ void editItem(LinkList * list)
             printf("Please enter the new item's name (leave blank will change "
                    "nothing): ");
             getString(&temp_string, ITEM_NAME_MAX_LENGTH);
-            if (legalString(temp_string))
-            {
-                changed = true; /* update status */
 
-                // assign the name
-                new_item.name = staticString2dynamicString(temp_string);
-            }
-            else
-                puts("The string is illegal! The item's name does not change!");
+            if (!emptyString(temp_string))
+                if (legalString(temp_string))
+                {
+                    changed = true; /* update status */
+
+                    // assign the name
+                    new_item.name = staticString2dynamicString(temp_string);
+                }
+                else
+                    puts("The string is illegal! The item's name does not "
+                         "change!");
 
             free(temp_string); /* free space */
 
@@ -790,13 +793,14 @@ void editItem(LinkList * list)
                 "Please enter the new price (leave blank will do nothing): ");
             getString(&temp_string, PRICE_STRING_MAX_LENGTH);
 
-            if (sscanf(temp_string, "%lf", &new_item.price) != 1)
-            {
-                puts("Invalid price format! The price does not change!");
-                new_item.price = price; /* reset to the previous price */
-            }
-            else
-                changed = true; /* update status */
+            if (!emptyString(temp_string))
+                if (sscanf(temp_string, "%lf", &new_item.price) != 1)
+                {
+                    puts("Invalid price format! The price does not change!");
+                    new_item.price = price; /* reset to the previous price */
+                }
+                else
+                    changed = true; /* update status */
 
             free(temp_string); /* free space */
 
