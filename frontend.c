@@ -670,6 +670,15 @@ void editItem(LinkList * list)
     char * edit_item_category_name = NULL;
     LinkListNode * category_position = NULL;
 
+    if (getNumberofItems(list) == 0) /* there is no item */
+    {
+        printf("You don't have items! Press Enter to continue...");
+        eatLine();
+        return;
+    }
+
+    clearScreen();
+    printRemoveCategoryList(list);
     printf("Please enter the item's category (quit to quit): ");
 
     while (getString(&edit_item_category_name, CATEGORY_NAME_MAX_LENGTH))
