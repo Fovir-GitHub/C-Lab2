@@ -69,4 +69,11 @@ void encodeString(char * str);
  */
 void decodeString(char * str);
 
+/**
+ *@brief Judge whether the directory exists. If not exists, create the folder.
+ *
+ * @param dir_name the folder name
+ */
+void ensureFolder(const char * dir_name);
+
 #endif // !_MY_UTILITY_H_

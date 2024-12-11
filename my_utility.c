@@ -1,8 +1,10 @@
 #include "my_utility.h"
 #include "constants.h"
+#include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 #define ENCRYPTION_OFFSET 47           /* the offset of encryption */
 #define MIN_VISIBLE_CHARACTER_ASCII 32 /* the minimal visible character */
@@ -145,6 +147,30 @@ void decodeString(char * str)
 {
     while (*str)
         *str++ = decodeCharacter(*str);
+}
+
+void ensureFolder(const char * dir_name)
+{
+// corss-plateform complie
+#ifdef _WIN32
+
+#include <direct.h>
+#define mkdir(dir, mode) _mkdir(dir)
+
+#endif
+
+    DIR * dir = opendir(dir_name);
+
+    if (dir)
+        closedir(dir);
+    else
+    {
+        if (mkdir(dir_name, 0755) != 0)
+        {
+            fprintf(stderr, "Can't create folder %s\n", dir_name);
+            exit(EXIT_FAILURE);
+        }
+    }
 }
 
 char encodeCharacter(char ch)
