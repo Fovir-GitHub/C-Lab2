@@ -76,4 +76,13 @@ void decodeString(char * str);
  */
 void ensureFolder(const char * dir_name);
 
+/**
+ *@brief Judge whether a string is empty string.
+ *
+ * @param str the string to be judged
+ * @return true the string is empty
+ * @return false the string is not empty
+ */
+bool emptyString(char * str);
+
 #endif // !_MY_UTILITY_H_

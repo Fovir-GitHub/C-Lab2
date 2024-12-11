@@ -173,6 +173,11 @@ void ensureFolder(const char * dir_name)
     }
 }
 
+bool emptyString(char * str)
+{
+    return strcmp(str, "") == 0;
+}
+
 char encodeCharacter(char ch)
 {
     return (ch - MIN_VISIBLE_CHARACTER_ASCII + ENCRYPTION_OFFSET) %
