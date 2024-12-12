@@ -85,4 +85,6 @@ void ensureFolder(const char * dir_name);
  */
 bool emptyString(char * str);
 
+int getNumberofDigits(int number);
+
 #endif // !_MY_UTILITY_H_

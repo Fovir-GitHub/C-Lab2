@@ -178,6 +178,16 @@ bool emptyString(char * str)
     return strcmp(str, "") == 0;
 }
 
+int getNumberofDigits(int number)
+{
+    int number_of_digits = 1;
+
+    while (number /= 10)
+        number_of_digits++;
+
+    return number_of_digits;
+}
+
 char encodeCharacter(char ch)
 {
     return (ch - MIN_VISIBLE_CHARACTER_ASCII + ENCRYPTION_OFFSET) %
