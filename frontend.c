@@ -89,8 +89,7 @@ void printMenuTitle(char * title)
 
 void printMenuFrame(char frame_character)
 {
-    for (int i = 0; i < MENU_WIDTH; i++)
-        putchar(frame_character);
+    for (int i = 0; i < MENU_WIDTH; i++) putchar(frame_character);
     putchar('\n');
 }
 
@@ -269,55 +268,57 @@ void removeCategory(LinkList * list)
     }
     char * remove_category_name = NULL;
 
-    while (1)
+    int category_link_list_size = getLinkListSize(list);
+    int user_choice = 0;
+
+    clearScreen();
+    printRemoveCategoryList(list);
+    printf("Please select the category to remove: ");
+    while (scanf("%d", &user_choice) == 1)
     {
-        clearScreen();
-        printRemoveCategoryList(list); /* show all categories at first */
-        printf("Please enter the name of the category (quit to quit): ");
-
-        getString(&remove_category_name, CATEGORY_NAME_MAX_LENGTH);
-
-        if (strcmp(remove_category_name, "quit") == 0) /* if the name is quit */
-            break;                                     /* jump out the loop */
-
-        // get the status code after remove
-        int remove_result =
-            removeCategoryfromLinkList(list, remove_category_name);
-
-        if (remove_result == FAILED_ALLOCATE_MEMORY) /* can't allocate memory */
+        if (user_choice <= 0 || user_choice > category_link_list_size)
         {
-            free(remove_category_name); /* free space */
-            exit(EXIT_FAILURE);         /* terminate program */
-        }
-
-        // the category does not exist
-        if (remove_result == NODE_DOES_NOT_EXIST)
-        {
-            // ask user whether to enter a new category or not, default
-            // is yes
-            printf("The category \"%s\" does not exist! "
-                   "Enter another one? [Y/n] ",
-                   remove_category_name);
+            printf("Please enter the number in range %d ~ %d\n", 1,
+                   category_link_list_size);
+            printf("Select another one? [Y/n] ");
 
             if (tolower(getchar()) == 'n')
                 break;
             else
             {
-                free(remove_category_name); /* free the space */
+                clearScreen();
+                printRemoveCategoryList(list);
+                printf("Please select the category to remove: ");
+
                 continue;
             }
         }
-        else /* remove the category successfully */
+
+        int counter = 1;
+        LinkListNode * remove_node = *list;
+
+        for (; remove_node && counter < user_choice;
+             remove_node = remove_node->next, counter++);
+
+        int status_code = removeCategoryfromLinkList(
+            list, remove_node->category_item.category_name);
+
+        if (status_code == SUCCESS_REMOVE)
         {
-            printf("You have removed the category \"%s\"!\n",
-                   remove_category_name);
-            printf("Press Enter to continue...");
+            printf("Remove successfully! Press Enter to continue...");
+            eatLine();
+            break;
+        }
+        else
+        {
+            printf("Failed to remove the category! Press Enter to continue...");
             eatLine();
             break;
         }
     }
 
-    free(remove_category_name);
+    eatLine();
+
     return;
 }
 
