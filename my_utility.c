@@ -139,14 +139,12 @@ bool legalString(char * str)
 
 void encodeString(char * str)
 {
-    while (*str)
-        *str++ = encodeCharacter(*str);
+    while (*str) *str++ = encodeCharacter(*str);
 }
 
 void decodeString(char * str)
 {
-    while (*str)
-        *str++ = decodeCharacter(*str);
+    while (*str) *str++ = decodeCharacter(*str);
 }
 
 void ensureFolder(const char * dir_name)
@@ -182,8 +180,7 @@ int getNumberofDigits(int number)
 {
     int number_of_digits = 1;
 
-    while (number /= 10)
-        number_of_digits++;
+    while (number /= 10) number_of_digits++;
 
     return number_of_digits;
 }
