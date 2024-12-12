@@ -266,18 +266,22 @@ void removeCategory(LinkList * list)
         eatLine();
         return;
     }
-    char * remove_category_name = NULL;
 
+    // get the number of categories
     int category_link_list_size = getLinkListSize(list);
-    int user_choice = 0;
+    int user_choice = 0; /*  the user's choice */
 
     clearScreen();
     printRemoveCategoryList(list);
     printf("Please select the category to remove: ");
-    while (scanf("%d", &user_choice) == 1)
+
+    while (scanf("%d", &user_choice) == 1) /* the input is digit */
     {
+        // the choice is not in the menu
         if (user_choice <= 0 || user_choice > category_link_list_size)
         {
+            eatLine(); /* remove other characters */
+
             printf("Please enter the number in range %d ~ %d\n", 1,
                    category_link_list_size);
             printf("Select another one? [Y/n] ");
@@ -286,6 +290,7 @@ void removeCategory(LinkList * list)
                 break;
             else
             {
+                // show menu again
                 clearScreen();
                 printRemoveCategoryList(list);
                 printf("Please select the category to remove: ");
@@ -294,22 +299,24 @@ void removeCategory(LinkList * list)
             }
         }
 
-        int counter = 1;
+        int counter = 1; /* count the number of remove_node position */
         LinkListNode * remove_node = *list;
 
+        // traverse the link list and find the category to remove
         for (; remove_node && counter < user_choice;
              remove_node = remove_node->next, counter++);
 
+        // get the result of removing the category
         int status_code = removeCategoryfromLinkList(
             list, remove_node->category_item.category_name);
 
-        if (status_code == SUCCESS_REMOVE)
+        if (status_code == SUCCESS_REMOVE) /* successfully remove */
         {
             printf("Remove successfully! Press Enter to continue...");
             eatLine();
             break;
         }
-        else
+        else /* failed to remove */
         {
             printf("Failed to remove the category! Press Enter to continue...");
             eatLine();
@@ -317,7 +324,7 @@ void removeCategory(LinkList * list)
         }
     }
 
-    eatLine();
+    eatLine(); /* avoid other characters */
 
     return;
 }
