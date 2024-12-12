@@ -323,9 +323,26 @@ void removeCategory(LinkList * list)
 
 void printRemoveCategoryList(LinkList * list)
 {
+    int order_number = 1;
+
     printMenuTitle("Category");
-    for (LinkListNode * iter = *list; iter; iter = iter->next)
-        printStringinCenter(iter->category_item.category_name);
+    for (LinkListNode * iter = *list; iter; iter = iter->next, order_number++)
+    {
+        /**
+         * the output line format: [xx] name
+         * + 1 is allocate for the '\0'
+         * + 3 is allocate for the [] and the space
+         */
+        char * output_line =
+            (char *) malloc(strlen(iter->category_item.category_name) +
+                            getNumberofDigits(order_number) + 1 + 3);
+        sprintf(output_line, "[%d] %s", order_number,
+                iter->category_item.category_name);
+        printStringinCenter(output_line);
+        free(output_line);
+    }
+
+    printStringinCenter("[q] quit");
     printMenuFooter(POWER_FOOTER);
 
     return;
