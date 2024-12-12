@@ -359,9 +359,7 @@ void addCategory(LinkList * list)
         {
         case DUPLICATED_NODE:
         case ILLEGAL_STRING:
-            printf("The category \"%s\" exists or has illegal "
-                   "character!\n",
-                   add_category_name);
+            printf("The category \"%s\" exists!\n", add_category_name);
             printf("Enter another category name? [Y/n] ");
 
             if (tolower(getchar()) == 'n')
