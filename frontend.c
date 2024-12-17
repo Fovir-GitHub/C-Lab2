@@ -379,7 +379,7 @@ void showItems(LinkList * list)
     }
 
     showItemsHelper(*list, 1, total_page);
-
+    eatLine();
     return;
 }
 
