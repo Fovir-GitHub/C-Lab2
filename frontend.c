@@ -1039,15 +1039,26 @@ void printCategoryListinListFormHelper(LinkListNode * node)
      * + 3 is allocate for the [] and the space
      */
 
+    // allocate the memory
     char * output_line = (char *) malloc(
         strlen(node->category_item.category_name) +
         getNumberofDigits(print_category_in_list_form_index) + 1 + 3);
+    if (!output_line) /* can't allocate memory */
+    {
+        // print error message
+        fprintf(stderr, "Can't allocate memory for output_line in %s()!",
+                __func__);
+        exit(EXIT_FAILURE); /* terminat the program */
+    }
+
+    // construct the option's string
     sprintf(output_line, "[%d] %s", print_category_in_list_form_index,
             node->category_item.category_name);
 
-    printStringinCenter(output_line);
+    printStringinCenter(output_line); /* print the option */
 
-    free(output_line);
+    free(output_line); /* free memory space */
 
+    print_category_in_list_form_index++; /* increase the index */
     return;
 }
