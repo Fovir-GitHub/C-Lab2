@@ -188,14 +188,18 @@ int getNumberofDigits(int number)
 
 int readNumberOrAlpha()
 {
+    // read in a line
     char * input = getString(&input, READ_NUMBER_OR_ALPHA_BUFFER_SIZE);
-    int result = 0;
+    int result = 0; /* the result */
 
+    // the input is not a number
     if (sscanf(input, "%d", &result) != 1)
     {
+        // the input is not a single character
         if (sscanf(input, "%c", &result) != 1)
-            return READ_NUMBER_OR_ALPHA_ERROR;
+            return READ_NUMBER_OR_ALPHA_ERROR; /* return error */
 
+        // the input is a single character
         switch (tolower(result))
         {
         case 'p':
@@ -207,12 +211,12 @@ int readNumberOrAlpha()
         case 'n':
             result = READ_NUMBER_OR_ALPHA_N;
             break;
-        default:
+        default: /* invalid choice */
             result = READ_NUMBER_OR_ALPHA_ERROR;
         }
     }
 
-    free(input);
+    free(input); /* free the memory space */
 
     return result;
 }
