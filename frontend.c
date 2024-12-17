@@ -873,6 +873,7 @@ AVLTreeNode ** generateAVLTreeNodePointerArray(AVLTree * tree)
         exit(EXIT_FAILURE); /* terminate program */
     }
 
+    // generate the array
     generateAVLTreeNodePointerArrayHelper(*tree, result_array);
 
     return result_array;
