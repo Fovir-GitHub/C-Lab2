@@ -85,6 +85,12 @@ void ensureFolder(const char * dir_name);
  */
 bool emptyString(char * str);
 
+/**
+ *@brief Get the width of a digit.
+ *
+ * @param number the number to get width
+ * @return int the width of the number
+ */
 int getNumberofDigits(int number);
 
 #endif // !_MY_UTILITY_H_
