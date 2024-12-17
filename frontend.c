@@ -66,6 +66,10 @@ static int generate_AVL_tree_node_array_index = 0;
 static void generateAVLTreeNodeArrayHelper(AVLTreeNode * node,
                                            AVLTreeNode * node_array);
 
+static int print_category_in_list_form_index = 0;
+
+static void printCategoryListinListFormHelper(LinkListNode * node);
+
 int calculateCenterStringSpace(char * str)
 {
     // calculate center the string need how many space before it
@@ -286,25 +290,11 @@ void removeCategory(LinkList * list)
 
 void printCategoryListinListForm(LinkList * list)
 {
-    int order_number = 1;
+    print_category_in_list_form_index = 1;
 
     printMenuTitle("Category");
-    for (LinkListNode * iter = *list; iter; iter = iter->next, order_number++)
-    {
-        /**
-         * the output line format: [xx] name
-         * + 1 is allocate for the '\0'
-         * + 3 is allocate for the [] and the space
-         */
-        char * output_line =
-            (char *) malloc(strlen(iter->category_item.category_name) +
-                            getNumberofDigits(order_number) + 1 + 3);
-        sprintf(output_line, "[%d] %s", order_number,
-                iter->category_item.category_name);
-        printStringinCenter(output_line);
-        free(output_line);
-    }
 
+    traverseCategoryLinkList(list, printCategoryListinListFormHelper);
     printStringinCenter("[q] quit");
     printMenuFooter(POWER_FOOTER);
 
@@ -1034,6 +1024,27 @@ void generateAVLTreeNodeArrayHelper(AVLTreeNode * node,
 
     // traverse right child node
     generateAVLTreeNodeArrayHelper(node->right, node_array);
+
+    return;
+}
+
+void printCategoryListinListFormHelper(LinkListNode * node)
+{
+    /**
+     * the output line format: [xx] name
+     * + 1 is allocate for the '\0'
+     * + 3 is allocate for the [] and the space
+     */
+
+    char * output_line = (char *) malloc(
+        strlen(node->category_item.category_name) +
+        getNumberofDigits(print_category_in_list_form_index) + 1 + 3);
+    sprintf(output_line, "[%d] %s", print_category_in_list_form_index,
+            node->category_item.category_name);
+
+    printStringinCenter(output_line);
+
+    free(output_line);
 
     return;
 }
