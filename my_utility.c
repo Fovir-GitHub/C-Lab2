@@ -189,15 +189,13 @@ int getNumberofDigits(int number)
 int readNumberOrAlpha()
 {
     char * input = getString(&input, READ_NUMBER_OR_ALPHA_BUFFER_SIZE);
-    int status = 0;
     int result = 0;
 
-    status = sscanf(input, "%d", &result);
-    if (status != 1)
+    if (sscanf(input, "%d", &result) != 1)
     {
-        status = sscanf(input, "%c", &result);
-        if (status != 1)
+        if (sscanf(input, "%c", &result) != 1)
             return READ_NUMBER_OR_ALPHA_ERROR;
+
         switch (tolower(result))
         {
         case 'p':
