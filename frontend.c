@@ -55,8 +55,15 @@ static int print_category_in_list_form_index = 0;
  */
 static void printCategoryListinListFormHelper(LinkListNode * node);
 
+// the index of generating AVL tree node into array
 static int generate_AVL_tree_node_pointer_array_index = 0;
 
+/**
+ *@brief Help to generate AVL tree pointer array.
+ *
+ * @param node the node to operate
+ * @param result_array the result array
+ */
 static void generateAVLTreeNodePointerArrayHelper(AVLTreeNode * node,
                                                   AVLTreeNode ** result_array);
 
