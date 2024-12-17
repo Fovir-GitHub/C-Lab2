@@ -188,7 +188,7 @@ int getNumberofDigits(int number)
 
 int readNumberOrAlpha()
 {
-    char * input = getString(&input, BUFSIZ);
+    char * input = getString(&input, READ_NUMBER_OR_ALPHA_BUFFER_SIZE);
     int status = 0;
     int result = 0;
 
