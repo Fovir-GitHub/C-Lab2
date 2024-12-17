@@ -116,7 +116,7 @@ void removeCategory(LinkList * list);
  *
  * @param list the categories' link list
  */
-void printRemoveCategoryList(LinkList * list);
+void printCategoryListinListForm(LinkList * list);
 
 /**
  *@brief Add new category from user
@@ -150,5 +150,14 @@ void removeItem(LinkList * list);
  * @param list the category's link list
  */
 void editItem(LinkList * list);
+
+/**
+ *@brief Get category with user selection.
+ *
+ * @param list the link list that contains categories
+ * @return LinkListNode* the position of the category, if error, it returns
+ *NULL.
+ */
+LinkListNode * selectCategory(LinkList * list);
 
 #endif // !_FRONTEND_H_

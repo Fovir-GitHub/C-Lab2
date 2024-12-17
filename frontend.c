@@ -880,24 +880,29 @@ void editItem(LinkList * list)
 
 LinkListNode * selectCategory(LinkList * list)
 {
-    int list_size = getLinkListSize(list);
-    int user_choice = 0;
-    LinkListNode * result = NULL;
+    int list_size = getLinkListSize(list); /* get the list size */
+    int user_choice = 0;                   /* the user's choice */
+    LinkListNode * result = NULL;          /* the result, default is NULL */
 
+    // show all categories in list form
     clearScreen();
     printCategoryListinListForm(list);
+
+    // ask user to select
     printf("Please select the category: ");
 
+    // the input is number
     while (scanf("%d", &user_choice) == 1)
     {
+        // the option is unavailable
         if (user_choice < 1 || user_choice > list_size)
         {
-            eatLine();
+            eatLine(); /* flush the buffer */
             printf("Please enter the number in range %d ~ %d!\n", 1, list_size);
             printf("Enter another one? [Y/n] ");
 
             if (tolower(getchar()) == 'n')
-                return NULL;
+                return NULL; /* error */
             else
             {
                 printf("Please select the category: ");
@@ -905,6 +910,7 @@ LinkListNode * selectCategory(LinkList * list)
             }
         }
 
+        // find the category's position
         int counter = 1;
         for (result = *list; result && counter < user_choice;
              result = result->next, counter++);
@@ -912,7 +918,7 @@ LinkListNode * selectCategory(LinkList * list)
         break;
     }
 
-    eatLine();
+    eatLine(); /* flush the buffer */
     return result;
 }
 
