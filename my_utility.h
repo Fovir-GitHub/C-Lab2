@@ -93,4 +93,19 @@ bool emptyString(char * str);
  */
 int getNumberofDigits(int number);
 
+
+enum READ_NUMBER_OR_ALPHA {
+    READ_NUMBER_OR_ALPHA_Q = -1,
+    READ_NUMBER_OR_ALPHA_P = -2,
+    READ_NUMBER_OR_ALPHA_N = -3,
+    READ_NUMBER_OR_ALPHA_ERROR = -4,
+};
+
+/**
+ *@brief Read in a number or a character.
+ *
+ * @return int a number or a enumeration that represents a character
+ */
+int readNumberOrAlpha();
+
 #endif // !_MY_UTILITY_H_

@@ -1,5 +1,6 @@
 #include "my_utility.h"
 #include "constants.h"
+#include <ctype.h>
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -183,6 +184,39 @@ int getNumberofDigits(int number)
     while (number /= 10) number_of_digits++;
 
     return number_of_digits;
+}
+
+int readNumberOrAlpha()
+{
+    char * input = getString(&input, BUFSIZ);
+    int status = 0;
+    int result = 0;
+
+    status = sscanf(input, "%d", &result);
+    if (status != 1)
+    {
+        status = sscanf(input, "%c", &result);
+        if (status != 1)
+            return READ_NUMBER_OR_ALPHA_ERROR;
+        switch (tolower(result))
+        {
+        case 'p':
+            result = READ_NUMBER_OR_ALPHA_P;
+            break;
+        case 'q':
+            result = READ_NUMBER_OR_ALPHA_Q;
+            break;
+        case 'n':
+            result = READ_NUMBER_OR_ALPHA_N;
+            break;
+        default:
+            result = READ_NUMBER_OR_ALPHA_ERROR;
+        }
+    }
+
+    free(input);
+
+    return result;
 }
 
 char encodeCharacter(char ch)
