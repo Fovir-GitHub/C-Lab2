@@ -378,8 +378,10 @@ void showItems(LinkList * list)
         return;
     }
 
+    // show items
     showItemsHelper(*list, 1, total_page);
-    eatLine();
+
+    eatLine(); /* flush the buffer */
     return;
 }
 
