@@ -452,33 +452,8 @@ void addItem(LinkList * list)
 
     LinkListNode * category_position = selectCategory(list);
 
-    while (1)
-    {
-        printf("Please enter the category's name (quit to quit): ");
-        getString(&category_name, CATEGORY_NAME_MAX_LENGTH);
-
-        if (strcmp("quit", category_name) == 0)
-        {
-            free(category_name); /* free space */
-            return;
-        }
-
-        // the category does not exist
-        if (!findCategoryinLinkList(list, category_name))
-        {
-            printf("The category \"%s\" does not exist! "
-                   "Enter another category? [Y/n] ",
-                   category_name);
-
-            free(category_name); /* free space */
-
-            // get user's choice and judge
-            if (tolower(getchar()) == 'n')
-                return;
-        }
-        else
-            break;
-    }
+    if (!category_position)
+        return;
 
     while (1)
     {
@@ -554,11 +529,11 @@ void addItem(LinkList * list)
             due_date = temp_date;
 
     // get status code after add item
-    int status =
-        addItemstoCategory(list,
-                           temp_item = makeItem(category_name, item_name, price,
-                                                produce_date, due_date),
-                           CREATE_NEW_CATEGORY);
+    int status = addItemstoCategory(
+        list,
+        temp_item = makeItem(category_position->category_item.category_name,
+                             item_name, price, produce_date, due_date),
+        CREATE_NEW_CATEGORY);
 
     if (status == FAILED_TO_ADD) /* failed to add the item */
         printf("Failed to add the item! ");
@@ -915,10 +890,9 @@ LinkListNode * selectCategory(LinkList * list)
 
     while (scanf("%d", &user_choice) == 1)
     {
-        eatLine();
-
         if (user_choice < 1 || user_choice > list_size)
         {
+            eatLine();
             printf("Please enter the number in range %d ~ %d!\n", 1, list_size);
             printf("Enter another one? [Y/n] ");
 
@@ -938,6 +912,7 @@ LinkListNode * selectCategory(LinkList * list)
         break;
     }
 
+    eatLine();
     return result;
 }
 
