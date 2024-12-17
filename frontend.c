@@ -45,8 +45,14 @@ static void showItemsHelper(LinkListNode * current, int current_page_number,
  */
 static void printAVLTreeNodeCenterHelper(AVLTreeNode * node);
 
+// the index of category list
 static int print_category_in_list_form_index = 0;
 
+/**
+ *@brief Help to print categories in list form.
+ *
+ * @param node the node to operate
+ */
 static void printCategoryListinListFormHelper(LinkListNode * node);
 
 static int generate_AVL_tree_node_pointer_array_index = 0;
