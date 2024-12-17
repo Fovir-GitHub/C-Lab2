@@ -1008,56 +1008,6 @@ void showItemsHelper(LinkListNode * current, int current_page_number,
 
     free(tree_node_pointer_array);
     return;
-    // // get the size of the tree
-    // int tree_size = getAVLTreeSize(&current->category_item.item_tree);
-
-    // // generate the tree node array
-    // AVLTreeNode * tree_node_array =
-    //     generateAVLTreeNodeArray(&current->category_item.item_tree,
-    //     tree_size);
-
-    // // show current page at first
-    // printShowItems(current->category_item.category_name, tree_node_array,
-    //                tree_size, current_page_number, total_page_number);
-
-    // int choice = 0;                     /* user's choice */
-    // while ((choice = getchar()) != 'q') /* choice is not quit */
-    // {
-    //     eatLine(); /* avoid multiple characters */
-
-    //     if (choice == 'p' && current_page_number > 1) /* previous page */
-    //     {
-    //         free(tree_node_array); /* free space before returning */
-    //         return showItemsHelper(current->previous, current_page_number -
-    //         1,
-    //                                total_page_number);
-    //     }
-
-    //     if (choice == 'n' &&
-    //         current_page_number < total_page_number) /* next page */
-    //     {
-    //         free(tree_node_array); /* free space before returning */
-    //         return showItemsHelper(current->next, current_page_number + 1,
-    //                                total_page_number);
-    //     }
-
-    //     // available choice to see item's information
-    //     if (isdigit(choice) && 1 <= (choice - '0') &&
-    //         (choice - '0') <= tree_size)
-    //     {
-    //         // show item's information
-    //         showItemInformation(&tree_node_array[choice - '0' - 1].item);
-    //         printf("Press Enter to continue..."); /* ask user to continue */
-    //         eatLine();
-    //     }
-
-    //     // invalid option, then show the same page
-    //     printShowItems(current->category_item.category_name, tree_node_array,
-    //                    tree_size, current_page_number, total_page_number);
-    // }
-
-    // free(tree_node_array); /* free memory space */
-    // return;
 }
 
 void printAVLTreeNodeCenterHelper(AVLTreeNode * node)
