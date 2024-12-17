@@ -268,9 +268,10 @@ void removeCategory(LinkList * list)
     }
 
     LinkListNode * category_position = selectCategory(list);
-    if (!category_position)
+    if (!category_position) /* quit */
         return;
 
+    // get the status after removing category
     int status = removeCategoryfromLinkList(
         list, category_position->category_item.category_name);
 
