@@ -112,7 +112,13 @@ void printShowCategories(LinkListNode * current, int current_page_number,
 void removeCategory(LinkList * list);
 
 /**
- *@brief Print categories for remove category operation.
+ *@brief Print categories in list form.
+ *  title
+ *  [index1] category name 1
+ *  [index2] category name 2
+ *  ...
+ *  [q] quit
+ *  footer
  *
  * @param list the categories' link list
  */
