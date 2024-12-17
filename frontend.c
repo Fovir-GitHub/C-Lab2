@@ -272,7 +272,7 @@ void removeCategory(LinkList * list)
     int user_choice = 0; /*  the user's choice */
 
     clearScreen();
-    printRemoveCategoryList(list);
+    printCategoryListinListForm(list);
     printf("Please select the category to remove: ");
 
     while (scanf("%d", &user_choice) == 1) /* the input is digit */
@@ -292,7 +292,7 @@ void removeCategory(LinkList * list)
             {
                 // show menu again
                 clearScreen();
-                printRemoveCategoryList(list);
+                printCategoryListinListForm(list);
                 printf("Please select the category to remove: ");
 
                 continue;
@@ -329,7 +329,7 @@ void removeCategory(LinkList * list)
     return;
 }
 
-void printRemoveCategoryList(LinkList * list)
+void printCategoryListinListForm(LinkList * list)
 {
     int order_number = 1;
 
@@ -449,6 +449,8 @@ void addItem(LinkList * list)
     DateInformation temp_date;
     Item temp_item;
     int temp_year = 0, temp_month = 0, temp_day = 0;
+
+    LinkListNode * category_position = selectCategory(list);
 
     while (1)
     {
@@ -701,7 +703,7 @@ void editItem(LinkList * list)
     }
 
     clearScreen();
-    printRemoveCategoryList(list); /* show categories */
+    printCategoryListinListForm(list); /* show categories */
 
     printf("Please enter the item's category (quit to quit): ");
 
@@ -899,6 +901,44 @@ void editItem(LinkList * list)
     }
 
     return;
+}
+
+LinkListNode * selectCategory(LinkList * list)
+{
+    int list_size = getLinkListSize(list);
+    int user_choice = 0;
+    LinkListNode * result = NULL;
+
+    clearScreen();
+    printCategoryListinListForm(list);
+    printf("Please select the category: ");
+
+    while (scanf("%d", &user_choice) == 1)
+    {
+        eatLine();
+
+        if (user_choice < 1 || user_choice > list_size)
+        {
+            printf("Please enter the number in range %d ~ %d!\n", 1, list_size);
+            printf("Enter another one? [Y/n] ");
+
+            if (tolower(getchar()) == 'n')
+                return NULL;
+            else
+            {
+                printf("Please select the category: ");
+                continue;
+            }
+        }
+
+        int counter = 1;
+        for (result = *list; result && counter < user_choice;
+             result = result->next, counter++);
+
+        break;
+    }
+
+    return result;
 }
 
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
