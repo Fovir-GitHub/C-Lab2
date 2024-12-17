@@ -25,7 +25,7 @@ static void showCategoriesHelper(LinkListNode * current,
  *
  * @param node the link list node
  */
-static void printShowItems(char * category_name, AVLTreeNode * node_array,
+static void printShowItems(char * category_name, AVLTreeNode ** node_array,
                            int array_size, int current_page, int total_page);
 
 /**
@@ -378,7 +378,7 @@ void showItems(LinkList * list)
     // show items
     showItemsHelper(*list, 1, total_page);
 
-    eatLine(); /* flush the buffer */
+    // eatLine(); /* flush the buffer */
     return;
 }
 
@@ -928,7 +928,7 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
     return;
 }
 
-void printShowItems(char * category_name, AVLTreeNode * node_array,
+void printShowItems(char * category_name, AVLTreeNode ** node_array,
                     int array_size, int current_page, int total_page)
 {
     clearScreen(); /* clear screen at first */
@@ -951,7 +951,7 @@ void printShowItems(char * category_name, AVLTreeNode * node_array,
         for (int i = 0; i < array_size; i++)
         {
             // show items
-            sprintf(item_name, "[%d] %s", i + 1, node_array[i].item.name);
+            sprintf(item_name, "[%d] %s", i + 1, (*node_array[i]).item.name);
             printStringinCenter(item_name);
         }
 
@@ -965,6 +965,49 @@ void printShowItems(char * category_name, AVLTreeNode * node_array,
 void showItemsHelper(LinkListNode * current, int current_page_number,
                      int total_page_number)
 {
+    // get tree size
+    int tree_size = getAVLTreeSize(&current->category_item.item_tree);
+
+    // generate pointer array
+    AVLTreeNode ** tree_node_pointer_array =
+        generateAVLTreeNodePointerArray(&current->category_item.item_tree);
+
+    printShowItems(current->category_item.category_name,
+                   tree_node_pointer_array, tree_size, current_page_number,
+                   total_page_number);
+
+    int user_choice = 0;
+
+    while ((user_choice = readNumberOrAlpha()) != READ_NUMBER_OR_ALPHA_Q)
+    {
+        if (user_choice == READ_NUMBER_OR_ALPHA_P && current_page_number > 1)
+        {
+            free(tree_node_pointer_array);
+            return showItemsHelper(current->previous, current_page_number - 1,
+                                   total_page_number);
+        }
+        else if (user_choice == READ_NUMBER_OR_ALPHA_N &&
+                 current_page_number < total_page_number)
+        {
+            free(tree_node_pointer_array);
+            return showItemsHelper(current->next, current_page_number + 1,
+                                   total_page_number);
+        }
+        else if (1 <= user_choice && user_choice <= tree_size)
+        {
+            showItemInformation(
+                &(*(tree_node_pointer_array + user_choice - 1))->item);
+            printf("Press Enter to continue...");
+            eatLine();
+        }
+
+        printShowItems(current->category_item.category_name,
+                       tree_node_pointer_array, tree_size, current_page_number,
+                       total_page_number);
+    }
+
+    free(tree_node_pointer_array);
+    return;
     // // get the size of the tree
     // int tree_size = getAVLTreeSize(&current->category_item.item_tree);
 
