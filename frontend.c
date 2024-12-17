@@ -290,13 +290,16 @@ void removeCategory(LinkList * list)
 
 void printCategoryListinListForm(LinkList * list)
 {
+    // initialize the index
     print_category_in_list_form_index = 1;
 
-    printMenuTitle("Category");
+    printMenuTitle("Category"); /* print the title */
 
+    // print the options
     traverseCategoryLinkList(list, printCategoryListinListFormHelper);
-    printStringinCenter("[q] quit");
-    printMenuFooter(POWER_FOOTER);
+
+    printStringinCenter("[q] quit"); /* print the quit opiton */
+    printMenuFooter(POWER_FOOTER);   /* print the footer */
 
     return;
 }
