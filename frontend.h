@@ -166,4 +166,12 @@ void editItem(LinkList * list);
  */
 LinkListNode * selectCategory(LinkList * list);
 
+/**
+ *@brief Convert AVL tree into an array of pointer.
+ *
+ * @param tree the tree to be converted
+ * @return AVLTreeNode** the result
+ */
+AVLTreeNode ** generateAVLTreeNodePointerArray(AVLTree * tree);
+
 #endif // !_FRONTEND_H_

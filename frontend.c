@@ -45,30 +45,14 @@ static void showItemsHelper(LinkListNode * current, int current_page_number,
  */
 static void printAVLTreeNodeCenterHelper(AVLTreeNode * node);
 
-/**
- *@brief Convert AVL tree to an array.
- *
- * @param tree the AVL tree to be converted
- * @param tree_size the size of the AVL tree
- * @return AVLTreeNode* the result array
- */
-static AVLTreeNode * generateAVLTreeNodeArray(AVLTree * tree, int tree_size);
-
-// the index of AVL tree node array when generating
-static int generate_AVL_tree_node_array_index = 0;
-
-/**
- *@brief Help to generate AVL tree node array.
- *
- * @param node the current AVL tree node
- * @param node_array the nodes' array
- */
-static void generateAVLTreeNodeArrayHelper(AVLTreeNode * node,
-                                           AVLTreeNode * node_array);
-
 static int print_category_in_list_form_index = 0;
 
 static void printCategoryListinListFormHelper(LinkListNode * node);
+
+static int generate_AVL_tree_node_pointer_array_index = 0;
+
+static void generateAVLTreeNodePointerArrayHelper(AVLTreeNode * node,
+                                                  AVLTreeNode ** result_array);
 
 int calculateCenterStringSpace(char * str)
 {
@@ -872,6 +856,28 @@ LinkListNode * selectCategory(LinkList * list)
     return result;
 }
 
+AVLTreeNode ** generateAVLTreeNodePointerArray(AVLTree * tree)
+{
+    int tree_size = getAVLTreeSize(tree); /* get the tree size */
+
+    // initialize the index
+    generate_AVL_tree_node_pointer_array_index = 0;
+    // allocate memory
+    AVLTreeNode ** result_array =
+        (AVLTreeNode **) malloc(tree_size * sizeof(AVLTreeNode *));
+    if (!result_array) /* can't allocate memory */
+    {
+        // print error message
+        fprintf(stderr, "Can't allocate memory for result_array in %s()!",
+                __func__);
+        exit(EXIT_FAILURE); /* terminate program */
+    }
+
+    generateAVLTreeNodePointerArrayHelper(*tree, result_array);
+
+    return result_array;
+}
+
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
                           int total_page_number)
 {
@@ -945,91 +951,62 @@ void printShowItems(char * category_name, AVLTreeNode * node_array,
 void showItemsHelper(LinkListNode * current, int current_page_number,
                      int total_page_number)
 {
-    // get the size of the tree
-    int tree_size = getAVLTreeSize(&current->category_item.item_tree);
+    // // get the size of the tree
+    // int tree_size = getAVLTreeSize(&current->category_item.item_tree);
 
-    // generate the tree node array
-    AVLTreeNode * tree_node_array =
-        generateAVLTreeNodeArray(&current->category_item.item_tree, tree_size);
+    // // generate the tree node array
+    // AVLTreeNode * tree_node_array =
+    //     generateAVLTreeNodeArray(&current->category_item.item_tree,
+    //     tree_size);
 
-    // show current page at first
-    printShowItems(current->category_item.category_name, tree_node_array,
-                   tree_size, current_page_number, total_page_number);
+    // // show current page at first
+    // printShowItems(current->category_item.category_name, tree_node_array,
+    //                tree_size, current_page_number, total_page_number);
 
-    int choice = 0;                     /* user's choice */
-    while ((choice = getchar()) != 'q') /* choice is not quit */
-    {
-        eatLine(); /* avoid multiple characters */
+    // int choice = 0;                     /* user's choice */
+    // while ((choice = getchar()) != 'q') /* choice is not quit */
+    // {
+    //     eatLine(); /* avoid multiple characters */
 
-        if (choice == 'p' && current_page_number > 1) /* previous page */
-        {
-            free(tree_node_array); /* free space before returning */
-            return showItemsHelper(current->previous, current_page_number - 1,
-                                   total_page_number);
-        }
+    //     if (choice == 'p' && current_page_number > 1) /* previous page */
+    //     {
+    //         free(tree_node_array); /* free space before returning */
+    //         return showItemsHelper(current->previous, current_page_number -
+    //         1,
+    //                                total_page_number);
+    //     }
 
-        if (choice == 'n' &&
-            current_page_number < total_page_number) /* next page */
-        {
-            free(tree_node_array); /* free space before returning */
-            return showItemsHelper(current->next, current_page_number + 1,
-                                   total_page_number);
-        }
+    //     if (choice == 'n' &&
+    //         current_page_number < total_page_number) /* next page */
+    //     {
+    //         free(tree_node_array); /* free space before returning */
+    //         return showItemsHelper(current->next, current_page_number + 1,
+    //                                total_page_number);
+    //     }
 
-        // available choice to see item's information
-        if (isdigit(choice) && 1 <= (choice - '0') &&
-            (choice - '0') <= tree_size)
-        {
-            // show item's information
-            showItemInformation(&tree_node_array[choice - '0' - 1].item);
-            printf("Press Enter to continue..."); /* ask user to continue */
-            eatLine();
-        }
+    //     // available choice to see item's information
+    //     if (isdigit(choice) && 1 <= (choice - '0') &&
+    //         (choice - '0') <= tree_size)
+    //     {
+    //         // show item's information
+    //         showItemInformation(&tree_node_array[choice - '0' - 1].item);
+    //         printf("Press Enter to continue..."); /* ask user to continue */
+    //         eatLine();
+    //     }
 
-        // invalid option, then show the same page
-        printShowItems(current->category_item.category_name, tree_node_array,
-                       tree_size, current_page_number, total_page_number);
-    }
+    //     // invalid option, then show the same page
+    //     printShowItems(current->category_item.category_name, tree_node_array,
+    //                    tree_size, current_page_number, total_page_number);
+    // }
 
-    free(tree_node_array); /* free memory space */
-    return;
+    // free(tree_node_array); /* free memory space */
+    // return;
 }
 
 void printAVLTreeNodeCenterHelper(AVLTreeNode * node)
 {
     // print item's name in the center of the menu
     printStringinCenter(node->item.name);
-    return;
-}
-
-AVLTreeNode * generateAVLTreeNodeArray(AVLTree * tree, int tree_size)
-{
-    // allocate memory for the tree node array
-    AVLTreeNode * tree_node_array =
-        (AVLTreeNode *) malloc(tree_size * sizeof(AVLTreeNode));
-    generate_AVL_tree_node_array_index = 0; /* reset the index to 0 */
-
-    // start generating
-    generateAVLTreeNodeArrayHelper(*tree, tree_node_array);
-
-    return tree_node_array; /* return the array */
-}
-
-void generateAVLTreeNodeArrayHelper(AVLTreeNode * node,
-                                    AVLTreeNode * node_array)
-{
-    if (!node) /* the node is NULL */
-        return;
-
-    // traverse left child node at first
-    generateAVLTreeNodeArrayHelper(node->left, node_array);
-
-    // assign the node
-    *(node_array + generate_AVL_tree_node_array_index++) = *node;
-
-    // traverse right child node
-    generateAVLTreeNodeArrayHelper(node->right, node_array);
-
     return;
 }
 
@@ -1062,5 +1039,23 @@ void printCategoryListinListFormHelper(LinkListNode * node)
     free(output_line); /* free memory space */
 
     print_category_in_list_form_index++; /* increase the index */
+    return;
+}
+
+void generateAVLTreeNodePointerArrayHelper(AVLTreeNode * node,
+                                           AVLTreeNode ** result_array)
+{
+    if (!node)
+        return;
+
+    // traverse left
+    generateAVLTreeNodePointerArrayHelper(node->left, result_array);
+
+    // assign the pointer and increase the index
+    *(result_array + generate_AVL_tree_node_pointer_array_index++) = node;
+
+    // traverse right
+    generateAVLTreeNodePointerArrayHelper(node->right, result_array);
+
     return;
 }
