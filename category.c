@@ -265,5 +265,4 @@ void freeCategoryLinkListNode(LinkListNode * node)
     free(node->category_item.category_name);     /* free item name string */
     freeAVLTree(&node->category_item.item_tree); /* free tree */
     free(node);                                  /* free the node space */
-    node = NULL;                                 /* assign the node to NULL */
 }
