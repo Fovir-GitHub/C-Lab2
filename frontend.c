@@ -545,9 +545,6 @@ void editItem(LinkList * list)
 
     // back up original data
     double price = select_result.item_position->item.price;
-    DateInformation produce_date =
-        select_result.item_position->item.produce_date;
-    DateInformation due_date = select_result.item_position->item.due_date;
 
     // record whether the item is changed
     bool changed = false;
