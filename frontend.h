@@ -188,6 +188,6 @@ AVLTreeNode ** generateAVLTreeNodePointerArray(AVLTree * tree);
  * @param list the link list
  * @return AVLTreeNode* the position of the item's tree node.
  */
-AVLTreeNode * selectItem(LinkList * list);
+SelectResult selectItem(LinkList * list);
 
 #endif // !_FRONTEND_H_
