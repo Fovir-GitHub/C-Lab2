@@ -519,115 +519,13 @@ void removeItem(LinkList * list)
     if (!select_result.category_position || !select_result.item_position)
         return;
 
-    if (getNumberofItems(list) == 0) /* there is no item */
-    {
-        // print message
-        printf("No items! Press Enter to continue...");
-        eatLine();
+    removeItemfromAVLTree(
+        &select_result.category_position->category_item.item_tree,
+        select_result.item_position->item.name);
 
-        return; /* termiante the remove process */
-    }
+    printf("Remove successfully! Press Enter to continue...");
+    eatLine();
 
-    char * remove_item_name = NULL;
-
-    // get item's name
-    printf("Please enter the item's name (quit to quit): ");
-    while (getString(&remove_item_name, ITEM_NAME_MAX_LENGTH))
-    {
-        if (strcmp("quit", remove_item_name) == 0) /*  quit */
-            break;
-
-        // find how many item have the same name in the whole system
-        int item_number = findIteminLinkList(list, remove_item_name);
-        if (item_number == 0) /* the item's name does not exist */
-        {
-            printf("The item \"%s\" does not exist! Enter another one? "
-                   "[Y/n] ",
-                   remove_item_name);
-            if (tolower(getchar()) == 'n')
-                break;
-            else
-            {
-                printf("Please enter the item's name (quit to "
-                       "quit): ");
-
-                // free memory space before next entering
-                free(remove_item_name);
-                continue;
-            }
-        }
-
-        // there is only one item has this name
-        if (item_number == 1)
-        {
-            // remove directly
-            if (removeItemfromCategoryLinkList(list, remove_item_name))
-                printf("Remove successfully! Press Enter to continue...");
-            else
-                printf("Fail to remove! Press Enter to continue...");
-            eatLine();
-            break;
-        }
-
-        // there are duplicate items have the same name
-        if (item_number > 1)
-        {
-            // ask for the category
-            char * remove_item_category_name = NULL;
-            printf("Please enter the category of \"%s\" (quit to quit): ",
-                   remove_item_name);
-
-            while (
-                getString(&remove_item_category_name, CATEGORY_NAME_MAX_LENGTH))
-            {
-                LinkListNode * temp_node = NULL;
-
-                if (strcmp(remove_item_category_name, "quit") == 0) /* quit */
-                    break;
-
-                // the category does not exist in the link list
-                if (!(temp_node = findCategoryinLinkList(
-                          list, remove_item_category_name)))
-                    printf("The category \"%s\" does not exist! ",
-                           remove_item_category_name);
-                // the category's name is incorrect
-                else if (!findIteminAVLTree(&temp_node->category_item.item_tree,
-                                            remove_item_name))
-                    printf("The category \"%s\" does not have item "
-                           "\"%s\"! ",
-                           remove_item_category_name, remove_item_name);
-                // get the correct category name
-                else
-                {
-                    // remove the item
-                    removeItemfromAVLTree(&temp_node->category_item.item_tree,
-                                          remove_item_name);
-                    printf("Remove successfully! Press Enter "
-                           "to continue...");
-                    eatLine();
-
-                    break;
-                }
-
-                // handle exceptions
-                printf("Enter another one? [Y/n] ");
-                if (tolower(getchar()) == 'n')
-                    break;
-                else
-                {
-                    printf("Please enter the category of \"%s\" "
-                           "(quit to quit): ",
-                           remove_item_name);
-                    free(remove_item_category_name); /* free space */
-                    continue;
-                }
-            }
-            free(remove_item_category_name); /* free memory space */
-            break;
-        }
-    }
-
-    free(remove_item_name); /* free space */
     return;
 }
 
