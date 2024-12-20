@@ -267,13 +267,13 @@ void removeCategory(LinkList * list)
         return;
     }
 
-    LinkListNode * category_position = selectCategory(list);
-    if (!category_position) /* quit */
+    SelectResult select_result = selectCategory(list);
+    if (!select_result.category_position) /* quit */
         return;
 
     // get the status after removing category
     int status = removeCategoryfromLinkList(
-        list, category_position->category_item.category_name);
+        list, select_result.category_position->category_item.category_name);
 
     if (status == SUCCESS_REMOVE) /* successfully remove */
         printf("Remove successfully! Press Enter to continue...");
@@ -387,7 +387,7 @@ void addItem(LinkList * list)
     Item temp_item;
     int temp_year = 0, temp_month = 0, temp_day = 0;
 
-    LinkListNode * category_position = selectCategory(list);
+    LinkListNode * category_position = selectCategory(list).category_position;
 
     if (!category_position)
         return;
@@ -819,11 +819,11 @@ void editItem(LinkList * list)
     return;
 }
 
-LinkListNode * selectCategory(LinkList * list)
+SelectResult selectCategory(LinkList * list)
 {
     int list_size = getLinkListSize(list); /* get the list size */
     int user_choice = 0;                   /* the user's choice */
-    LinkListNode * result = NULL;          /* the result, default is NULL */
+    SelectResult result = {NULL, NULL};    /* initialize the result */
 
     // show all categories in list form
     clearScreen();
@@ -843,7 +843,7 @@ LinkListNode * selectCategory(LinkList * list)
             printf("Enter another one? [Y/n] ");
 
             if (tolower(getchar()) == 'n')
-                return NULL; /* error */
+                break;
             else
             {
                 printf("Please select the category: ");
@@ -853,9 +853,11 @@ LinkListNode * selectCategory(LinkList * list)
 
         // find the category's position
         int counter = 1;
-        for (result = *list; result && counter < user_choice;
-             result = result->next, counter++);
+        LinkListNode * iter;
+        for (iter = *list; iter && counter < user_choice;
+             iter = iter->next, counter++);
 
+        result = makeSelectResult(iter, NULL);
         break;
     }
 

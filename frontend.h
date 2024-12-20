@@ -173,7 +173,7 @@ void editItem(LinkList * list);
  * @return LinkListNode* the position of the category, if error, it returns
  *NULL.
  */
-LinkListNode * selectCategory(LinkList * list);
+SelectResult selectCategory(LinkList * list);
 
 /**
  *@brief Convert AVL tree into an array of pointer.
