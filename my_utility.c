@@ -119,7 +119,7 @@ void clearScreen()
 bool legalString(char * str)
 {
     static const char * ILLEGAL_CHRACTERS = "@\t";
-    char * iter = str;
+    const char * iter = str;
 
     if (!str) /* NULL pointer */
         return false;
