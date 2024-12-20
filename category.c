@@ -251,8 +251,7 @@ LinkListNode * findCategoryinLinkList(LinkList * list, char * category_name)
 int getLinkListSize(LinkList * list)
 {
     int size = 0;
-    for (LinkListNode * iter = *list; iter; iter = iter->next)
-        size++;
+    for (LinkListNode * iter = *list; iter; iter = iter->next) size++;
 
     return size;
 }
