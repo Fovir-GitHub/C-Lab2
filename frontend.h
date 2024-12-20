@@ -19,6 +19,13 @@ typedef struct
     AVLTreeNode * item_position;      /* the position of item */
 } SelectResult;
 
+/**
+ *@brief Construct SelectResult object.
+ *
+ * @param category_position the pointer to category
+ * @param item_position the pointer to item
+ * @return SelectResult the result of constructing
+ */
 SelectResult makeSelectResult(LinkListNode * category_position,
                               AVLTreeNode * item_position);
 
