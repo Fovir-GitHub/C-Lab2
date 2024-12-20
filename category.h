@@ -164,12 +164,4 @@ enum ADD_ITEM_TO_CATEGORY_STATUS_CODE {
  */
 int addItemstoCategory(LinkList * list, Item item, int if_failed);
 
-/**
- *@brief Get the number of Items object.
- *
- * @param list the link lists
- * @return int the number of items
- */
-int getNumberofItems(LinkList * list);
-
 #endif // !_CATEGORY_H_
