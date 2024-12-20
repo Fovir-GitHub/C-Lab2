@@ -148,7 +148,10 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name)
     temp_node->category_item.category_name = category_name;
 
     if (!current) /* the link list is empty */
+    {
+        free(temp_node);
         return FAILED_REMOVE_EMPTY_LINK_LIST;
+    }
 
     while (current)
     {
