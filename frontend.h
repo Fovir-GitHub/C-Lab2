@@ -42,7 +42,7 @@ int calculateCenterStringSpace(const char * str);
  *
  * @param str the string want to print in the center line.
  */
-void printStringinCenter(char * str);
+void printStringinCenter(const char * str);
 
 /**
  *@brief Print a menu's title and title frame.

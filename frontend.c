@@ -83,7 +83,7 @@ int calculateCenterStringSpace(const char * str)
     return abs(MENU_WIDTH - strlen(str)) / 2;
 }
 
-void printStringinCenter(char * str)
+void printStringinCenter(const char * str)
 {
     printf("%*s%s\n", calculateCenterStringSpace(str) - 1, "", str);
     return;
