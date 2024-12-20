@@ -576,17 +576,16 @@ void editItem(LinkList * list)
            "nothing): ");
     getString(&temp_string, ITEM_NAME_MAX_LENGTH);
 
-    if (!emptyString(temp_string))
-        if (legalString(temp_string))
-        {
-            changed = true; /* update status */
+    if (legalString(temp_string))
+    {
+        changed = true; /* update status */
 
-            // assign the name
-            new_item.name = staticString2dynamicString(temp_string);
-        }
-        else
-            puts("The string is illegal! The item's name does not "
-                 "change!");
+        // assign the name
+        new_item.name = staticString2dynamicString(temp_string);
+    }
+    else
+        puts("The string is illegal! The item's name does not "
+             "change!");
 
     free(temp_string); /* free space */
 
