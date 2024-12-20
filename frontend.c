@@ -56,6 +56,16 @@ static void selectItemHelperHelper(char * category_name,
                                    AVLTreeNode ** node_array, int array_size,
                                    int current_page, int total_page);
 
+SelectResult makeSelectResult(LinkListNode * category_position,
+                              AVLTreeNode * item_position)
+{
+    SelectResult result;
+    result.category_position = category_position;
+    result.item_position = item_position;
+
+    return result;
+}
+
 int calculateCenterStringSpace(char * str)
 {
     // calculate center the string need how many space before it
@@ -480,6 +490,10 @@ void addItem(LinkList * list)
 
 void removeItem(LinkList * list)
 {
+    AVLTreeNode * item_position = selectItem(list);
+    if (!item_position)
+        return;
+
     if (getNumberofItems(list) == 0) /* there is no item */
     {
         // print message
