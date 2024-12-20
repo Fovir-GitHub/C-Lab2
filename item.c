@@ -337,7 +337,7 @@ AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
 
 AVLTreeNode * removeItemfromAVLTreeHelper(AVLTreeNode * node, char * item_name)
 {
-    AVLTreeNode *child, *grand_child;
+    AVLTreeNode * child;
 
     // the node is empty
     if (node == NULL)
