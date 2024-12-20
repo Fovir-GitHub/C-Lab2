@@ -891,8 +891,6 @@ void selectItemHelperHelper(char * category_name, AVLTreeNode ** node_array,
 {
     clearScreen(); /* clear screen at first */
 
-    char item_name[ITEM_NAME_MAX_LENGTH]; /* store item's name */
-
     // get footer
     char footer[MENU_WIDTH];
     sprintf(footer, "[p]revious    %d/%d    [n]ext", current_page, total_page);
@@ -908,6 +906,8 @@ void selectItemHelperHelper(char * category_name, AVLTreeNode ** node_array,
     else
         for (int i = 0; i < array_size; i++)
         {
+            char item_name[ITEM_NAME_MAX_LENGTH]; /* store item's name */
+
             // show items
             sprintf(item_name, "[%d] %s", i + 1, (*node_array[i]).item.name);
             printStringinCenter(item_name);
