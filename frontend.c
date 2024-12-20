@@ -853,7 +853,7 @@ SelectResult selectCategory(LinkList * list)
 
         // find the category's position
         int counter = 1;
-        LinkListNode * iter;
+        LinkListNode * iter = NULL;
         for (iter = *list; iter && counter < user_choice;
              iter = iter->next, counter++);
 
