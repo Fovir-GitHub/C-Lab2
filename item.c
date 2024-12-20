@@ -47,7 +47,7 @@ DateInformation makeDateInformation(int y, int m, int d)
 DateInformation getToday()
 {
     time_t current_time;
-    struct tm * local_time;
+    const struct tm * local_time;
 
     time(&current_time);                   /* get current time */
     local_time = localtime(&current_time); /* get local time */
