@@ -21,13 +21,6 @@ static void showCategoriesHelper(LinkListNode * current,
                                  int current_page_number,
                                  int total_page_number);
 
-/**
- *@brief Used to traverse AVL tree to print the item's name in the center.
- *
- * @param node the AVL tree node
- */
-static void printAVLTreeNodeCenterHelper(AVLTreeNode * node);
-
 // the index of category list
 static int print_category_in_list_form_index = 0;
 
@@ -786,13 +779,6 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
         clearScreen();
         printShowCategories(current, current_page_number, total_page_number);
     }
-    return;
-}
-
-void printAVLTreeNodeCenterHelper(AVLTreeNode * node)
-{
-    // print item's name in the center of the menu
-    printStringinCenter(node->item.name);
     return;
 }
 
