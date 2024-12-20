@@ -59,7 +59,7 @@ DateInformation getToday()
     );
 }
 
-void showDateInformation(DateInformation * date)
+void showDateInformation(const DateInformation * date)
 {
     // format output to YYYY-MM-DD with 0 prefix
     printf("%04d-%02d-%02d\n", date->year, date->month, date->day);

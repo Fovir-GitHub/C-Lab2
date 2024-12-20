@@ -39,7 +39,7 @@ DateInformation getToday();
  *
  * @param date the DateInformation object
  */
-void showDateInformation(DateInformation * date);
+void showDateInformation(const DateInformation * date);
 
 /**
  *@brief Judge whether the date is valid.
