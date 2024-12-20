@@ -195,15 +195,6 @@ void freeAVLTree(AVLTree * tree);
 void removeItemfromAVLTree(AVLTree * tree, char * item_name);
 
 /**
- *@brief Whether the item exists in the AVL tree.
- *
- * @param tree the AVL tree
- * @param item_name the item's name to be found
- * @return the position of the item node
- */
-AVLTreeNode * findIteminAVLTree(AVLTree * tree, char * item_name);
-
-/**
  *@brief Get the size of AVL tree object.
  *
  * @param tree the AVL tree

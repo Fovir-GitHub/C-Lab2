@@ -332,11 +332,6 @@ void removeItemfromAVLTree(AVLTree * tree, char * item_name)
     return;
 }
 
-AVLTreeNode * findIteminAVLTree(AVLTree * tree, char * item_name)
-{
-    return findIteminAVLTreeHelper(*tree, item_name);
-}
-
 int getAVLTreeSize(AVLTree * tree)
 {
     return getAVLTreeSizeHelper(*tree);
