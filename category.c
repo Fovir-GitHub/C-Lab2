@@ -260,17 +260,6 @@ int addItemstoCategory(LinkList * list, Item item, int if_failed)
     return ADD_SUCCESS; /* return status code */
 }
 
-int findIteminLinkList(LinkList * list, char * item_name)
-{
-    int total_item_number = 0;
-
-    for (LinkListNode * iter = *list; iter; iter = iter->next)
-        if (findIteminAVLTree(&iter->category_item.item_tree, item_name))
-            total_item_number++;
-
-    return total_item_number;
-}
-
 void freeCategoryLinkListNode(LinkListNode * node)
 {
     free(node->category_item.category_name);     /* free item name string */

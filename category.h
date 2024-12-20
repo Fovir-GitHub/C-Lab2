@@ -165,15 +165,6 @@ enum ADD_ITEM_TO_CATEGORY_STATUS_CODE {
 int addItemstoCategory(LinkList * list, Item item, int if_failed);
 
 /**
- *@brief Find how many item exist in the link list.
- *
- * @param list the category's link list
- * @param item_name the name of the item to be found
- * @return int the number of the items have the same name
- */
-int findIteminLinkList(LinkList * list, char * item_name);
-
-/**
  *@brief Get the number of Items object.
  *
  * @param list the link lists
