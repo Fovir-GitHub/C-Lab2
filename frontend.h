@@ -9,6 +9,15 @@
 // show how many categories in one page
 #define CAGEGORY_NUMBER_PER_PAGE 5
 
+typedef struct
+{
+    LinkListNode * category_position;
+    AVLTreeNode * item_position;
+} SelectResult;
+
+SelectResult makeSelectResult(LinkListNode * category_position,
+                              AVLTreeNode * item_position);
+
 /**
  *@brief Calculate how many space need for center the string in the menu.
  *
