@@ -9,10 +9,14 @@
 // show how many categories in one page
 #define CAGEGORY_NUMBER_PER_PAGE 5
 
+/**
+ *@brief Store the result of selecting item or category.
+ *
+ */
 typedef struct
 {
-    LinkListNode * category_position;
-    AVLTreeNode * item_position;
+    LinkListNode * category_position; /* the position of category */
+    AVLTreeNode * item_position;      /* the position of item */
 } SelectResult;
 
 SelectResult makeSelectResult(LinkListNode * category_position,
