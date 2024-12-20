@@ -15,15 +15,6 @@ static AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node,
                                              Item insert_item);
 
 /**
- *@brief Recrusive apply function to all nodes in the AVL tree.
- *
- * @param node the node
- * @param pointer_function the pointer to function
- */
-static void traverseAVLTreeHelper(AVLTreeNode * node,
-                                  void (*pointer_function)(AVLTreeNode *));
-
-/**
  *@brief Help to remove item from a AVL tree recrusively.
  *
  * @param item_name the item's name
@@ -38,23 +29,6 @@ static AVLTreeNode * removeItemfromAVLTreeHelper(AVLTreeNode * node,
  * @param node the target node
  */
 static void freeAVLTreeHelper(AVLTreeNode * node);
-
-/**
- *@brief Help to show the AVL tree node
- *
- * @param node the target node
- */
-static void showAVLTreeHelper(AVLTreeNode * node);
-
-/**
- *@brief Help to find item in the AVL tree recrusively.
- *
- * @param node current node
- * @param item_name the item's name
- * @return the item position
- */
-static AVLTreeNode * findIteminAVLTreeHelper(AVLTreeNode * node,
-                                             char * item_name);
 
 /**
  *@brief Help to get the size of an AVL tree.
@@ -361,21 +335,6 @@ AVLTreeNode * insertAVLTreeNodeHelper(AVLTreeNode * node, Item insert_item)
     return node;
 }
 
-void traverseAVLTreeHelper(AVLTreeNode * node,
-                           void (*pointer_function)(AVLTreeNode *))
-{
-    if (!node)  /* if the node is empty */
-        return; /* return directly */
-
-    if (node->left) /* traverse left child node at first */
-        traverseAVLTreeHelper(node->left, pointer_function);
-    pointer_function(node); /* apply the function to current node */
-    if (node->right)        /* then traverse the right child node */
-        traverseAVLTreeHelper(node->right, pointer_function);
-
-    return;
-}
-
 AVLTreeNode * removeItemfromAVLTreeHelper(AVLTreeNode * node, char * item_name)
 {
     AVLTreeNode *child, *grand_child;
@@ -436,36 +395,4 @@ void freeAVLTreeHelper(AVLTreeNode * node)
     free(node);            /* free the node memory space */
 
     return;
-}
-
-void showAVLTreeHelper(AVLTreeNode * node)
-{
-    puts(node->item.name);
-    return;
-}
-
-AVLTreeNode * findIteminAVLTreeHelper(AVLTreeNode * node, char * item_name)
-{
-    if (!node) /* the item doesn't exist */
-        return NULL;
-
-    // compare the two strings
-    int compare_result = compare2Strings(node->item.name, item_name);
-
-    if (compare_result == 0) /* find the item */
-        return node;
-
-    if (compare_result == 1) /* the item should be in the left node */
-        return findIteminAVLTreeHelper(node->left, item_name);
-    else /* the item should be in the right node */
-        return findIteminAVLTreeHelper(node->right, item_name);
-}
-
-int getAVLTreeSizeHelper(AVLTreeNode * node)
-{
-    if (!node) /* the node is NULL */
-        return 0;
-
-    return getAVLTreeSizeHelper(node->left) +
-           getAVLTreeSizeHelper(node->right) + 1;
 }
