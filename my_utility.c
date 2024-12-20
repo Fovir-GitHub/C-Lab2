@@ -140,12 +140,20 @@ bool legalString(char * str)
 
 void encodeString(char * str)
 {
-    while (*str) *str++ = encodeCharacter(*str);
+    while (*str)
+    {
+        *str = encodeCharacter(*str);
+        str++;
+    }
 }
 
 void decodeString(char * str)
 {
-    while (*str) *str++ = decodeCharacter(*str);
+    while (*str)
+    {
+        *str = decodeCharacter(*str);
+        str++;
+    }
 }
 
 void ensureFolder(const char * dir_name)
