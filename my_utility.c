@@ -82,7 +82,7 @@ int compare2Strings(const char * first_string, const char * second_string)
     return compare_result > 0 ? 1 : -1;
 }
 
-char * staticString2dynamicString(char * static_string)
+char * staticString2dynamicString(const char * static_string)
 {
     // allocate memory
     char * dynamic_string =

@@ -39,7 +39,7 @@ int compare2Strings(const char * first_string, const char * second_string);
  * @param static_string the original static string
  * @return char* the dynamic string after convertation.
  */
-char * staticString2dynamicString(char * static_string);
+char * staticString2dynamicString(const char * static_string);
 
 /**
  *@brief Clear screen output.
