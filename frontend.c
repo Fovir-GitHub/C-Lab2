@@ -60,6 +60,15 @@ static void generateAVLTreeNodePointerArrayHelper(AVLTreeNode * node,
 static SelectResult selectItemHelper(LinkListNode * node, int current_page,
                                      int total_page);
 
+/**
+ *@brief Show the interface for selectItemHelper() function.
+ *
+ * @param category_name the category's name to be shown in the first line
+ * @param node_array the pointer array of tree node pointer
+ * @param array_size the size of the array
+ * @param current_page current page number
+ * @param total_page total page number
+ */
 static void selectItemHelperHelper(char * category_name,
                                    AVLTreeNode ** node_array, int array_size,
                                    int current_page, int total_page);
