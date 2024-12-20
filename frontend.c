@@ -404,7 +404,6 @@ void addItem(LinkList * list)
     DateInformation produce_date = getToday(); /* set produce date to today */
     DateInformation due_date =
         makeDateInformation(0, 0, 0);         /* set due date to empty */
-    char * category_name = NULL;              /* category's name */
     char * item_name = NULL;                  /* item's name */
     double price = (double) 0;                /* item's price */
     char date_string[DATE_STRING_MAX_LENGTH]; /* string to get date from user */
