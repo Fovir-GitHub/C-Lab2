@@ -89,7 +89,7 @@ void printStringinCenter(const char * str)
     return;
 }
 
-void printMenuTitle(char * title)
+void printMenuTitle(const char * title)
 {
     printMenuFrame('=');
     printStringinCenter(title);

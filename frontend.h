@@ -49,7 +49,7 @@ void printStringinCenter(const char * str);
  *
  * @param title the menu's title
  */
-void printMenuTitle(char * title);
+void printMenuTitle(const char * title);
 
 /**
  *@brief Print the menu frame with the character.
