@@ -59,6 +59,7 @@ int main(void)
     outputCategoryDatatoFile(&category_list);
     outputItemsDatatoFile(&category_list);
 
+    freeCategoryLinkList(&category_list);
     clearScreen();
 
     return 0;
