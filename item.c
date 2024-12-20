@@ -105,7 +105,7 @@ bool validDate(DateInformation date)
     return true;
 }
 
-Item makeItem(char * category, char * name, double price,
+Item makeItem(const char * category, char * name, double price,
               DateInformation produce, DateInformation due)
 {
     Item result;

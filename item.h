@@ -75,7 +75,7 @@ typedef struct
  *
  * @return Item the Item object after construction
  */
-Item makeItem(char * category, char * name, double price,
+Item makeItem(const char * category, char * name, double price,
               DateInformation produce, DateInformation due);
 
 /**
