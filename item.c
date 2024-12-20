@@ -159,8 +159,7 @@ void showItemInformation(Item * item)
     puts("The item's information:\n");
 
     // print frame
-    for (int i = 0; i < ITEM_FRAME_WIDTH; i++)
-        putchar('*');
+    for (int i = 0; i < ITEM_FRAME_WIDTH; i++) putchar('*');
     putchar('\n');
 
     printf("%-*s: %s\n%-*s: %s\n", ITEM_INFORMATION_WIDTH, "Category",
@@ -172,8 +171,7 @@ void showItemInformation(Item * item)
     showDateInformation(&item->due_date);
 
     // print frame
-    for (int i = 0; i < ITEM_FRAME_WIDTH; i++)
-        putchar('*');
+    for (int i = 0; i < ITEM_FRAME_WIDTH; i++) putchar('*');
     puts("\n");
 
     return;
@@ -324,13 +322,6 @@ void insertAVLTreeNode(AVLTree * tree, Item insert_item)
 void traverseAVLTree(AVLTree * tree, void (*pointer_function)(AVLTreeNode *))
 {
     traverseAVLTreeHelper(*tree, pointer_function);
-
-    return;
-}
-
-void showAVLTree(AVLTree * tree)
-{
-    traverseAVLTree(tree, showAVLTreeHelper);
 
     return;
 }
