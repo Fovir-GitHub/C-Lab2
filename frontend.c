@@ -49,8 +49,8 @@ static int generate_AVL_tree_node_pointer_array_index = 0;
 static void generateAVLTreeNodePointerArrayHelper(AVLTreeNode * node,
                                                   AVLTreeNode ** result_array);
 
-static AVLTreeNode * selectItemHelper(LinkListNode * node, int current_page,
-                                      int total_page);
+static SelectResult selectItemHelper(LinkListNode * node, int current_page,
+                                     int total_page);
 
 static void selectItemHelperHelper(char * category_name,
                                    AVLTreeNode ** node_array, int array_size,
@@ -367,11 +367,11 @@ void showItems(LinkList * list)
         return;
     }
 
-    AVLTreeNode * item_position = selectItem(list);
+    SelectResult select_result = selectItem(list);
 
-    if (item_position)
+    if (select_result.category_position && select_result.item_position)
     {
-        showItemInformation(&item_position->item);
+        showItemInformation(&select_result.item_position->item);
 
         printf("Pree Enter to continue...");
         eatLine();
@@ -498,8 +498,8 @@ void addItem(LinkList * list)
 
 void removeItem(LinkList * list)
 {
-    AVLTreeNode * item_position = selectItem(list);
-    if (!item_position)
+    SelectResult select_result = selectItem(list);
+    if (!select_result.category_position || !select_result.item_position)
         return;
 
     if (getNumberofItems(list) == 0) /* there is no item */
@@ -896,7 +896,7 @@ AVLTreeNode ** generateAVLTreeNodePointerArray(AVLTree * tree)
     return result_array;
 }
 
-AVLTreeNode * selectItem(LinkList * list)
+SelectResult selectItem(LinkList * list)
 {
     return selectItemHelper(*list, 1, getLinkListSize(list));
 }
@@ -994,8 +994,8 @@ void generateAVLTreeNodePointerArrayHelper(AVLTreeNode * node,
     return;
 }
 
-AVLTreeNode * selectItemHelper(LinkListNode * node, int current_page,
-                               int total_page)
+SelectResult selectItemHelper(LinkListNode * node, int current_page,
+                              int total_page)
 {
     int tree_size = getAVLTreeSize(&node->category_item.item_tree);
     AVLTreeNode ** tree_node_pointer_array =
@@ -1023,10 +1023,11 @@ AVLTreeNode * selectItemHelper(LinkListNode * node, int current_page,
         }
         else if (1 <= user_choice && user_choice <= tree_size)
         {
-            AVLTreeNode * result = *(tree_node_pointer_array + user_choice - 1);
+            AVLTreeNode * item_position =
+                *(tree_node_pointer_array + user_choice - 1);
             free(tree_node_pointer_array);
 
-            return result;
+            return makeSelectResult(node, item_position);
         }
 
         selectItemHelperHelper(node->category_item.category_name,
@@ -1035,7 +1036,7 @@ AVLTreeNode * selectItemHelper(LinkListNode * node, int current_page,
     }
 
     free(tree_node_pointer_array);
-    return NULL;
+    return makeSelectResult(NULL, NULL);
 }
 
 void selectItemHelperHelper(char * category_name, AVLTreeNode ** node_array,
