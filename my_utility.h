@@ -83,7 +83,7 @@ void ensureFolder(const char * dir_name);
  * @return true the string is empty
  * @return false the string is not empty
  */
-bool emptyString(char * str);
+bool emptyString(const char * str);
 
 /**
  *@brief Get the width of a digit.

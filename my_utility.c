@@ -179,7 +179,7 @@ void ensureFolder(const char * dir_name)
     }
 }
 
-bool emptyString(char * str)
+bool emptyString(const char * str)
 {
     return strcmp(str, "") == 0;
 }
