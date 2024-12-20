@@ -359,6 +359,14 @@ void addCategory(LinkList * list)
 
 void showItems(LinkList * list)
 {
+    if (emptyLinkList(list))
+    {
+        printf("No items! Press Enter to continue...");
+        eatLine();
+
+        return;
+    }
+
     AVLTreeNode * item_position = selectItem(list);
 
     if (item_position)
