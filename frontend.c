@@ -292,7 +292,7 @@ void removeCategory(LinkList * list)
             &select_result.category_position->category_item.item_tree))
     {
         printf("The category is not empty! Removing the category will also "
-               "remove the items!\nComfirm to remove? [y/N] ");
+               "remove the items!\nConfirm to remove? [y/N] ");
 
         if (tolower(getchar()) != 'y')
             return;
