@@ -288,6 +288,16 @@ void removeCategory(LinkList * list)
     if (!select_result.category_position) /* quit */
         return;
 
+    if (!emptyAVLTree(
+            &select_result.category_position->category_item.item_tree))
+    {
+        printf("The category is not empty! Removing the category will also "
+               "remove the items!\nComfirm to remove? [y/N] ");
+
+        if (tolower(getchar()) != 'y')
+            return;
+    }
+
     // get the status after removing category
     int status = removeCategoryfromLinkList(
         list, select_result.category_position->category_item.category_name);
