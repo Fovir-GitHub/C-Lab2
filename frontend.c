@@ -562,17 +562,18 @@ void editItem(LinkList * list)
            "nothing): ");
     getString(&temp_string, CATEGORY_NAME_MAX_LENGTH);
 
-    if (legalString(temp_string) &&
-        findCategoryinLinkList(list, temp_string)) /* the string is valid */
-    {
-        changed = true; /* update change status */
+    if (!emptyString(temp_string)) /* avoid alarm when user leave blank */
+        if (legalString(temp_string) &&
+            findCategoryinLinkList(list, temp_string)) /* the string is valid */
+        {
+            changed = true; /* update change status */
 
-        // assign the category name
-        new_item.category = staticString2dynamicString(temp_string);
-    }
-    else
-        puts("The string is illegal or the category does not exist! The "
-             "category does not change!");
+            // assign the category name
+            new_item.category = staticString2dynamicString(temp_string);
+        }
+        else
+            puts("The string is illegal or the category does not exist! The "
+                 "category does not change!");
 
     free(temp_string); /* free space */
 
@@ -580,16 +581,17 @@ void editItem(LinkList * list)
            "nothing): ");
     getString(&temp_string, ITEM_NAME_MAX_LENGTH);
 
-    if (legalString(temp_string))
-    {
-        changed = true; /* update status */
+    if (!emptyString(temp_string)) /* avoid alarm when user leave blank */
+        if (legalString(temp_string))
+        {
+            changed = true; /* update status */
 
-        // assign the name
-        new_item.name = staticString2dynamicString(temp_string);
-    }
-    else
-        puts("The string is illegal! The item's name does not "
-             "change!");
+            // assign the name
+            new_item.name = staticString2dynamicString(temp_string);
+        }
+        else
+            puts("The string is illegal! The item's name does not "
+                 "change!");
 
     free(temp_string); /* free space */
 
