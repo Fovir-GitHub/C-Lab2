@@ -213,13 +213,6 @@ void traverseCategoryLinkList(LinkList * list,
     return;
 }
 
-void showCategoryLinkList(LinkList * list)
-{
-    category_per_line_counter = 1;
-    traverseCategoryLinkList(list, showCategoryLinkListHelper);
-    return;
-}
-
 void showCategoryLinkListHelper(LinkListNode * node)
 {
     puts(node->category_item.category_name);

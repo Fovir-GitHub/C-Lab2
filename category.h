@@ -110,13 +110,6 @@ void traverseCategoryLinkList(LinkList * list,
                               void (*function_pointer)(LinkListNode *));
 
 /**
- *@brief Show all elements in the link list.
- *
- * @param list the target link list
- */
-void showCategoryLinkList(LinkList * list);
-
-/**
  *@brief Free the memory of the link list.
  *
  * @param list the target link list
