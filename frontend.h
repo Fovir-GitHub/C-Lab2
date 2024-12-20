@@ -170,8 +170,7 @@ void editItem(LinkList * list);
  *@brief Get category with user selection.
  *
  * @param list the link list that contains categories
- * @return LinkListNode* the position of the category, if error, it returns
- *NULL.
+ * @return selectResult the result of selecting category
  */
 SelectResult selectCategory(LinkList * list);
 
