@@ -77,7 +77,7 @@ SelectResult makeSelectResult(LinkListNode * category_position,
     return result;
 }
 
-int calculateCenterStringSpace(char * str)
+int calculateCenterStringSpace(const char * str)
 {
     // calculate center the string need how many space before it
     return abs(MENU_WIDTH - strlen(str)) / 2;

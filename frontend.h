@@ -35,7 +35,7 @@ SelectResult makeSelectResult(LinkListNode * category_position,
  * @param str the string to calculate center space
  * @return int the prefix space length of the center title
  */
-int calculateCenterStringSpace(char * str);
+int calculateCenterStringSpace(const char * str);
 
 /**
  *@brief Print a string in the center of the menu line.
