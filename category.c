@@ -5,16 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// record categories in every line when output all categories.
-static int category_per_line_counter = 1;
-
-/**
- *@brief Show the node's information.
- *
- * @param node the target node
- */
-static void showCategoryLinkListHelper(LinkListNode * node);
-
 Category makeCategory(char * name)
 {
     Category result;
@@ -210,12 +200,6 @@ void traverseCategoryLinkList(LinkList * list,
     for (LinkListNode * current = *list; current; current = current->next)
         function_pointer(current);
 
-    return;
-}
-
-void showCategoryLinkListHelper(LinkListNode * node)
-{
-    puts(node->category_item.category_name);
     return;
 }
 
