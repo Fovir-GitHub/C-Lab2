@@ -537,6 +537,8 @@ void editItem(LinkList * list)
     if (!(select_result.category_position && select_result.item_position))
         return;
 
+    clearScreen(); /* clear screen before showing item's information */
+
     // show the item's information at first
     showItemInformation(&select_result.item_position->item);
 
