@@ -758,10 +758,10 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
     while ((choice = getchar()) != 'q') /* the choice is not quit */
     {
         LinkListNode * iter = current;
-        int counter = 1;
 
         if (choice == 'p' || choice == 'n') /* legal option */
         {
+            int counter = 1;
             // judge whether the next page or the previous page exist
             for (; iter && counter <= CAGEGORY_NUMBER_PER_PAGE;
                  iter = (choice == 'p' ? iter->previous : iter->next))
