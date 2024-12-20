@@ -1,4 +1,5 @@
 #include "category.h"
+#include "constants.h"
 #include "file_operations.h"
 #include "frontend.h"
 #include "item.h"
@@ -45,7 +46,7 @@ int main(void)
             editItem(&category_list);
             break;
         default:
-            printf("Please enter the right option! Press Enter to continue...");
+            printf("Please enter the right option! %s", ENTER_CONTINUE);
             eatLine();
         }
     }

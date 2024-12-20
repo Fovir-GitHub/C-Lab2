@@ -1,4 +1,5 @@
 #include "frontend.h"
+#include "constants.h"
 #include "my_utility.h"
 #include <ctype.h>
 #include <math.h>
@@ -278,8 +279,7 @@ void removeCategory(LinkList * list)
 {
     if (emptyLinkList(list)) /* there is no category */
     {
-        printf("You don't have any category! "
-               "Press Enter to continue...");
+        printf("You don't have any category! %s", ENTER_CONTINUE);
         eatLine();
         return;
     }
@@ -303,9 +303,9 @@ void removeCategory(LinkList * list)
         list, select_result.category_position->category_item.category_name);
 
     if (status == SUCCESS_REMOVE) /* successfully remove */
-        printf("Remove successfully! Press Enter to continue...");
+        printf("Remove successfully! %s", ENTER_CONTINUE);
     else /* failed to remove */
-        printf("Failed to remove the category! Press Enter to continue...");
+        printf("Failed to remove the category! %s", ENTER_CONTINUE);
 
     eatLine();
     return;
@@ -341,8 +341,7 @@ void addCategory(LinkList * list)
 
         if (!legalString(add_category_name)) /* the name is illegal */
         {
-            printf("The category name is illegal! "
-                   "Press Enter to continue...");
+            printf("The category name is illegal! %s", ENTER_CONTINUE);
             eatLine();
             free(add_category_name);
             continue;
@@ -374,7 +373,7 @@ void addCategory(LinkList * list)
 
         case SUCCESS_ADD: /* successfully added the category */
             printf("Successfully add new category \"%s\"\n", add_category_name);
-            printf("Press Enter to continue...");
+            printf("%s", ENTER_CONTINUE);
             eatLine();
             free(add_category_name);
             return;
@@ -388,7 +387,7 @@ void showItems(LinkList * list)
 {
     if (emptyLinkList(list))
     {
-        printf("No items! Press Enter to continue...");
+        printf("No items! %s", ENTER_CONTINUE);
         eatLine();
 
         return;
@@ -517,7 +516,7 @@ void addItem(LinkList * list)
         showItemInformation(&temp_item);
     }
 
-    printf("Press Enter to continue...");
+    printf("%s", ENTER_CONTINUE);
     eatLine();
 
     return;
@@ -533,7 +532,7 @@ void removeItem(LinkList * list)
         &select_result.category_position->category_item.item_tree,
         select_result.item_position->item.name);
 
-    printf("Remove successfully! Press Enter to continue...");
+    printf("Remove successfully! %s", ENTER_CONTINUE);
     eatLine();
 
     return;
@@ -670,10 +669,10 @@ void editItem(LinkList * list)
         puts("The item has been updated!");
 
         showItemInformation(&new_item);
-        printf("Press Enter to continue...");
+        printf("%s", ENTER_CONTINUE);
     }
     else
-        printf("There is nothing to change! Press Enter to continue...");
+        printf("There is nothing to change! %s", ENTER_CONTINUE);
 
     eatLine();
 
