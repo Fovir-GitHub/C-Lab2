@@ -32,7 +32,7 @@ typedef struct
  *@brief Construct Category with its name.
  *
  * @param name category's name
- * @return Category the object after constructing
+ * @return Category the object after constructingconst
  */
 Category makeCategory(const char * name);
 
@@ -56,7 +56,8 @@ typedef struct LinkListNode
  *  if first > last, return 1
  *  otherwise, return 0
  */
-int compareCategoryName(LinkListNode * first, LinkListNode * second);
+int compareCategoryName(const LinkListNode * first,
+                        const LinkListNode * second);
 
 typedef LinkListNode * LinkList; /* define the LinkList */
 

@@ -19,7 +19,7 @@ Category makeCategory(const char * name)
     return result;
 }
 
-int compareCategoryName(LinkListNode * first, LinkListNode * second)
+int compareCategoryName(const LinkListNode * first, const LinkListNode * second)
 {
     return compare2Strings(first->category_item.category_name,
                            second->category_item.category_name);
