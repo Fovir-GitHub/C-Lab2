@@ -104,7 +104,7 @@ void printMenuFrame(char frame_character)
     putchar('\n');
 }
 
-void printOptions(char * options[], int options_number)
+void printOptions(const char * options[], int options_number)
 {
     int max_odd_string_length = 0, max_even_string_length = 0,
         max_string_length = 0;
@@ -170,7 +170,7 @@ void showMainMenu()
     clearScreen();
     printMenuTitle("Main Menu");
 
-    static char * options[MAIN_MENU_OPTIONS_NUMBER] = {
+    const static char * options[MAIN_MENU_OPTIONS_NUMBER] = {
         "Show Categories", "Add Category", "Remove Category", "Show All Items",
         "Add Item",        "Remove Item",  "Edit Item",       "Quit",
     };

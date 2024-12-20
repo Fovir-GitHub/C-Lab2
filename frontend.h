@@ -65,7 +65,7 @@ void printMenuFrame(char frame_character);
  * @param options the array of options
  * @param options_number the size of the options array
  */
-void printOptions(char * options[], int options_number);
+void printOptions(const char * options[], int options_number);
 
 /**
  *@brief Print the footer of a menu.
