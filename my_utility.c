@@ -62,8 +62,7 @@ char * getString(char ** str, int max_length)
 
 void eatLine()
 {
-    while (getchar() != '\n' && !feof(stdin)) /* read until line breaker */
-        continue;
+    while (getchar() != '\n' && !feof(stdin)); /* read until line breaker */
 }
 
 int compare2Strings(const char * first_string, const char * second_string)
