@@ -260,20 +260,6 @@ int addItemstoCategory(LinkList * list, Item item, int if_failed)
     return ADD_SUCCESS; /* return status code */
 }
 
-bool removeItemfromCategoryLinkList(LinkList * list, char * item_name)
-{
-    /* traverse the link list */
-    for (LinkListNode * iter = *list; iter; iter = iter->next)
-        if (findIteminAVLTree(&iter->category_item.item_tree, item_name))
-        {
-            // if found, then remove the item from the tree
-            removeItemfromAVLTree(&iter->category_item.item_tree, item_name);
-            return true;
-        }
-
-    return false;
-}
-
 int findIteminLinkList(LinkList * list, char * item_name)
 {
     int total_item_number = 0;
