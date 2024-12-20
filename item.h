@@ -180,14 +180,6 @@ AVLTreeNode * rotateNode(AVLTreeNode * node);
 void insertAVLTreeNode(AVLTree * tree, Item insert_item);
 
 /**
- *@brief Traverse the tree and apply function to every node.
- *
- * @param tree the target tree
- * @param pointer_function the pointer to the function
- */
-void traverseAVLTree(AVLTree * tree, void (*pointer_function)(AVLTreeNode *));
-
-/**
  *@brief Free the memory of the AVL tree.
  *
  * @param tree the AVL tree to free memory space

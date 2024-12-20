@@ -319,13 +319,6 @@ void insertAVLTreeNode(AVLTree * tree, Item insert_item)
     return;
 }
 
-void traverseAVLTree(AVLTree * tree, void (*pointer_function)(AVLTreeNode *))
-{
-    traverseAVLTreeHelper(*tree, pointer_function);
-
-    return;
-}
-
 void freeAVLTree(AVLTree * tree)
 {
     freeAVLTreeHelper(*tree);
