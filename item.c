@@ -396,3 +396,12 @@ void freeAVLTreeHelper(AVLTreeNode * node)
 
     return;
 }
+
+int getAVLTreeSizeHelper(AVLTreeNode * node)
+{
+    if (!node) /* the node is NULL */
+        return 0;
+
+    return getAVLTreeSizeHelper(node->left) +
+           getAVLTreeSizeHelper(node->right) + 1;
+}
