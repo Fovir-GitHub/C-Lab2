@@ -72,7 +72,7 @@ void printOptions(const char * options[], int options_number);
  *
  * @param footer the footer content
  */
-void printMenuFooter(char * footer);
+void printMenuFooter(const char * footer);
 
 /**
  * Main menu include:

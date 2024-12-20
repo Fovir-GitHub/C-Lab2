@@ -158,7 +158,7 @@ void printOptions(const char * options[], int options_number)
     return;
 }
 
-void printMenuFooter(char * footer)
+void printMenuFooter(const char * footer)
 {
     printMenuFrame('-');
     printStringinCenter(footer);
