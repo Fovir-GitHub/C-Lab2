@@ -76,7 +76,7 @@ static void selectItemHelperHelper(char * category_name,
 SelectResult makeSelectResult(LinkListNode * category_position,
                               AVLTreeNode * item_position)
 {
-    SelectResult result;
+    SelectResult result = {NULL, NULL};
     result.category_position = category_position;
     result.item_position = item_position;
 
