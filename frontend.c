@@ -63,7 +63,7 @@ static SelectResult selectItemHelper(LinkListNode * node, int current_page,
  * @param current_page current page number
  * @param total_page total page number
  */
-static void selectItemHelperHelper(char * category_name,
+static void selectItemHelperHelper(const char * category_name,
                                    AVLTreeNode ** node_array, int array_size,
                                    int current_page, int total_page);
 
@@ -885,8 +885,9 @@ SelectResult selectItemHelper(LinkListNode * node, int current_page,
     return makeSelectResult(NULL, NULL); /* return NULL */
 }
 
-void selectItemHelperHelper(char * category_name, AVLTreeNode ** node_array,
-                            int array_size, int current_page, int total_page)
+void selectItemHelperHelper(const char * category_name,
+                            AVLTreeNode ** node_array, int array_size,
+                            int current_page, int total_page)
 {
     clearScreen(); /* clear screen at first */
 
