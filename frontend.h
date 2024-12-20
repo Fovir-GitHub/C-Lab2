@@ -174,4 +174,12 @@ LinkListNode * selectCategory(LinkList * list);
  */
 AVLTreeNode ** generateAVLTreeNodePointerArray(AVLTree * tree);
 
+/**
+ *@brief This function is used to select a item from a link list.
+ *
+ * @param list the link list
+ * @return AVLTreeNode* the position of the item's tree node.
+ */
+AVLTreeNode * selectItem(LinkList * list);
+
 #endif // !_FRONTEND_H_

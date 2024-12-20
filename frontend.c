@@ -21,24 +21,6 @@ static void showCategoriesHelper(LinkListNode * current,
                                  int total_page_number);
 
 /**
- *@brief Used to print the items according its category to every page.
- *
- * @param node the link list node
- */
-static void printShowItems(char * category_name, AVLTreeNode ** node_array,
-                           int array_size, int current_page, int total_page);
-
-/**
- *@brief Show items with category in a recrusive way.
- *
- * @param current current category
- * @param current_page_number current page number
- * @param total_page_number total page number
- */
-static void showItemsHelper(LinkListNode * current, int current_page_number,
-                            int total_page_number);
-
-/**
  *@brief Used to traverse AVL tree to print the item's name in the center.
  *
  * @param node the AVL tree node
@@ -66,6 +48,13 @@ static int generate_AVL_tree_node_pointer_array_index = 0;
  */
 static void generateAVLTreeNodePointerArrayHelper(AVLTreeNode * node,
                                                   AVLTreeNode ** result_array);
+
+static AVLTreeNode * selectItemHelper(LinkListNode * node, int current_page,
+                                      int total_page);
+
+static void selectItemHelperHelper(char * category_name,
+                                   AVLTreeNode ** node_array, int array_size,
+                                   int current_page, int total_page);
 
 int calculateCenterStringSpace(char * str)
 {
@@ -360,25 +349,16 @@ void addCategory(LinkList * list)
 
 void showItems(LinkList * list)
 {
-    int total_page = getLinkListSize(list);
+    AVLTreeNode * item_position = selectItem(list);
 
-    if (total_page == 0) /* no category */
+    if (item_position)
     {
-        clearScreen(); /* clear screen at first */
+        showItemInformation(&item_position->item);
 
-        printMenuTitle("Item");
-        printStringinCenter("No items!");
-        printMenuFooter("Press Enter to continue...");
-
+        printf("Pree Enter to continue...");
         eatLine();
-
-        return;
     }
 
-    // show items
-    showItemsHelper(*list, 1, total_page);
-
-    // eatLine(); /* flush the buffer */
     return;
 }
 
@@ -892,6 +872,11 @@ AVLTreeNode ** generateAVLTreeNodePointerArray(AVLTree * tree)
     return result_array;
 }
 
+AVLTreeNode * selectItem(LinkList * list)
+{
+    return selectItemHelper(*list, 1, getLinkListSize(list));
+}
+
 void showCategoriesHelper(LinkListNode * current, int current_page_number,
                           int total_page_number)
 {
@@ -925,88 +910,6 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
         clearScreen();
         printShowCategories(current, current_page_number, total_page_number);
     }
-    return;
-}
-
-void printShowItems(char * category_name, AVLTreeNode ** node_array,
-                    int array_size, int current_page, int total_page)
-{
-    clearScreen(); /* clear screen at first */
-
-    char item_name[ITEM_NAME_MAX_LENGTH]; /* store item's name */
-
-    // get footer
-    char footer[MENU_WIDTH];
-    sprintf(footer, "[p]revious    %d/%d    [n]ext", current_page, total_page);
-
-    printMenuTitle("Item");
-
-    // print category name
-    printf("%-*s\n", MENU_WIDTH, category_name);
-
-    // there is no item
-    if (array_size == 0)
-        printStringinCenter("No items!");
-    else
-        for (int i = 0; i < array_size; i++)
-        {
-            // show items
-            sprintf(item_name, "[%d] %s", i + 1, (*node_array[i]).item.name);
-            printStringinCenter(item_name);
-        }
-
-    printStringinCenter("[q] quit"); /* print quit option */
-    printMenuFooter(footer);         /* print footer */
-
-    printf("Enter your choice: "); /* ask user to enter choice */
-    return;
-}
-
-void showItemsHelper(LinkListNode * current, int current_page_number,
-                     int total_page_number)
-{
-    // get tree size
-    int tree_size = getAVLTreeSize(&current->category_item.item_tree);
-
-    // generate pointer array
-    AVLTreeNode ** tree_node_pointer_array =
-        generateAVLTreeNodePointerArray(&current->category_item.item_tree);
-
-    printShowItems(current->category_item.category_name,
-                   tree_node_pointer_array, tree_size, current_page_number,
-                   total_page_number);
-
-    int user_choice = 0;
-
-    while ((user_choice = readNumberOrAlpha()) != READ_NUMBER_OR_ALPHA_Q)
-    {
-        if (user_choice == READ_NUMBER_OR_ALPHA_P && current_page_number > 1)
-        {
-            free(tree_node_pointer_array);
-            return showItemsHelper(current->previous, current_page_number - 1,
-                                   total_page_number);
-        }
-        else if (user_choice == READ_NUMBER_OR_ALPHA_N &&
-                 current_page_number < total_page_number)
-        {
-            free(tree_node_pointer_array);
-            return showItemsHelper(current->next, current_page_number + 1,
-                                   total_page_number);
-        }
-        else if (1 <= user_choice && user_choice <= tree_size)
-        {
-            showItemInformation(
-                &(*(tree_node_pointer_array + user_choice - 1))->item);
-            printf("Press Enter to continue...");
-            eatLine();
-        }
-
-        printShowItems(current->category_item.category_name,
-                       tree_node_pointer_array, tree_size, current_page_number,
-                       total_page_number);
-    }
-
-    free(tree_node_pointer_array);
     return;
 }
 
@@ -1064,5 +967,83 @@ void generateAVLTreeNodePointerArrayHelper(AVLTreeNode * node,
     // traverse right
     generateAVLTreeNodePointerArrayHelper(node->right, result_array);
 
+    return;
+}
+
+AVLTreeNode * selectItemHelper(LinkListNode * node, int current_page,
+                               int total_page)
+{
+    int tree_size = getAVLTreeSize(&node->category_item.item_tree);
+    AVLTreeNode ** tree_node_pointer_array =
+        generateAVLTreeNodePointerArray(&node->category_item.item_tree);
+
+    selectItemHelperHelper(node->category_item.category_name,
+                           tree_node_pointer_array, tree_size, current_page,
+                           total_page);
+
+    int user_choice = 0;
+
+    while ((user_choice = readNumberOrAlpha()) != READ_NUMBER_OR_ALPHA_Q)
+    {
+        if (user_choice == READ_NUMBER_OR_ALPHA_P && current_page > 1)
+        {
+            free(tree_node_pointer_array);
+            return selectItemHelper(node->previous, current_page - 1,
+                                    current_page);
+        }
+        else if (user_choice == READ_NUMBER_OR_ALPHA_N &&
+                 current_page < total_page)
+        {
+            free(tree_node_pointer_array);
+            return selectItemHelper(node->next, current_page + 1, total_page);
+        }
+        else if (1 <= user_choice && user_choice <= tree_size)
+        {
+            AVLTreeNode * result = *(tree_node_pointer_array + user_choice - 1);
+            free(tree_node_pointer_array);
+
+            return result;
+        }
+
+        selectItemHelperHelper(node->category_item.category_name,
+                               tree_node_pointer_array, tree_size, current_page,
+                               total_page);
+    }
+
+    free(tree_node_pointer_array);
+    return NULL;
+}
+
+void selectItemHelperHelper(char * category_name, AVLTreeNode ** node_array,
+                            int array_size, int current_page, int total_page)
+{
+    clearScreen(); /* clear screen at first */
+
+    char item_name[ITEM_NAME_MAX_LENGTH]; /* store item's name */
+
+    // get footer
+    char footer[MENU_WIDTH];
+    sprintf(footer, "[p]revious    %d/%d    [n]ext", current_page, total_page);
+
+    printMenuTitle("Item");
+
+    // print category name
+    printf("%-*s\n", MENU_WIDTH, category_name);
+
+    // there is no item
+    if (array_size == 0)
+        printStringinCenter("No items!");
+    else
+        for (int i = 0; i < array_size; i++)
+        {
+            // show items
+            sprintf(item_name, "[%d] %s", i + 1, (*node_array[i]).item.name);
+            printStringinCenter(item_name);
+        }
+
+    printStringinCenter("[q] quit"); /* print quit option */
+    printMenuFooter(footer);         /* print footer */
+
+    printf("Enter your choice: "); /* ask user to enter choice */
     return;
 }
