@@ -533,6 +533,10 @@ void editItem(LinkList * list)
 {
     SelectResult select_result = selectItem(list);
 
+    // the user choose to quit
+    if (!(select_result.category_position && select_result.item_position))
+        return;
+
     // show the item's information at first
     showItemInformation(&select_result.item_position->item);
 
