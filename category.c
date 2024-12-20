@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-Category makeCategory(char * name)
+Category makeCategory(const char * name)
 {
     Category result;
 

@@ -34,7 +34,7 @@ typedef struct
  * @param name category's name
  * @return Category the object after constructing
  */
-Category makeCategory(char * name);
+Category makeCategory(const char * name);
 
 /**
  *@brief Use double way link list to store categories,
