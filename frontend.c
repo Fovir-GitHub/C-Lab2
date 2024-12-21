@@ -413,7 +413,8 @@ void addItem(LinkList * list)
     Item temp_item;
     int temp_year = 0, temp_month = 0, temp_day = 0;
 
-    LinkListNode * category_position = selectCategory(list).category_position;
+    const LinkListNode * category_position =
+        selectCategory(list).category_position;
 
     if (!category_position)
         return;
