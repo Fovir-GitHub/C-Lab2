@@ -517,14 +517,6 @@ void addItem(LinkList * list)
 
 void removeItem(LinkList * list)
 {
-    if (noIteminLinkList(list))
-    {
-        printf("There is no item to remove! %s", ENTER_CONTINUE);
-        eatLine();
-
-        return;
-    }
-
     SelectResult select_result = selectItem(list);
     if (!select_result.category_position || !select_result.item_position)
         return;
@@ -748,6 +740,9 @@ AVLTreeNode ** generateAVLTreeNodePointerArray(AVLTree * tree)
 
 SelectResult selectItem(LinkList * list)
 {
+    if (noIteminLinkList(list))
+        return makeSelectResult(NULL, NULL);
+
     return selectItemHelper(*list, 1, getLinkListSize(list));
 }
 
