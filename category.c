@@ -260,6 +260,15 @@ int addItemstoCategory(LinkList * list, Item item, int if_failed)
     return ADD_SUCCESS; /* return status code */
 }
 
+bool noIteminLinkList(LinkList * list)
+{
+    for (LinkListNode * iter = *list; iter; iter = iter->next)
+        if (!emptyAVLTree(&iter->category_item.item_tree))
+            return false;
+
+    return true;
+}
+
 void freeCategoryLinkListNode(const LinkListNode * node)
 {
     free(node->category_item.category_name);     /* free item name string */

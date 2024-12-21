@@ -165,4 +165,14 @@ enum ADD_ITEM_TO_CATEGORY_STATUS_CODE {
  */
 int addItemstoCategory(LinkList * list, Item item, int if_failed);
 
+
+/**
+ *@brief Check whether there is no items in the link list.
+ *
+ * @param list the link list to check
+ * @return true the link list has no item
+ * @return false the link list has item
+ */
+bool noIteminLinkList(LinkList * list);
+
 #endif // !_CATEGORY_H_
