@@ -383,7 +383,7 @@ void showItems(LinkList * list)
 {
     if (noIteminLinkList(list))
     {
-        printf("No items! %s", ENTER_CONTINUE);
+        printf("%s %s", NO_ITEMS, ENTER_CONTINUE);
         eatLine();
 
         return;
@@ -522,7 +522,7 @@ void removeItem(LinkList * list)
 {
     if (noIteminLinkList(list))
     {
-        printf("You don't have item! %s", ENTER_CONTINUE);
+        printf("%s %s", NO_ITEMS, ENTER_CONTINUE);
         eatLine();
 
         return;
@@ -917,7 +917,7 @@ void selectItemHelperHelper(const char * category_name,
 
     // there is no item
     if (array_size == 0)
-        printStringinCenter("No items!");
+        printStringinCenter(NO_ITEMS);
     else
         for (int i = 0; i < array_size; i++)
         {
