@@ -40,11 +40,7 @@ char * getString(char ** str, int max_length)
 
     fgets(temp_string, max_length, stdin); /* get temp string */
 
-    char * find = strchr(temp_string, '\n'); /* find \n in temp string */
-    if (find)                                /* if find */
-        *find = '\0';                        /* replace with '\0' */
-    else                                     /* not find */
-        eatLine(); /* remove the remain characters until line breaker */
+    removeNewline(temp_string); /* remove new line */
 
     *str = (char *) malloc((strlen(temp_string) + 1) * sizeof(char));
     if (!(*str)) /* failed to allocate memory */
@@ -228,21 +224,27 @@ int readNumberOrAlpha()
     return result;
 }
 
-void removeNewline(char * str)
+bool removeNewline(char * str)
 {
+    bool find_line_breaker = false;
+
     char * find = strchr(str, '\r');
     if (find)
+    {
         *find = '\0';
+        find_line_breaker = true;
+    }
     else
     {
         find = strchr(str, '\n');
         if (find)
+        {
             *find = '\0';
-        else
-            eatLine();
+            find_line_breaker = true;
+        }
     }
 
-    return;
+    return find_line_breaker;
 }
 
 char encodeCharacter(char ch)
