@@ -200,11 +200,11 @@ int readNumberOrAlpha()
     if (sscanf(input, "%d", &result) != 1)
     {
         // the input is not a single character
-        if (sscanf(input, "%c", &result) != 1)
+        if (strlen(input) != 1)
             return READ_NUMBER_OR_ALPHA_ERROR; /* return error */
 
         // the input is a single character
-        switch (tolower(result))
+        switch (input[0])
         {
         case 'p':
             result = READ_NUMBER_OR_ALPHA_P;
