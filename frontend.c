@@ -517,6 +517,13 @@ void addItem(LinkList * list)
 
 void removeItem(LinkList * list)
 {
+    if (emptyLinkList(list))
+    {
+        printf("There is no item to remove! %s", ENTER_CONTINUE);
+        eatLine();
+
+        return;
+    }
     SelectResult select_result = selectItem(list);
     if (!select_result.category_position || !select_result.item_position)
         return;
