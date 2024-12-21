@@ -120,7 +120,7 @@ bool legalString(char * str)
     if (!str) /* NULL pointer */
         return false;
 
-    if (strcmp(str, "quit") == 0)
+    if (strcmp(str, "quit") == 0) /* the name is quit */
         return false;
 
     if (emptyString(str)) /* empty string */
