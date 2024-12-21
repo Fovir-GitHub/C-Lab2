@@ -770,8 +770,7 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
                  iter = (choice == READ_NUMBER_OR_ALPHA_P ? iter->previous
                                                           : iter->next))
                 counter++;
-            // if (!iter) /* the page does not exist, skip */
-            //     continue;
+
             if (iter) /* the page exist, go to the page */
                 return showCategoriesHelper(iter,
                                             (choice == READ_NUMBER_OR_ALPHA_P
