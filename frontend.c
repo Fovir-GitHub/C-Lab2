@@ -189,7 +189,7 @@ int getMainMenuChoicefromUser()
 
     while ((user_choice = readNumberOrAlpha()) != READ_NUMBER_OR_ALPHA_Q)
         if (1 <= user_choice && user_choice < MAIN_MENU_OPTIONS_NUMBER)
-            return user_choice - 1;
+            return user_choice - 1; /* according to the enumeration */
         else
             showMainMenu();
 
