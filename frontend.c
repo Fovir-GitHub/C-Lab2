@@ -741,8 +741,8 @@ AVLTreeNode ** generateAVLTreeNodePointerArray(AVLTree * tree)
 
 SelectResult selectItem(LinkList * list)
 {
-    if (noIteminLinkList(list))
-        return makeSelectResult(NULL, NULL);
+    if (noIteminLinkList(list))              /* there is no items */
+        return makeSelectResult(NULL, NULL); /* return NULL */
 
     return selectItemHelper(*list, 1, getLinkListSize(list));
 }
