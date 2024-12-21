@@ -40,7 +40,8 @@ char * getString(char ** str, int max_length)
 
     fgets(temp_string, max_length, stdin); /* get temp string */
 
-    removeNewline(temp_string); /* remove new line */
+    if (!removeNewline(temp_string)) /* there is no line breaker */
+        eatLine();                   /* ignore other characters */
 
     *str = (char *) malloc((strlen(temp_string) + 1) * sizeof(char));
     if (!(*str)) /* failed to allocate memory */
