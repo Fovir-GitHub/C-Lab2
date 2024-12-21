@@ -381,7 +381,7 @@ void addCategory(LinkList * list)
 
 void showItems(LinkList * list)
 {
-    if (emptyLinkList(list))
+    if (noIteminLinkList(list))
     {
         printf("No items! %s", ENTER_CONTINUE);
         eatLine();
@@ -395,7 +395,7 @@ void showItems(LinkList * list)
     {
         showItemInformation(&select_result.item_position->item);
 
-        printf("Pree Enter to continue...");
+        printf("%s", ENTER_CONTINUE);
         eatLine();
     }
 
