@@ -520,7 +520,17 @@ void addItem(LinkList * list)
 
 void removeItem(LinkList * list)
 {
+    if (noIteminLinkList(list))
+    {
+        printf("You don't have item! %s", ENTER_CONTINUE);
+        eatLine();
+
+        return;
+    }
+
     SelectResult select_result = selectItem(list);
+
+    // user choose quit
     if (!select_result.category_position || !select_result.item_position)
         return;
 
