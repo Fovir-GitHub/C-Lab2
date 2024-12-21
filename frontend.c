@@ -196,8 +196,7 @@ int getMainMenuChoicefromUser()
         if (!strchr(MAIN_MENU_OPTIONS_STRING, user_choice)) /* not valid */
         {
             // tell user to input new option.
-            printf("You entered an invalid chioce! Press Enter to "
-                   "continue...");
+            printf("You entered an invalid chioce! %s", ENTER_CONTINUE);
             eatLine(); /* avoid multiple characters */
         }
         else
