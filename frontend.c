@@ -509,6 +509,14 @@ void removeItem(LinkList * list)
 
 void editItem(LinkList * list)
 {
+    if (noIteminLinkList(list))
+    {
+        printf("%s %s", NO_ITEMS, ENTER_CONTINUE);
+        eatLine();
+
+        return;
+    }
+
     SelectResult select_result = selectItem(list);
 
     // the user choose to quit
