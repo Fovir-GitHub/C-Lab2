@@ -109,6 +109,13 @@ enum READ_NUMBER_OR_ALPHA {
  */
 int readNumberOrAlpha();
 
+/**
+ *@brief Remove line breaker character '\r' and '\n'.
+ *
+ * @param str the string to remove line breaker
+ * @return true the string has line breaker
+ * @return false the string does not have line breaker
+ */
 bool removeNewline(char * str);
 
 #endif // !_MY_UTILITY_H_
