@@ -184,7 +184,7 @@ void insertAVLTreeNode(AVLTree * tree, Item insert_item);
  *
  * @param tree the AVL tree to free memory space
  */
-void freeAVLTree(AVLTree * tree);
+void freeAVLTree(const AVLTree * tree);
 
 /**
  *@brief Remove a item from a AVL tree according item's name.

@@ -29,7 +29,7 @@ static int print_category_in_list_form_index = 0;
  *
  * @param node the node to operate
  */
-static void printCategoryListinListFormHelper(LinkListNode * node);
+static void printCategoryListinListFormHelper(const LinkListNode * node);
 
 // the index of generating AVL tree node into array
 static int generate_AVL_tree_node_pointer_array_index = 0;
@@ -779,7 +779,7 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
     return;
 }
 
-void printCategoryListinListFormHelper(LinkListNode * node)
+void printCategoryListinListFormHelper(const LinkListNode * node)
 {
     /**
      * the output line format: [xx] name

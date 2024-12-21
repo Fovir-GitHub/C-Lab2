@@ -195,7 +195,7 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name)
 }
 
 void traverseCategoryLinkList(LinkList * list,
-                              void (*function_pointer)(LinkListNode *))
+                              void (*function_pointer)(const LinkListNode *))
 {
     for (LinkListNode * current = *list; current; current = current->next)
         function_pointer(current);
@@ -260,9 +260,9 @@ int addItemstoCategory(LinkList * list, Item item, int if_failed)
     return ADD_SUCCESS; /* return status code */
 }
 
-void freeCategoryLinkListNode(LinkListNode * node)
+void freeCategoryLinkListNode(const LinkListNode * node)
 {
     free(node->category_item.category_name);     /* free item name string */
     freeAVLTree(&node->category_item.item_tree); /* free tree */
-    free(node);                                  /* free the node space */
+    free((void *) node);                         /* free the node space */
 }

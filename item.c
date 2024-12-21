@@ -293,7 +293,7 @@ void insertAVLTreeNode(AVLTree * tree, Item insert_item)
     return;
 }
 
-void freeAVLTree(AVLTree * tree)
+void freeAVLTree(const AVLTree * tree)
 {
     freeAVLTreeHelper(*tree);
     return;

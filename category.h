@@ -108,7 +108,7 @@ int removeCategoryfromLinkList(LinkList * list, char * category_name);
  * @param function_pointer the function pointer
  */
 void traverseCategoryLinkList(LinkList * list,
-                              void (*function_pointer)(LinkListNode *));
+                              void (*function_pointer)(const LinkListNode *));
 
 /**
  *@brief Free the memory of the link list.
@@ -117,7 +117,7 @@ void traverseCategoryLinkList(LinkList * list,
  */
 void freeCategoryLinkList(LinkList * list);
 
-void freeCategoryLinkListNode(LinkListNode * node);
+void freeCategoryLinkListNode(const LinkListNode * node);
 
 /**
  *@brief Find the category in the link list.
