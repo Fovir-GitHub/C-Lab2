@@ -227,15 +227,16 @@ int readNumberOrAlpha()
 
 bool removeNewline(char * str)
 {
+    // assume there is no line breaker
     bool find_line_breaker = false;
 
-    char * find = strchr(str, '\r');
+    char * find = strchr(str, '\r'); /* CRLF form */
     if (find)
     {
         *find = '\0';
         find_line_breaker = true;
     }
-    else
+    else /* LF form */
     {
         find = strchr(str, '\n');
         if (find)
