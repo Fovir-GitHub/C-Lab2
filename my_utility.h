@@ -109,4 +109,6 @@ enum READ_NUMBER_OR_ALPHA {
  */
 int readNumberOrAlpha();
 
+void removeNewline(char * str);
+
 #endif // !_MY_UTILITY_H_

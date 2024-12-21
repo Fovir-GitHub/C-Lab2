@@ -228,6 +228,23 @@ int readNumberOrAlpha()
     return result;
 }
 
+void removeNewline(char * str)
+{
+    char * find = strchr(str, '\r');
+    if (find)
+        *find = '\0';
+    else
+    {
+        find = strchr(str, '\n');
+        if (find)
+            *find = '\0';
+        else
+            eatLine();
+    }
+
+    return;
+}
+
 char encodeCharacter(char ch)
 {
     return (ch - MIN_VISIBLE_CHARACTER_ASCII + ENCRYPTION_OFFSET) %
