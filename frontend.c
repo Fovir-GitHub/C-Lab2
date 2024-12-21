@@ -290,6 +290,8 @@ void removeCategory(LinkList * list)
 
         if (tolower(getchar()) != 'y')
             return;
+        else
+            eatLine();
     }
 
     // get the status after removing category
