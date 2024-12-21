@@ -686,35 +686,34 @@ SelectResult selectCategory(LinkList * list)
     printf("Please select the category: ");
 
     // the input is number
-    while (scanf("%d", &user_choice) == 1)
+    while ((user_choice = readNumberOrAlpha()) != READ_NUMBER_OR_ALPHA_Q)
     {
-        // the option is unavailable
-        if (user_choice < 1 || user_choice > list_size)
+        if (user_choice != READ_NUMBER_OR_ALPHA_P &&
+            user_choice != READ_NUMBER_OR_ALPHA_N &&
+            user_choice != READ_NUMBER_OR_ALPHA_ERROR)
         {
-            eatLine(); /* flush the buffer */
-            printf("Please enter the number in range %d ~ %d!\n", 1, list_size);
-            printf("Enter another one? [Y/n] ");
-
-            if (tolower(getchar()) == 'n')
-                break;
-            else
+            // the choice is avaliable
+            if (1 <= user_choice && user_choice <= list_size)
             {
-                printf("Please select the category: ");
-                continue;
+                // find the category's position
+                int counter = 1;
+                LinkListNode * iter = NULL;
+                for (iter = *list; iter && counter < user_choice;
+                     iter = iter->next, counter++);
+
+                result = makeSelectResult(iter, NULL);
+                break;
             }
         }
+        else
+        {
+            clearScreen();
+            printCategoryListinListForm(list);
 
-        // find the category's position
-        int counter = 1;
-        LinkListNode * iter = NULL;
-        for (iter = *list; iter && counter < user_choice;
-             iter = iter->next, counter++);
-
-        result = makeSelectResult(iter, NULL);
-        break;
+            printf("Please select the category: ");
+        }
     }
 
-    eatLine(); /* flush the buffer */
     return result;
 }
 
