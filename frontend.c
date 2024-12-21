@@ -182,7 +182,7 @@ void showMainMenu()
 
 int getMainMenuChoicefromUser()
 {
-    char user_choice = 0;
+    int user_choice = 0;
 
     // initialized status
     showMainMenu();
