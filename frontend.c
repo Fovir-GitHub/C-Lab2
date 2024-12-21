@@ -273,7 +273,7 @@ void removeCategory(LinkList * list)
 {
     if (emptyLinkList(list)) /* there is no category */
     {
-        printf("You don't have any category! %s", ENTER_CONTINUE);
+        printf("%s %s", NO_CATEGORIES, ENTER_CONTINUE);
         eatLine();
         return;
     }
