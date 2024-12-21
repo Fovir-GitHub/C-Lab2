@@ -187,49 +187,13 @@ int getMainMenuChoicefromUser()
     // initialized status
     showMainMenu();
 
-    while (user_choice = getchar()) /* get user's input */
-    {
-        if (user_choice == '\n') /* user inputs line breaker */
-            continue;            /* ignore */
-
-        // find whether the choice is valid
-        if (!strchr(MAIN_MENU_OPTIONS_STRING, user_choice)) /* not valid */
-        {
-            // tell user to input new option.
-            printf("You entered an invalid chioce! %s", ENTER_CONTINUE);
-            eatLine(); /* avoid multiple characters */
-        }
+    while ((user_choice = readNumberOrAlpha()) != READ_NUMBER_OR_ALPHA_Q)
+        if (1 <= user_choice && user_choice < MAIN_MENU_OPTIONS_NUMBER)
+            return user_choice - 1;
         else
-        {
-            eatLine(); /* avoid multiple characters */
+            showMainMenu();
 
-            // judge user's choice and return the choice
-            switch (user_choice)
-            {
-            case '1':
-                return SHOW_ALL_CATEGORIES;
-            case '2':
-                return ADD_CATEGORY;
-            case '3':
-                return REMOVE_CATEGORY;
-            case '4':
-                return SHOW_ALL_ITEMS;
-            case '5':
-                return ADD_ITEM;
-            case '6':
-                return REMOVE_ITEM;
-            case '7':
-                return EDIT_ITEM;
-            case 'q':
-                return QUIT;
-            }
-        }
-
-        eatLine();
-        showMainMenu(); /* show the new main menu */
-    }
-
-    return 0;
+    return QUIT;
 }
 
 void showCategories(LinkList * list)
