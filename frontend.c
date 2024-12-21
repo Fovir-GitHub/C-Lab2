@@ -266,6 +266,7 @@ void printShowCategories(LinkListNode * current, int current_page_number,
     sprintf(output_string, "[p]revious page    %d/%d    [n]ext page",
             current_page_number, total_page_number);
     printMenuFooter(output_string);
+    printf("Please enter your choice: ");
 }
 
 void removeCategory(LinkList * list)
@@ -755,22 +756,25 @@ void showCategoriesHelper(LinkListNode * current, int current_page_number,
 
     int choice = 0; /* get user's choice */
 
-    while ((choice = getchar()) != 'q') /* the choice is not quit */
+    while ((choice = readNumberOrAlpha()) !=
+           READ_NUMBER_OR_ALPHA_Q) /* the choice is not quit */
     {
         LinkListNode * iter = current;
 
-        if (choice == 'p' || choice == 'n') /* legal option */
+        if (choice == READ_NUMBER_OR_ALPHA_P ||
+            choice == READ_NUMBER_OR_ALPHA_N) /* legal option */
         {
             int counter = 1;
             // judge whether the next page or the previous page exist
             for (; iter && counter <= CAGEGORY_NUMBER_PER_PAGE;
-                 iter = (choice == 'p' ? iter->previous : iter->next))
+                 iter = (choice == READ_NUMBER_OR_ALPHA_P ? iter->previous
+                                                          : iter->next))
                 counter++;
-            if (!iter) /* the page does not exist, skip */
-                continue;
-            else /* the page exist, go to the page */
+            // if (!iter) /* the page does not exist, skip */
+            //     continue;
+            if (iter) /* the page exist, go to the page */
                 return showCategoriesHelper(iter,
-                                            (choice == 'p'
+                                            (choice == READ_NUMBER_OR_ALPHA_P
                                                  ? (current_page_number - 1)
                                                  : (current_page_number + 1)),
                                             total_page_number);
