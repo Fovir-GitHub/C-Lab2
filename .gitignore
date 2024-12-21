@@ -1,5 +1,5 @@
 main
-/data
+/data*
 Doxyfile
 /html
 /latex
