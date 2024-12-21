@@ -118,4 +118,11 @@ int readNumberOrAlpha();
  */
 bool removeNewline(char * str);
 
+/**
+ *@brief Remove the space at the end of the word.
+ *
+ * @param str the string to trim
+ */
+void trimLastSpace(char * str);
+
 #endif // !_MY_UTILITY_H_

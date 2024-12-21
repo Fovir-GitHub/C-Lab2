@@ -249,6 +249,18 @@ bool removeNewline(char * str)
     return find_line_breaker;
 }
 
+void trimLastSpace(char * str)
+{
+    for (int i = strlen(str) - 1; i >= 0; i--)
+        if (isgraph(str[i]))
+        {
+            str[i + 1] = '\0';
+            return;
+        }
+
+    return;
+}
+
 char encodeCharacter(char ch)
 {
     return (ch - MIN_VISIBLE_CHARACTER_ASCII + ENCRYPTION_OFFSET) %
